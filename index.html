@@ -24,11 +24,6 @@
     --gold:#F5A623;
     --error:#D64545;
   }
-  /* CSS UX FIX: Enables smooth transition animations when clicking header anchors */
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* Prevents sticky header from overlapping section titles */
-  }
   *{box-sizing:border-box;}
   body{margin:0; background:var(--white); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
   a{text-decoration:none; color:inherit;}
@@ -37,22 +32,29 @@
   h2.section-title{font-size:26px; font-weight:700; text-align:center; margin:0 0 6px;}
   p.section-sub{font-size:14.5px; color:var(--slate); text-align:center; max-width:560px; margin:0 auto 36px; line-height:1.6;}
 
-  /* header */
-  header{border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--white); z-index:20;}
+  /* Header */
+  header{border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--white); z-index:100;}
   .header-row{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
-  .logo{display:flex; align-items:center; gap:9px;}
+  .logo{display:flex; align-items:center; gap:9px; cursor:pointer;}
   .logo-mark{width:28px; height:28px; border-radius:8px; background:var(--blue-700); position:relative; flex-shrink:0;}
   .logo-mark::after{content:""; position:absolute; top:8px; left:8px; width:12px; height:12px; border-radius:3px; background:var(--gold);}
   .logo-word{font-weight:700; font-size:18px;}
   .logo-word span{color:var(--blue-700);}
   nav{display:flex; gap:26px; font-size:14px; font-weight:500; color:var(--slate);}
-  nav a:hover{color:var(--blue-700);}
+  nav a{cursor:pointer; transition: color 0.2s;}
+  nav a:hover, nav a.active{color:var(--blue-700); font-weight:600;}
   .header-cta{display:flex; align-items:center; gap:16px;}
   .phone-chip{font-size:13.5px; font-weight:600; color:var(--blue-700);}
-  .btn-header{background:var(--blue-700); color:var(--white); padding:9px 18px; border-radius:8px; font-size:13.5px; font-weight:600;}
+  .btn-header{background:var(--blue-700); color:var(--white); padding:9px 18px; border-radius:8px; font-size:13.5px; font-weight:600; cursor:pointer;}
   @media (max-width:900px){ nav{display:none;} }
 
-  /* hero */
+  /* --- SPA ROUTING MAGIC --- */
+  /* This hides all pages by default, and only shows the one with 'active-view' */
+  .page-view { display: none; animation: fadeIn 0.3s ease-in-out; }
+  .page-view.active-view { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Hero Section (Personal Loan) */
   .hero{background:linear-gradient(180deg,var(--blue-50) 0%, var(--white) 100%); padding:44px 0 0;}
   .hero-grid{display:flex; gap:40px; align-items:stretch; padding-bottom:0;}
   .hero-left{flex:1.1;}
@@ -73,7 +75,7 @@
     .stats-row{grid-template-columns:repeat(2,1fr); row-gap:26px;} 
   }
 
-  /* hero form card */
+  /* Form Card Layouts */
   .form-card{background:var(--white); border:1px solid var(--border); border-radius:18px; padding:26px 26px 22px; box-shadow:0 12px 32px -16px rgba(13,43,82,0.18); position:sticky; top:88px;}
   .form-card-title{font-size:17px; font-weight:700; margin:0 0 2px;}
   .form-card-sub{font-size:12.5px; color:var(--slate-light); margin:0 0 20px;}
@@ -82,7 +84,8 @@
   .dot.done{background:var(--blue-700);}
   .field{display:flex; flex-direction:column; gap:6px; margin-bottom:16px;}
   .field label{font-size:13px; font-weight:600;}
-  input[type=text], input[type=tel]{
+  
+  input[type=text], input[type=tel], input[type=number]{
     height:46px; border-radius:9px; border:1px solid var(--border); padding:0 14px;
     font-size:14.5px; font-family:'Inter',sans-serif; color:var(--ink); background:var(--paper); width:100%;
   }
@@ -91,14 +94,16 @@
   .pill-group{display:flex; gap:8px; margin-bottom:14px;}
   .pill{flex:1; text-align:center; padding:10px 0; border-radius:99px; border:1px solid var(--border); font-size:13px; font-weight:600; cursor:pointer; background:var(--paper); color:var(--slate); transition: all 0.2s ease;}
   .pill.selected{background:var(--blue-700); border-color:var(--blue-700); color:var(--white);}
+  
+  /* Selfie Modules */
   .selfie-box{border:1.5px dashed var(--border); border-radius:12px; padding:22px 16px; text-align:center; cursor:pointer; background:var(--paper); margin-bottom:4px;}
   .selfie-box.filled{border-style:solid; border-color:var(--success); background:var(--success-bg); padding:12px;}
   .selfie-icon{width:46px; height:46px; border-radius:50%; background:var(--white); border:1px solid var(--border); margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:19px; color:var(--slate-light);}
   .selfie-preview{width:100%; max-height:180px; border-radius:10px; display:block; margin:0 auto 8px; object-fit:cover;}
   .selfie-title{font-size:13.5px; font-weight:600;}
   .selfie-sub{font-size:12px; color:var(--slate-light); margin-top:3px;}
-  .selfie-box.filled .selfie-sub{color:var(--success);}
   #selfieInput{display:none;}
+
   .btn{width:100%; height:48px; border-radius:9px; font-size:14px; font-weight:600; cursor:pointer; border:none; margin-top:4px; display:flex; align-items:center; justify-content:center;}
   .btn-primary{background:var(--blue-700); color:var(--white);}
   .btn-primary:hover{background:var(--blue-600);}
@@ -114,26 +119,16 @@
   .success-check{width:56px; height:56px; border-radius:50%; background:var(--success-bg); color:var(--success); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:24px; font-weight:700;}
   .success-title{font-size:15px; font-weight:600; color:var(--slate); margin:0 0 2px;}
   .success-amount{font-size:32px; font-weight:800; color:var(--blue-900); margin:6px 0 18px;}
-  .cta-note{font-size:14px; font-weight:600; color:var(--ink); margin:0 0 12px;}
-  @media (max-width:900px){ .form-card{position:relative; top:0;} }
-
-  /* features */
+  
+  /* Features & Content Elements */
   .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
-  .feature-card{border:1px solid var(--border); border-radius:14px; padding:22px 20px; text-align:center;}
+  .feature-card{border:1px solid var(--border); border-radius:14px; padding:22px 20px; text-align:center; background:var(--white);}
   .feature-icon{width:46px; height:46px; border-radius:12px; background:var(--blue-50); color:var(--blue-700); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; font-size:20px;}
   .feature-title{font-size:14.5px; font-weight:600; line-height:1.4;}
   @media (max-width:800px){ .feature-grid{grid-template-columns:1fr 1fr;} }
 
-  /* eligibility criteria */
-  .crit-row{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
-  .crit-card{text-align:center; padding:8px;}
-  .crit-icon{width:52px; height:52px; border-radius:50%; background:var(--blue-50); color:var(--blue-700); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:21px;}
-  .crit-title{font-size:13.5px; font-weight:600; color:var(--slate);}
-  @media (max-width:800px){ .crit-row{grid-template-columns:1fr 1fr;} }
-
-  /* documents */
   .doc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
-  .doc-card{border:1px solid var(--border); border-radius:14px; padding:22px;}
+  .doc-card{border:1px solid var(--border); border-radius:14px; padding:22px; background:var(--white);}
   .doc-head{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
   .doc-icon{width:38px; height:38px; border-radius:10px; background:var(--blue-50); color:var(--blue-700); display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0;}
   .doc-title{font-size:14.5px; font-weight:700;}
@@ -142,29 +137,37 @@
   .doc-list li::before{content:"✓"; color:var(--success); font-weight:700;}
   @media (max-width:800px){ .doc-grid{grid-template-columns:1fr;} }
 
-  /* example */
   .example-card{background:var(--blue-50); border-radius:16px; padding:30px 32px;}
-  .example-card p{font-size:14.5px; color:var(--ink); line-height:1.75; margin:0 0 20px;}
-  .example-table{width:100%; border-collapse:collapse;}
-  .example-table td{padding:10px 0; font-size:13.5px; border-bottom:1px solid rgba(13,43,82,0.08);}
-  .example-table td:first-child{color:var(--slate);}
-  .example-table td:last-child{text-align:right; font-weight:700; color:var(--blue-900);}
-  .example-table tr:last-child td{border-bottom:none;}
-
-  /* faq */
+  
   .faq-item{border-bottom:1px solid var(--border); padding:18px 0;}
   .faq-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14.5px; font-weight:600;}
   .faq-a{font-size:13.5px; color:var(--slate); line-height:1.6; margin-top:12px; display:none; max-width:640px;}
   .faq-item.open .faq-a{display:block;}
-  .faq-toggle{font-size:18px; color:var(--blue-700); flex-shrink:0; margin-left:14px;}
 
-  /* footer */
-  footer{background:var(--blue-900); color:#C9D6EC; padding:44px 0 26px;}
+  /* Modern Dedicated EMI Calculator Page UI Styles */
+  .calc-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 36px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+  .calc-inputs { display: flex; flex-direction: column; gap: 28px; }
+  .slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .slider-label { font-size: 14px; font-weight: 600; color: var(--slate); }
+  .slider-val-box { background: var(--blue-50); color: var(--blue-700); font-weight: 700; padding: 6px 14px; border-radius: 8px; font-size: 15px; }
+  .calc-slider { width: 100%; height: 6px; background: var(--border); border-radius: 5px; outline: none; accent-color: var(--blue-700); }
+  .calc-output-card { background: var(--blue-900); color: var(--white); border-radius: 16px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; }
+  .summary-title { color: #8FA0C2; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;}
+  .summary-val { font-size: 36px; font-weight: 800; color: var(--white); margin-bottom: 24px; }
+  .breakdown-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 14px; }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-label { color: #C9D6EC; }
+  .breakdown-value { font-weight: 700; color: var(--white); }
+  @media (max-width: 850px) { .calc-container { grid-template-columns: 1fr; } }
+
+  /* Footer */
+  footer{background:var(--blue-900); color:#C9D6EC; padding:44px 0 26px; margin-top: 60px;}
   .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; margin-bottom:30px;}
   .footer-logo{color:var(--white); font-weight:700; font-size:17px; margin-bottom:12px;}
   .footer-desc{font-size:13px; line-height:1.7; max-width:320px;}
   .footer-col-title{color:var(--white); font-size:13px; font-weight:700; margin-bottom:12px;}
-  .footer-col a, .footer-col p{display:block; font-size:13px; margin-bottom:9px; color:#C9D6EC;}
+  .footer-col a, .footer-col p{display:block; font-size:13px; margin-bottom:9px; color:#C9D6EC; cursor: pointer;}
+  .footer-col a:hover { color: var(--white); }
   .footer-disclaimer{font-size:11.5px; color:#8FA0C2; line-height:1.7; border-top:1px solid rgba(255,255,255,0.12); padding-top:20px;}
   @media (max-width:800px){ .footer-grid{grid-template-columns:1fr;} }
 </style>
@@ -173,119 +176,167 @@
 
 <header>
   <div class="wrap header-row">
-    <div class="logo">
+    <div class="logo" onclick="navigateTo('personal')">
       <div class="logo-mark"></div>
       <div class="logo-word">Zync<span>Pay</span></div>
     </div>
-    <nav>
-      <a href="#personal-loan">Personal loan</a>
-      <a href="#business-loan">Business loan</a>
-      <a href="#emi-calculator">EMI calculator</a>
-      <a href="#about-us">About us</a>
+    <nav id="mainNav">
+      <a onclick="navigateTo('personal')" id="nav-personal" class="active">Personal loan</a>
+      <a onclick="navigateTo('business')" id="nav-business">Business loan</a>
+      <a onclick="navigateTo('emi')" id="nav-emi">EMI calculator</a>
+      <a onclick="navigateTo('about')" id="nav-about">About us</a>
     </nav>
     <div class="header-cta">
       <span class="phone-chip">📞 1800-981-111</span>
-      <a href="#apply" class="btn-header">Apply now</a>
+      <a onclick="navigateTo('personal')" class="btn-header">Apply now</a>
     </div>
   </div>
 </header>
 
-<section class="hero" id="personal-loan">
-  <div class="wrap hero-grid">
-    <div class="hero-left">
-      <span class="hero-eyebrow">🔒 RBI-aligned digital lending</span>
-      <h1 class="hero-title">Get a personal loan up to <span class="accent">₹1,00,000</span> starting at 8.7% p.a.</h1>
-      <p class="hero-desc">Compare offers from 15+ banks and NBFCs, check your eligibility in under a minute, and get funds disbursed to your account — no paperwork, no branch visits.</p>
+<main id="view-personal" class="page-view active-view">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-left">
+        <span class="hero-eyebrow">🔒 RBI-aligned digital lending</span>
+        <h1 class="hero-title">Get a personal loan up to <span class="accent">₹1,00,000</span> starting at 8.7% p.a.</h1>
+        <p class="hero-desc">Compare offers from 15+ banks and NBFCs, check your eligibility in under a minute, and get funds disbursed to your account — no paperwork, no branch visits.</p>
 
-      <div class="stats-row">
-        <div class="stat-card"><div class="stat-icon">🤝</div><div class="stat-num">5 Lacs+</div><div class="stat-label">Customers served</div></div>
-        <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-num">4.6/5</div><div class="stat-label">Google reviews</div></div>
-        <div class="stat-card"><div class="stat-icon">📍</div><div class="stat-num">8,000+</div><div class="stat-label">Pincodes serving</div></div>
-        <div class="stat-card"><div class="stat-icon">💸</div><div class="stat-num">₹1,200 Cr+</div><div class="stat-label">Loans disbursed</div></div>
+        <div class="stats-row">
+          <div class="stat-card"><div class="stat-icon">🤝</div><div class="stat-num">5 Lacs+</div><div class="stat-label">Customers served</div></div>
+          <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-num">4.6/5</div><div class="stat-label">Google reviews</div></div>
+          <div class="stat-card"><div class="stat-icon">📍</div><div class="stat-num">8,000+</div><div class="stat-label">Pincodes serving</div></div>
+          <div class="stat-card"><div class="stat-icon">💸</div><div class="stat-num">₹1,200 Cr+</div><div class="stat-label">Loans disbursed</div></div>
+        </div>
+      </div>
+
+      <div class="hero-right" id="apply">
+        <div class="form-card">
+          <div class="progress" id="progress"></div>
+          <div id="card"></div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero-right" id="apply">
-      <div class="form-card">
-        <div class="progress" id="progress"></div>
-        <div id="card"></div>
+  <section style="background:var(--paper);">
+    <div class="wrap">
+      <h2 class="section-title">Why choose ZyncPay Personal Loans</h2>
+      <p class="section-sub">Unsecured instant credit tailored for personal emergencies, medical needs, or purchases.</p>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="feature-icon">🏦</div><div class="feature-title">100% Paperless digital validation tracks</div></div>
+        <div class="feature-card"><div class="feature-icon">📉</div><div class="feature-title">Lowest market processing premiums from 8.7%</div></div>
+        <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">Immediate direct disbursals inside 24 Hours</div></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<section id="business-loan">
-  <div class="wrap">
-    <h2 class="section-title">Why choose ZyncPay</h2>
-    <p class="section-sub">Interest rates start at 8.7% p.a. — here's what else you get.</p>
-    <div class="feature-grid">
-      <div class="feature-card"><div class="feature-icon">🏦</div><div class="feature-title">Compare and apply from 15+ banks and NBFCs</div></div>
-      <div class="feature-card"><div class="feature-icon">📉</div><div class="feature-title">Interest rates from 8.7% to 15%</div></div>
-      <div class="feature-card"><div class="feature-icon">🗓️</div><div class="feature-title">Up to 60 months to repay the loan</div></div>
-      <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">Quick credit disbursal to your account</div></div>
-      <div class="feature-card"><div class="feature-icon">🔁</div><div class="feature-title">Flexible repayment and prepayment options</div></div>
-      <div class="feature-card"><div class="feature-icon">📱</div><div class="feature-title">100% digital and paperless process</div></div>
+<main id="view-business" class="page-view">
+  <section class="hero" style="background: linear-gradient(180deg, #f0f4fc 0%, var(--white) 100%); padding-bottom:56px;">
+    <div class="wrap" style="text-align: center; max-width:800px; padding-top:40px;">
+      <span class="hero-eyebrow" style="color:var(--blue-700); background:var(--white);">💼 Expand Operations</span>
+      <h1 class="hero-title" style="font-size:42px;">Collateral-Free Business Loans up to <span class="accent">₹20 Lakhs</span></h1>
+      <p class="hero-desc" style="max-width:100%; margin: 0 auto 30px; font-size:16px;">Fuel your business growth, manage inventory cycles, or scale workspace infrastructure with specialized lines of credit verified completely online.</p>
+      <button class="btn btn-primary" onclick="alert('Business Loan integration funnel running. Contact support@zyncpay.com for access parameters.')" style="max-width:240px; margin:0 auto;">Check Business Eligibility</button>
     </div>
-  </div>
-</section>
+  </section>
 
-<section style="background:var(--paper);">
-  <div class="wrap">
-    <h2 class="section-title">Who can apply</h2>
-    <p class="section-sub">You're likely eligible if you meet these criteria.</p>
-    <div class="crit-row">
-      <div class="crit-card"><div class="crit-icon">🌍</div><div class="crit-title">Open to everyone — earning or not</div></div>
-      <div class="crit-card"><div class="crit-icon">📊</div><div class="crit-title">No minimum credit score required</div></div>
-      <div class="crit-card"><div class="crit-icon">🎂</div><div class="crit-title">Age between 18 and 65 years</div></div>
-      <div class="crit-card"><div class="crit-icon">🏢</div><div class="crit-title">No prior work experience needed</div></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2 class="section-title">Documents you'll need</h2>
-    <p class="section-sub">Have these ready to speed up verification.</p>
-    <div class="doc-grid">
-      <div class="doc-card">
-        <div class="doc-head"><div class="doc-icon">🪪</div><div class="doc-title">Identity proof</div></div>
-        <ul class="doc-list"><li>PAN card (mandatory)</li><li>Aadhaar card (mandatory)</li><li>Passport or voter ID</li></ul>
-      </div>
-      <div class="doc-card">
-        <div class="doc-head"><div class="doc-icon">🏠</div><div class="doc-title">Address proof</div></div>
-        <ul class="doc-list"><li>Aadhaar card</li><li>Electricity bill</li><li>Piped gas bill</li></ul>
-      </div>
-      <div class="doc-card">
-        <div class="doc-head"><div class="doc-icon">📑</div><div class="doc-title">Income proof (if applicable)</div></div>
-        <ul class="doc-list"><li>Salary slips (last 3 months)</li><li>Bank statement (last 3 months)</li><li>Not applicable? No worries — skip this</li></ul>
+  <section>
+    <div class="wrap">
+      <h2 class="section-title">Eligibility & Documentation Requirements</h2>
+      <p class="section-sub">Simple guidelines for MSMEs, self-employed professionals, and commercial entities.</p>
+      <div class="doc-grid">
+        <div class="doc-card">
+          <div class="doc-head"><div class="doc-icon">📊</div><div class="doc-title">Entity Eligibility</div></div>
+          <ul class="doc-list"><li>Minimum 1 year active operations</li><li>GST registrations (preferred)</li><li>Age limit 21 to 60 years</li></ul>
+        </div>
+        <div class="doc-card">
+          <div class="doc-head"><div class="doc-icon">📑</div><div class="doc-title">Required Filings</div></div>
+          <ul class="doc-list"><li>6 Months current account statements</li><li>PAN details of business and founders</li><li>Business address proofs</li></ul>
+        </div>
+        <div class="doc-card">
+          <div class="doc-head"><div class="doc-icon">🚀</div><div class="doc-title">Features</div></div>
+          <ul class="doc-list"><li>No asset mortgages required</li><li>Flexible drop-line overdrafts</li><li>Tenures from 12 to 36 months</li></ul>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<section style="background:var(--paper);" id="emi-calculator">
-  <div class="wrap">
-    <h2 class="section-title">A quick example</h2>
-    <div class="example-card">
-      <p>Priya applies for a loan of ₹1,00,000. It's sanctioned at 12% p.a., with a flat processing fee of ₹353 (₹299 + 18% GST) — no other charges. Repayable over 12 months, her EMI works out to ₹8,887/month. She repays ₹1,06,644 in total, of which ₹6,644 is interest.</p>
-      <table class="example-table">
-        <tr><td>Loan amount</td><td>₹5,000 – ₹1,00,000</td></tr>
-        <tr><td>Interest rate (p.a.)</td><td>8.7% – 15%</td></tr>
-        <tr><td>Processing fee</td><td>₹353 flat (₹299 + 18% GST)</td></tr>
-        <tr><td>Other charges</td><td>None</td></tr>
-      </table>
+<main id="view-emi" class="page-view">
+  <section style="background:var(--paper); padding-top:40px; padding-bottom: 80px;">
+    <div class="wrap">
+      <h2 class="section-title">Smart EMI Calculator</h2>
+      <p class="section-sub">Adjust settings dynamically to view detailed interest trends and structural monthly payments parameters instantly.</p>
+      
+      <div class="calc-container">
+        <div class="calc-inputs">
+          <div>
+            <div class="slider-header">
+              <span class="slider-label">Loan Amount</span>
+              <span class="slider-val-box" id="emiDisplayAmount">₹50,000</span>
+            </div>
+            <input type="range" id="emiSliderAmount" min="5000" max="500000" step="5000" value="50000" class="calc-slider">
+          </div>
+
+          <div>
+            <div class="slider-header">
+              <span class="slider-label">Interest Rate (p.a.)</span>
+              <span class="slider-val-box" id="emiDisplayRate">10.5%</span>
+            </div>
+            <input type="range" id="emiSliderRate" min="8.5" max="24" step="0.1" value="10.5" class="calc-slider">
+          </div>
+
+          <div>
+            <div class="slider-header">
+              <span class="slider-label">Tenure (Months)</span>
+              <span class="slider-val-box" id="emiDisplayTenure">12 Months</span>
+            </div>
+            <input type="range" id="emiSliderTenure" min="3" max="60" step="3" value="12" class="calc-slider">
+          </div>
+        </div>
+
+        <div class="calc-output-card">
+          <div>
+            <div class="summary-title">Monthly EMI</div>
+            <div class="summary-val" id="emiResultBox">₹0</div>
+          </div>
+          <div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Principal Amount</span>
+              <span class="breakdown-value" id="breakdownPrincipal">₹0</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Total Interest Payable</span>
+              <span class="breakdown-value" id="breakdownInterest">₹0</span>
+            </div>
+            <div class="breakdown-row" style="border-top:2px solid rgba(255,255,255,0.2); margin-top:8px; padding-top:16px;">
+              <span class="breakdown-label" style="color:var(--white); font-weight:700;">Total Cost of Loan</span>
+              <span class="breakdown-value" style="font-size:18px;" id="breakdownTotal">₹0</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<section>
-  <div class="wrap" style="max-width:760px;">
-    <h2 class="section-title">Frequently asked questions</h2>
+<main id="view-about" class="page-view">
+  <section class="wrap" style="max-width:800px; padding-top:60px;">
+    <h2 class="section-title" style="text-align:left;">About ZyncPay Marketplace</h2>
+    <p style="font-size:16px; color:var(--slate); line-height:1.8; margin-bottom:24px;">ZyncPay acts as a premier next-generation financial technology marketplace connecting corporate borrowers, retail consumers, and young professionals with major RBI-registered banking networks and leading Non-Banking Financial Companies (NBFCs) across India.</p>
+    
+    <div class="example-card" style="margin-bottom:40px;">
+      <h4 style="margin:0 0 10px; font-size:16px; color:var(--blue-900);">Compliance Transparency Framework</h4>
+      <p style="margin:0; font-size:13.5px; color:var(--slate); line-height:1.6;">We firmly advocate consumer protection laws aligned under regulatory fair practices tracking rules. We do not extend retail credit structures directly, and all interest spreads or documentation approvals are validated under partnered lending charters exclusively.</p>
+    </div>
+
+    <h3 style="font-size:20px; font-weight:700; margin-bottom:16px;">Frequently asked questions</h3>
     <div id="faqList"></div>
-  </div>
-</section>
+  </section>
+</main>
 
-<footer id="about-us">
+<footer>
   <div class="wrap">
     <div class="footer-grid">
       <div>
@@ -294,7 +345,7 @@
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
-        <a href="#">About us</a>
+        <a onclick="navigateTo('about')">About us</a>
         <a href="#">Careers</a>
         <a href="#">Contact us</a>
         <a href="#">Grievance redressal</a>
@@ -312,6 +363,70 @@
 </footer>
 
 <script>
+// --- 1. SPA CLIENT-SIDE ROUTING ENGINE ---
+function navigateTo(viewId) {
+  // Hide all view screens
+  document.querySelectorAll('.page-view').forEach(view => {
+    view.classList.remove('active-view');
+  });
+  // Remove active styling from nav links
+  document.querySelectorAll('#mainNav a').forEach(link => {
+    link.classList.remove('active');
+  });
+
+  // Activate the correct view and link
+  const targetView = document.getElementById(`view-${viewId}`);
+  const targetNavLink = document.getElementById(`nav-${viewId}`);
+  
+  if(targetView) targetView.classList.add('active-view');
+  if(targetNavLink) targetNavLink.classList.add('active');
+
+  // Scroll to the top of the page smoothly
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+// --- 2. EMI CALCULATOR ENGINE ---
+const emiSliderAmount = document.getElementById('emiSliderAmount');
+const emiSliderRate = document.getElementById('emiSliderRate');
+const emiSliderTenure = document.getElementById('emiSliderTenure');
+
+function calculateEMI() {
+  const P = Number(emiSliderAmount.value);
+  const annualR = Number(emiSliderRate.value);
+  const N = Number(emiSliderTenure.value);
+  const R = (annualR / 12) / 100;
+
+  document.getElementById('emiDisplayAmount').textContent = '₹' + P.toLocaleString('en-IN');
+  document.getElementById('emiDisplayRate').textContent = annualR.toFixed(1) + '%';
+  document.getElementById('emiDisplayTenure').textContent = N + ' Months';
+
+  let emi = 0;
+  if (R > 0) {
+    emi = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+  } else {
+    emi = P / N;
+  }
+
+  const monthlyEMI = Math.round(emi);
+  const totalPayment = monthlyEMI * N;
+  const totalInterest = totalPayment - P;
+
+  document.getElementById('emiResultBox').textContent = '₹' + monthlyEMI.toLocaleString('en-IN');
+  document.getElementById('breakdownPrincipal').textContent = '₹' + P.toLocaleString('en-IN');
+  document.getElementById('breakdownInterest').textContent = '₹' + (totalInterest < 0 ? 0 : totalInterest).toLocaleString('en-IN');
+  document.getElementById('breakdownTotal').textContent = '₹' + totalPayment.toLocaleString('en-IN');
+}
+
+if(emiSliderAmount) {
+  emiSliderAmount.oninput = calculateEMI;
+  emiSliderRate.oninput = calculateEMI;
+  emiSliderTenure.oninput = calculateEMI;
+  calculateEMI(); // Run once to populate initial values
+}
+
+
+// --- 3. LOAN FORM WIZARD ENGINE ---
 const state = { name:'', phone:'', idType:'Aadhaar', idNumber:'', selfie:null, loanAmount:15000 };
 let current = 1;
 const TOTAL = 4;
@@ -321,6 +436,7 @@ const validateAadhaar = (aadhaar) => /^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/.te
 
 function renderProgress(){
   const el = document.getElementById('progress');
+  if (!el) return;
   if (current > TOTAL) {
     el.style.display = 'none';
     return;
@@ -397,13 +513,11 @@ function getProcessingFee(amount){
 
 function renderCard(){
   const card = document.getElementById('card');
+  if(!card) return;
   
   if (current === 4.5) {
     card.innerHTML = screens()[4.5]();
-    setTimeout(() => {
-      current = 5;
-      render();
-    }, 2200);
+    setTimeout(() => { current = 5; render(); }, 2200);
     return;
   }
 
@@ -429,7 +543,7 @@ function renderCard(){
       <div style="text-align:center; margin:6px 0 18px;">
         <span style="font-size:30px; font-weight:800; color:var(--blue-900);" id="amountDisplay">₹${state.loanAmount.toLocaleString('en-IN')}</span>
       </div>
-      <input type="range" id="amountSlider" min="5000" max="100000" step="500" value="${state.loanAmount}" style="width:100%; accent-color:var(--blue-700); margin-bottom:6px;">
+      <input type="range" id="amountSliderWizard" min="5000" max="100000" step="500" value="${state.loanAmount}" style="width:100%; accent-color:var(--blue-700); margin-bottom:6px;">
       <div style="display:flex; justify-content:space-between; font-size:11.5px; color:var(--slate-light); margin-bottom:18px;">
         <span>₹5,000</span><span>₹1,00,000</span>
       </div>
@@ -453,7 +567,7 @@ function renderCard(){
       <button class="btn btn-ghost" id="backBtn6">Back</button>
     `;
     
-    const slider = document.getElementById('amountSlider');
+    const slider = document.getElementById('amountSliderWizard');
     const typed = document.getElementById('amountTyped');
     const display = document.getElementById('amountDisplay');
     const feeBaseEl = document.getElementById('feeBase');
@@ -484,9 +598,7 @@ function renderCard(){
       if (raw){
         const val = Number(raw);
         display.textContent = '₹' + val.toLocaleString('en-IN');
-        if (val >= 5000 && val <= 100000) {
-          slider.value = val;
-        }
+        if (val >= 5000 && val <= 100000) { slider.value = val; }
         updateFee(val);
       } else {
         display.textContent = '₹0';
@@ -536,23 +648,13 @@ function renderCard(){
 
 function attachHandlers(){
   const nameInput = document.getElementById('nameInput'); 
-  if (nameInput) nameInput.oninput = e => {
-    document.getElementById('err1').style.display = 'none';
-    state.name = e.target.value;
-  };
-
+  if (nameInput) nameInput.oninput = e => { document.getElementById('err1').style.display = 'none'; state.name = e.target.value; };
+  
   const phoneInput = document.getElementById('phoneInput'); 
-  if (phoneInput) phoneInput.oninput = e => {
-    document.getElementById('err2').style.display = 'none';
-    state.phone = e.target.value.replace(/\D/g,'').slice(0,10);
-  };
+  if (phoneInput) phoneInput.oninput = e => { document.getElementById('err2').style.display = 'none'; state.phone = e.target.value.replace(/\D/g,'').slice(0,10); };
 
   document.querySelectorAll('[data-id]').forEach(el => { 
-    el.onclick = () => { 
-      state.idType = el.dataset.id; 
-      state.idNumber=''; 
-      renderCard(); 
-    }; 
+    el.onclick = () => { state.idType = el.dataset.id; state.idNumber=''; renderCard(); }; 
   });
 
   const idInput = document.getElementById('idInput'); 
@@ -560,7 +662,6 @@ function attachHandlers(){
     idInput.oninput = e => {
       document.getElementById('err3').style.display = 'none';
       let value = e.target.value;
-      
       if (state.idType === 'Aadhaar') {
         let digits = value.replace(/\D/g, '').slice(0, 12);
         let chunks = digits.match(/.{1,4}/g);
@@ -576,11 +677,7 @@ function attachHandlers(){
   const selfieInput = document.getElementById('selfieInput');
   if (selfieInput) selfieInput.onchange = e => {
     const file = e.target.files[0];
-    if (file){ 
-      const reader = new FileReader(); 
-      reader.onload = ev => { state.selfie = ev.target.result; renderCard(); }; 
-      reader.readAsDataURL(file); 
-    }
+    if (file){ const reader = new FileReader(); reader.onload = ev => { state.selfie = ev.target.result; renderCard(); }; reader.readAsDataURL(file); }
   };
 
   const backBtn = document.getElementById('backBtn'); 
@@ -593,46 +690,39 @@ function attachHandlers(){
     
     if (current === 3) {
       const err3 = document.getElementById('err3');
-      if (state.idType === 'PAN' && !validatePAN(state.idNumber)) {
-        err3.textContent = 'Please enter a valid 10-character PAN (e.g. ABCDE1234F).';
-        err3.style.display = 'block';
-        return;
-      }
-      if (state.idType === 'Aadhaar' && !validateAadhaar(state.idNumber)) {
-        err3.textContent = 'Please enter a valid 12-digit Aadhaar number.';
-        err3.style.display = 'block';
-        return;
-      }
+      if (state.idType === 'PAN' && !validatePAN(state.idNumber)) { err3.textContent = 'Please enter a valid 10-character PAN.'; err3.style.display = 'block'; return; }
+      if (state.idType === 'Aadhaar' && !validateAadhaar(state.idNumber)) { err3.textContent = 'Please enter a valid 12-digit Aadhaar number.'; err3.style.display = 'block'; return; }
     }
-    
     if (current === 4 && !state.selfie){ document.getElementById('err4').style.display='block'; return; }
-    
     current = (current === 4) ? 4.5 : current + 1; 
     render();
   };
 }
 
 function render(){ renderProgress(); renderCard(); }
-render();
+render(); // Initialize the loan form wizard
 
+// --- 4. FAQ AGGREGATOR MODULE ---
 const faqs = [
-  { q:"Can I get the lowest rate of interest on a personal loan?", a:"There's no minimum credit score or income requirement to apply. Rates range from 8.7% to 15% p.a. depending on the loan amount and lender policy, and the only charge apart from interest is a flat ₹353 processing fee." },
-  { q:"Can I use a personal loan for any purpose?", a:"Yes — personal loans are typically unsecured and can be used for home renovation, weddings, medical expenses, travel, or debt consolidation." },
-  { q:"How long does approval take?", a:"Most applicants get an eligibility decision within minutes and final approval within 24 to 48 hours, once documents are verified." },
+  { q:"Can I get the lowest rate of interest on a personal loan?", a:"Rates range from 8.7% to 15% p.a. depending on the loan amount and lender policy." },
+  { q:"Can I use a personal loan for any purpose?", a:"Yes — personal loans are unsecured and can be used for any personal requirements." },
 ];
-document.getElementById('faqList').innerHTML = faqs.map((f,i) => `
-  <div class="faq-item" data-i="${i}">
-    <div class="faq-q">${f.q}<span class="faq-toggle">+</span></div>
-    <div class="faq-a">${f.a}</div>
-  </div>
-`).join('');
-document.querySelectorAll('.faq-item').forEach(el => {
-  el.querySelector('.faq-q').onclick = () => {
-    const isOpen = el.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(x => { x.classList.remove('open'); x.querySelector('.faq-toggle').textContent='+'; });
-    if (!isOpen){ el.classList.add('open'); el.querySelector('.faq-toggle').textContent='−'; }
-  };
-});
+const faqEl = document.getElementById('faqList');
+if(faqEl) {
+  faqEl.innerHTML = faqs.map((f,i) => `
+    <div class="faq-item" data-i="${i}">
+      <div class="faq-q">${f.q}<span class="faq-toggle">+</span></div>
+      <div class="faq-a">${f.a}</div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.faq-item').forEach(el => {
+    el.querySelector('.faq-q').onclick = () => {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(x => { x.classList.remove('open'); x.querySelector('.faq-toggle').textContent = '+'; });
+      if (!isOpen){ el.classList.add('open'); el.querySelector('.faq-toggle').textContent = '−'; }
+    };
+  });
+}
 </script>
 </body>
 </html>
