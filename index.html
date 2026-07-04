@@ -1,3 +1,8 @@
+Here is the complete, updated code in a single file. It includes all your original logic, plus the refined mobile UI spacing and the `sessionStorage` persistence engine seamlessly integrated.
+
+You can copy and paste this directly into your `index.html` file.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +11,6 @@
 <title>ZyncPay — Personal & Business Loans</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
   :root{
@@ -247,13 +251,17 @@
     p.section-sub { margin-bottom: 32px; font-size: 14px; }
     .hero { padding: 48px 0 0; }
     
+    .wrap { padding: 0 20px; } /* Update: Better visual breathing room */
+
     .header-cta { display: none; } /* Hide the desktop CTA block */
     
     /* Hamburger Menu Button */
     .mobile-menu-btn { 
       display: flex; align-items: center; justify-content: center; 
-      background: none; border: none; padding: 8px; color: var(--ink); 
-      cursor: pointer; margin-right: -8px; z-index: 101; 
+      background: none; border: none; color: var(--ink); 
+      cursor: pointer; z-index: 101; 
+      margin-right: 0;   /* Update: Removed negative margin */
+      padding: 12px;     /* Update: Better touch target area */
     }
     
     /* Mobile Overlay Menu */
@@ -353,7 +361,6 @@
       <div class="logo-word">Zync<span>Pay</span></div>
     </a>
     
-    <!-- Mobile Hamburger Toggle -->
     <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Navigation">
       <i data-lucide="menu" id="menuIcon"></i>
     </button>
@@ -364,14 +371,12 @@
       <a href="#emi" data-target="emi" class="nav-link">EMI calculator</a>
       <a href="#about" data-target="about" class="nav-link">About us</a>
       
-      <!-- Inside Dropdown Mobile CTA -->
       <div class="mobile-cta">
          <span class="phone-chip"><i data-lucide="phone" style="width:16px; height:16px;"></i> 1800-981-111</span>
          <button onclick="scrollToForm(); document.getElementById('mobileMenuBtn').click();" class="btn-header" style="width: 100%; height:48px;">Apply now</button>
       </div>
     </nav>
     
-    <!-- Desktop CTA -->
     <div class="header-cta">
       <span class="phone-chip"><i data-lucide="phone" style="width:16px; height:16px;"></i> 1800-981-111</span>
       <button onclick="scrollToForm()" class="btn-header">Apply now</button>
@@ -379,14 +384,10 @@
   </div>
 </header>
 
-<!-- ========================================== -->
-<!-- VIEW 1: PERSONAL LOAN PAGE                 -->
-<!-- ========================================== -->
 <main id="view-personal" class="page-view active-view">
   <section class="hero">
     <div class="wrap hero-grid">
       
-      <!-- Grid Items (Order doesn't matter, assigned via CSS Grid Areas) -->
       <div class="hero-eyebrow fade-up" style="transition-delay: 0s;">
         <i data-lucide="shield-check" style="width:16px; height:16px;"></i> RBI-aligned digital lending
       </div>
@@ -414,7 +415,6 @@
         </div>
       </div>
 
-      <!-- Realistic Phone Mockup UI -->
       <div class="hero-illustration fade-up" style="transition-delay: 0.1s;">
         <div class="phone-mockup">
           <div class="phone-notch"></div>
@@ -448,7 +448,6 @@
     </div>
   </section>
 
-  <!-- Partner Logos Tier -->
   <section class="partner-banner fade-up">
     <div class="wrap">
       <div class="partner-title">Trusted By India's Leading Partners</div>
@@ -462,7 +461,6 @@
     </div>
   </section>
 
-  <!-- Application Form -->
   <section class="form-section" id="applySection">
     <div class="wrap form-container fade-up">
       <div class="form-card">
@@ -472,7 +470,6 @@
     </div>
   </section>
 
-  <!-- Features -->
   <section style="background:var(--white);">
     <div class="wrap fade-up">
       <h2 class="section-title">Why choose ZyncPay Personal Loans</h2>
@@ -498,9 +495,6 @@
   </section>
 </main>
 
-<!-- ========================================== -->
-<!-- VIEW 2: BUSINESS LOAN PAGE                 -->
-<!-- ========================================== -->
 <main id="view-business" class="page-view">
   <section class="hero" style="background: linear-gradient(180deg, #f0f4fc 0%, var(--white) 100%);">
     <div class="wrap fade-up" style="text-align: center; max-width:800px; padding-top:40px;">
@@ -512,9 +506,6 @@
   </section>
 </main>
 
-<!-- ========================================== -->
-<!-- VIEW 3: EMI CALCULATOR PAGE                -->
-<!-- ========================================== -->
 <main id="view-emi" class="page-view">
   <section style="background:var(--paper); padding-bottom: 80px;">
     <div class="wrap fade-up">
@@ -522,7 +513,6 @@
       <p class="section-sub">Adjust settings dynamically to view detailed interest trends and structural monthly payments parameters instantly.</p>
       
       <div class="calc-container">
-        <!-- Controls -->
         <div class="calc-inputs">
           <div>
             <div class="slider-header">
@@ -547,7 +537,6 @@
           </div>
         </div>
 
-        <!-- Dynamic Pie Chart Display -->
         <div class="calc-output-card">
           <div class="pie-chart-wrap">
             <div class="pie-chart" id="emiPieChart"></div>
@@ -577,9 +566,6 @@
   </section>
 </main>
 
-<!-- ========================================== -->
-<!-- VIEW 4: ABOUT & FAQ PAGE                   -->
-<!-- ========================================== -->
 <main id="view-about" class="page-view">
   <section class="wrap fade-up" style="max-width:800px; padding-top:40px;">
     <h2 class="section-title" style="text-align:left; font-size:36px; margin-bottom:24px;">About ZyncPay</h2>
@@ -590,9 +576,6 @@
   </section>
 </main>
 
-<!-- ========================================== -->
-<!-- FOOTER                                     -->
-<!-- ========================================== -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
@@ -619,9 +602,6 @@
   </div>
 </footer>
 
-<!-- ========================================== -->
-<!-- SCRIPTS                                    -->
-<!-- ========================================== -->
 <script>
 // --- INITIALIZE ICONS ---
 lucide.createIcons();
@@ -760,13 +740,31 @@ if(emiSliderAmount) {
   calculateEMI();
 }
 
-// --- LOAN FORM WIZARD ENGINE ---
-const state = { name:'', phone:'', idType:'Aadhaar', idNumber:'', selfie:null, loanAmount:50000 };
-let current = 1;
+// --- LOAN FORM WIZARD ENGINE WITH PERSISTENCE ---
+
+// 1. Initialize from storage, or fallback to defaults
+const defaultState = { name:'', phone:'', idType:'Aadhaar', idNumber:'', selfie:null, loanAmount:50000 };
+const savedState = sessionStorage.getItem('zyncpay_state');
+
+// Merge saved state but explicitly keep selfie null to avoid storage bloat
+const state = savedState ? { ...defaultState, ...JSON.parse(savedState), selfie: null } : defaultState;
+
+// 2. Initialize the step tracker
+let current = Number(sessionStorage.getItem('zyncpay_step')) || 1;
 const TOTAL = 4;
 
 const validatePAN = (pan) => /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan.toUpperCase().trim());
-const validateAadhaar = (aadhaar) => /^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/.test(aadhaar.trim());
+const validateAadhaar = (aadhaar) => {
+    const rawDigits = aadhaar.replace(/\D/g, '');
+    return /^[2-9]{1}[0-9]{11}$/.test(rawDigits);
+};
+
+// 3. Helper function to sync state to browser
+function persistData() {
+  const { selfie, ...safeState } = state; // Strip out the image
+  sessionStorage.setItem('zyncpay_state', JSON.stringify(safeState));
+  sessionStorage.setItem('zyncpay_step', current);
+}
 
 function compressImage(file, callback) {
   const reader = new FileReader();
@@ -897,7 +895,12 @@ function renderCard(){
         document.getElementById('vs-mobile').innerHTML = '<i data-lucide="check-circle-2" style="width:20px; color:var(--success);"></i>';
         lucide.createIcons();
       }
-      if(step === 4) { clearInterval(interval); current = 5; render(); }
+      if(step === 4) { 
+        clearInterval(interval); 
+        current = 5; 
+        persistData(); // Persist moving to step 5
+        render(); 
+      }
     }, 1800);
     return;
   }
@@ -912,7 +915,7 @@ function renderCard(){
         <button class="btn btn-primary" id="continueBtn" style="height:56px; font-size:16px;">Review Loan Offer <i data-lucide="arrow-right" style="width:18px;"></i></button>
       </div>
     `;
-    document.getElementById('continueBtn').onclick = () => { current = 6; render(); };
+    document.getElementById('continueBtn').onclick = () => { current = 6; persistData(); render(); };
     lucide.createIcons();
     return;
   }
@@ -938,10 +941,11 @@ function renderCard(){
     slider.oninput = e => {
       state.loanAmount = Number(e.target.value);
       display.textContent = '₹' + state.loanAmount.toLocaleString('en-IN');
+      persistData(); // Save custom loan amount immediately
     };
 
-    document.getElementById('backBtn6').onclick = () => { current = 5; render(); };
-    document.getElementById('confirmAmountBtn').onclick = () => { current = 7; render(); };
+    document.getElementById('backBtn6').onclick = () => { current = 5; persistData(); render(); };
+    document.getElementById('confirmAmountBtn').onclick = () => { current = 7; persistData(); render(); };
     return;
   }
 
@@ -966,9 +970,10 @@ function renderCard(){
     `;
     
     document.getElementById('payBtn').onclick = () => {
+      sessionStorage.clear(); // Clear storage on hand-off to payment gateway
       window.location.href = 'https://payments.cashfree.com/forms/ZyncPay-299';
     };
-    document.getElementById('backBtn7').onclick = () => { current = 6; render(); };
+    document.getElementById('backBtn7').onclick = () => { current = 6; persistData(); render(); };
     lucide.createIcons();
     return;
   }
@@ -980,13 +985,26 @@ function renderCard(){
 
 function attachHandlers(){
   const nameInput = document.getElementById('nameInput'); 
-  if (nameInput) nameInput.oninput = e => { document.getElementById('err1').style.display = 'none'; state.name = e.target.value; };
+  if (nameInput) nameInput.oninput = e => { 
+    document.getElementById('err1').style.display = 'none'; 
+    state.name = e.target.value; 
+    persistData(); 
+  };
   
   const phoneInput = document.getElementById('phoneInput'); 
-  if (phoneInput) phoneInput.oninput = e => { document.getElementById('err2').style.display = 'none'; state.phone = e.target.value.replace(/\D/g,'').slice(0,10); };
+  if (phoneInput) phoneInput.oninput = e => { 
+    document.getElementById('err2').style.display = 'none'; 
+    state.phone = e.target.value.replace(/\D/g,'').slice(0,10); 
+    persistData(); 
+  };
 
   document.querySelectorAll('[data-id]').forEach(el => { 
-    el.onclick = () => { state.idType = el.dataset.id; state.idNumber=''; renderCard(); }; 
+    el.onclick = () => { 
+      state.idType = el.dataset.id; 
+      state.idNumber = ''; 
+      persistData();
+      renderCard(); 
+    }; 
   });
 
   const idInput = document.getElementById('idInput'); 
@@ -1003,6 +1021,7 @@ function attachHandlers(){
         state.idNumber = value.replace(/[^A-Za-z0-9]/g, '').slice(0, 10).toUpperCase();
         e.target.value = state.idNumber;
       }
+      persistData();
     };
   }
 
@@ -1018,7 +1037,11 @@ function attachHandlers(){
   };
 
   const backBtn = document.getElementById('backBtn'); 
-  if (backBtn) backBtn.onclick = () => { current--; render(); };
+  if (backBtn) backBtn.onclick = () => { 
+    current--; 
+    persistData(); 
+    render(); 
+  };
 
   const nextBtn = document.getElementById('nextBtn');
   if (nextBtn) nextBtn.onclick = () => {
@@ -1033,6 +1056,7 @@ function attachHandlers(){
     if (current === 4 && !state.selfie){ document.getElementById('err4').style.display='flex'; return; }
     
     current = (current === 4) ? 4.5 : current + 1; 
+    persistData(); 
     render();
   };
 }
@@ -1080,3 +1104,5 @@ if(faqEl) {
 </script>
 </body>
 </html>
+
+```
