@@ -947,18 +947,36 @@ function renderCard(){
   if (current === 7){
     const fee = getProcessingFee(state.loanAmount);
     card.innerHTML = `
-      <p class="form-card-title">Loan Summary</p>
+      <p class="form-card-title">Order Summary</p>
       <p class="form-card-sub">Review your details before paying the processing fee.</p>
       
       <div style="background:var(--paper); border-radius:16px; padding:20px; margin-bottom:24px; border:1px solid var(--border);">
-        <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:600; color:var(--slate); margin-bottom:12px;">
-          <span>Loan Amount Selected</span><span style="color:var(--ink);">₹${state.loanAmount.toLocaleString('en-IN')}</span>
+        
+        <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:600; color:var(--slate); margin-bottom:16px;">
+          <span>Loan Amount</span><span style="color:var(--ink);">₹${state.loanAmount.toLocaleString('en-IN')}</span>
         </div>
         
-        <div style="display:flex; justify-content:space-between; font-size:16px; font-weight:800; color:var(--blue-900); padding-top:16px; border-top:1px dashed var(--slate-light);">
-          <span>Processing Fee</span><span>₹${fee.total}</span>
+        <div style="display:flex; flex-direction:column; gap:12px; padding-top:16px; border-top:1px dashed var(--border); margin-bottom:16px;">
+          <div style="display:flex; justify-content:space-between; font-size:14px; color:var(--slate);">
+            <span>Platform Processing Fee</span><span style="font-weight:600; color:var(--ink);">₹${fee.total}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:14px; color:var(--slate);">
+            <span>GST</span><span style="font-weight:600; color:var(--success);">Included</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:14px; color:var(--slate);">
+            <span>Stamp Duty</span><span style="font-weight:600; color:var(--ink);">₹0</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:14px; color:var(--slate);">
+            <span>Convenience Fee</span><span style="font-weight:600; color:var(--ink);">₹0</span>
+          </div>
         </div>
+
+        <div style="display:flex; justify-content:space-between; font-size:16px; font-weight:800; color:var(--blue-900); padding-top:16px; border-top:1px solid var(--border);">
+          <span>Amount Payable</span><span>₹${fee.total}</span>
+        </div>
+        
       </div>
+      
       <button class="btn btn-primary" id="payBtn" style="height:56px; font-size:16px;">Proceed to Payment <i data-lucide="lock" style="width:16px;"></i></button>
       <p style="font-size:12px; color:var(--slate-light); line-height:1.6; margin:16px 0 0; text-align:center;">Secure payment via Cashfree Gateways</p>
       <button class="btn btn-ghost" id="backBtn7">Edit Amount</button>
