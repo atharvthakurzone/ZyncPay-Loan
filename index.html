@@ -50,13 +50,18 @@
   .logo-mark::after{content:""; position:absolute; top:8px; left:8px; width:12px; height:12px; border-radius:3px; background:var(--gold);}
   .logo-word{font-weight:800; font-size:19px; letter-spacing:-0.5px;}
   .logo-word span{color:var(--blue-700);}
+  
   nav{display:flex; gap:28px; font-size:14.5px; font-weight:500; color:var(--slate);}
   nav a{cursor:pointer; transition: color 0.2s;}
   nav a:hover, nav a.active{color:var(--blue-700); font-weight:600;}
+  
   .header-cta{display:flex; align-items:center; gap:18px;}
   .phone-chip{font-size:14px; font-weight:600; color:var(--blue-700); display:flex; align-items:center; gap:6px;}
-  .btn-header{background:var(--blue-700); color:var(--white); padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; border:none; cursor:pointer; transition: background 0.2s; font-family:'Inter',sans-serif;}
+  .btn-header{background:var(--blue-700); color:var(--white); padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; border:none; cursor:pointer; transition: background 0.2s; font-family:'Inter',sans-serif; display:flex; justify-content:center; align-items:center;}
   .btn-header:hover{background:var(--blue-600);}
+
+  .mobile-menu-btn { display: none; } /* Hidden on desktop */
+  .mobile-cta { display: none; } /* Hidden on desktop */
 
   /* --- SPA ROUTING --- */
   .page-view { display: none; padding-top: 70px; }
@@ -241,9 +246,49 @@
     h2.section-title { font-size: 24px; }
     p.section-sub { margin-bottom: 32px; font-size: 14px; }
     .hero { padding: 48px 0 0; }
-    nav, .header-cta { display: none; }
+    
+    .header-cta { display: none; } /* Hide the desktop CTA block */
+    
+    /* Hamburger Menu Button */
+    .mobile-menu-btn { 
+      display: flex; align-items: center; justify-content: center; 
+      background: none; border: none; padding: 8px; color: var(--ink); 
+      cursor: pointer; margin-right: -8px; z-index: 101; 
+    }
+    
+    /* Mobile Overlay Menu */
+    nav#mainNav {
+      position: absolute;
+      top: 100%; left: 0; width: 100%;
+      background: var(--white);
+      flex-direction: column;
+      gap: 0; padding: 8px 24px 24px;
+      border-top: 1px solid var(--border);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      opacity: 0; visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+    nav#mainNav.open {
+      opacity: 1; visibility: visible;
+      transform: translateY(0);
+    }
+    nav#mainNav a { 
+      font-size: 16px; padding: 16px 0; 
+      border-bottom: 1px solid var(--paper); font-weight: 600; color: var(--ink);
+    }
+    nav#mainNav a:hover, nav#mainNav a.active { color: var(--blue-700); border-bottom-color: var(--blue-50); }
+    nav#mainNav a:last-of-type { border-bottom: none; }
+    
+    /* Mobile CTA inside dropdown */
+    .mobile-cta { 
+      display: flex; flex-direction: column; gap: 16px; 
+      padding-top: 20px; margin-top: 8px; border-top: 1px dashed var(--border); 
+    }
+    .mobile-cta .phone-chip { justify-content: center; font-size: 15px; margin-bottom: 8px; }
 
-    /* The Fix: Perfect Grid Stacking for Mobile */
+    /* --- The Fix: Perfect Grid Stacking for Mobile --- */
     .hero-grid { 
       grid-template-columns: 1fr 140px; 
       grid-template-areas:
@@ -307,12 +352,26 @@
       <div class="logo-mark"></div>
       <div class="logo-word">Zync<span>Pay</span></div>
     </a>
+    
+    <!-- Mobile Hamburger Toggle -->
+    <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Navigation">
+      <i data-lucide="menu" id="menuIcon"></i>
+    </button>
+
     <nav id="mainNav">
       <a href="#personal" data-target="personal" class="nav-link active">Personal loan</a>
       <a href="#business" data-target="business" class="nav-link">Business loan</a>
       <a href="#emi" data-target="emi" class="nav-link">EMI calculator</a>
       <a href="#about" data-target="about" class="nav-link">About us</a>
+      
+      <!-- Inside Dropdown Mobile CTA -->
+      <div class="mobile-cta">
+         <span class="phone-chip"><i data-lucide="phone" style="width:16px; height:16px;"></i> 1800-981-111</span>
+         <button onclick="scrollToForm(); document.getElementById('mobileMenuBtn').click();" class="btn-header" style="width: 100%; height:48px;">Apply now</button>
+      </div>
     </nav>
+    
+    <!-- Desktop CTA -->
     <div class="header-cta">
       <span class="phone-chip"><i data-lucide="phone" style="width:16px; height:16px;"></i> 1800-981-111</span>
       <button onclick="scrollToForm()" class="btn-header">Apply now</button>
@@ -574,6 +633,31 @@ window.addEventListener('scroll', () => {
   else { header.classList.remove('scrolled'); }
 });
 
+// --- MOBILE MENU TOGGLE LOGIC ---
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mainNav = document.getElementById('mainNav');
+const menuIcon = document.getElementById('menuIcon');
+
+function toggleMobileMenu() {
+    mainNav.classList.toggle('open');
+    if (mainNav.classList.contains('open')) {
+        menuIcon.setAttribute('data-lucide', 'x');
+    } else {
+        menuIcon.setAttribute('data-lucide', 'menu');
+    }
+    lucide.createIcons();
+}
+
+function closeMobileMenu() {
+    mainNav.classList.remove('open');
+    menuIcon.setAttribute('data-lucide', 'menu');
+    lucide.createIcons();
+}
+
+if(mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+}
+
 // --- INTERSECTION OBSERVER (Fade Animations & Custom Formatted Counters) ---
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -619,6 +703,9 @@ document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault(); // Stop hash jump
     const viewId = this.getAttribute('data-target');
+    
+    // Close mobile menu if open
+    closeMobileMenu();
     
     document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active-view'));
     document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
