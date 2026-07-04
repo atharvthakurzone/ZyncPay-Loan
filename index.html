@@ -8,8 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
-  :root{
-    --blue-900:#0D2B52; --blue-700:#1656C9; --blue-600:#2563EB; --blue-50:#EAF2FF;
+  :root {
+    --blue-900:#0D2B52; --blue-700:#1656C9; --blue-600:#2563EB; --blue-500:#3B82F6; --blue-50:#EAF2FF;
     --ink:#131B2C; --slate:#5B6472; --slate-light:#8992A1; --border:#E4E8F0;
     --paper:#F7F9FC; --white:#FFFFFF; --success:#1E9E5A; --success-bg:#E7F7EE;
     --gold:#F5A623; --error:#D64545;
@@ -246,17 +246,17 @@
     p.section-sub { margin-bottom: 32px; font-size: 14px; }
     .hero { padding: 48px 0 0; }
     
-    .wrap { padding: 0 20px; } /* Update: Better visual breathing room */
+    .wrap { padding: 0 20px; } /* Clean 20px padding locked in */
 
-    .header-cta { display: none; } /* Hide the desktop CTA block */
+    .header-cta { display: none; }
     
-    /* Hamburger Menu Button */
+    /* Hamburger Menu Button - Perfectly Aligned */
     .mobile-menu-btn { 
       display: flex; align-items: center; justify-content: center; 
       background: none; border: none; color: var(--ink); 
       cursor: pointer; z-index: 101; 
-      margin-right: 0;   /* Update: Removed negative margin */
-      padding: 12px;     /* Update: Better touch target area */
+      margin-right: 0;   /* No negative margins pulling it to the edge */
+      padding: 12px;     /* Generous touch target */
     }
     
     /* Mobile Overlay Menu */
@@ -291,7 +291,7 @@
     }
     .mobile-cta .phone-chip { justify-content: center; font-size: 15px; margin-bottom: 8px; }
 
-    /* --- The Fix: Perfect Grid Stacking for Mobile --- */
+    /* The Fix: Perfect Grid Stacking for Mobile */
     .hero-grid { 
       grid-template-columns: 1fr 140px; 
       grid-template-areas:
