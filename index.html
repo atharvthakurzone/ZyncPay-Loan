@@ -242,9 +242,6 @@
   /* --- ULTIMATE MOBILE OPTIMIZATION TIER --- */
   /* ========================================= */
   @media (max-width: 900px) {
-    /* Push the entire wrap content further inward globally on mobile for a framed feel */
-    .wrap { padding: 0 32px; }
-    
     section { padding: 48px 0; }
     h2.section-title { font-size: 24px; }
     p.section-sub { margin-bottom: 32px; font-size: 14px; }
@@ -252,11 +249,11 @@
     
     .header-cta { display: none; } /* Hide the desktop CTA block */
     
-    /* Hamburger Menu Button with adjusted margins to pull it inward */
+    /* Hamburger Menu Button */
     .mobile-menu-btn { 
       display: flex; align-items: center; justify-content: center; 
       background: none; border: none; padding: 8px; color: var(--ink); 
-      cursor: pointer; margin-right: 0; z-index: 101; 
+      cursor: pointer; margin-right: -8px; z-index: 101; 
     }
     
     /* Mobile Overlay Menu */
@@ -265,7 +262,7 @@
       top: 100%; left: 0; width: 100%;
       background: var(--white);
       flex-direction: column;
-      gap: 0; padding: 8px 32px 32px; /* Matches the new 32px global padding */
+      gap: 0; padding: 8px 24px 24px;
       border-top: 1px solid var(--border);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
       opacity: 0; visibility: hidden;
