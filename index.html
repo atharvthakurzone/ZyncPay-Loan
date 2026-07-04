@@ -6,6 +6,7 @@
 <title>ZyncPay — Personal & Business Loans</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
   :root{
@@ -54,8 +55,8 @@
   .header-cta{display:flex; align-items:center; gap:18px;}
   .phone-chip{font-size:14px; font-weight:600; color:var(--blue-700); display:flex; align-items:center; gap:6px;}
   
-  /* Updated to semantic button */
-  .btn-header{background:var(--blue-700); color:var(--white); padding:10px 20px; border:radius:8px; font-size:14px; font-weight:600; border:none; cursor:pointer; transition: background 0.2s; font-family:'Inter',sans-serif; border-radius:8px;}
+  /* Semantic button */
+  .btn-header{background:var(--blue-700); color:var(--white); padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; border:none; cursor:pointer; transition: background 0.2s; font-family:'Inter',sans-serif;}
   .btn-header:hover{background:var(--blue-600);}
   @media (max-width:900px){ nav, .phone-chip{display:none;} }
 
@@ -242,6 +243,9 @@
   </div>
 </header>
 
+<!-- ========================================== -->
+<!-- VIEW 1: PERSONAL LOAN PAGE                 -->
+<!-- ========================================== -->
 <main id="view-personal" class="page-view active-view">
   <section class="hero">
     <div class="wrap hero-grid">
@@ -266,6 +270,7 @@
         </div>
       </div>
 
+      <!-- Realistic Phone Mockup / Dashboard UI -->
       <div class="hero-right hero-illustration fade-up" style="transition-delay: 0.2s;">
         <div class="phone-mockup">
           <div class="phone-notch"></div>
@@ -298,6 +303,7 @@
     </div>
   </section>
 
+  <!-- Partner Logos Tier -->
   <section class="partner-banner fade-up">
     <div class="wrap">
       <div class="partner-title">Trusted By India's Leading Partners</div>
@@ -311,6 +317,7 @@
     </div>
   </section>
 
+  <!-- Application Form -->
   <section class="form-section" id="applySection">
     <div class="wrap form-container fade-up">
       <div class="form-card">
@@ -320,6 +327,7 @@
     </div>
   </section>
 
+  <!-- Features -->
   <section style="background:var(--white);">
     <div class="wrap fade-up">
       <h2 class="section-title">Why choose ZyncPay Personal Loans</h2>
@@ -345,6 +353,9 @@
   </section>
 </main>
 
+<!-- ========================================== -->
+<!-- VIEW 2: BUSINESS LOAN PAGE                 -->
+<!-- ========================================== -->
 <main id="view-business" class="page-view">
   <section class="hero" style="background: linear-gradient(180deg, #f0f4fc 0%, var(--white) 100%);">
     <div class="wrap fade-up" style="text-align: center; max-width:800px; padding-top:40px;">
@@ -356,6 +367,9 @@
   </section>
 </main>
 
+<!-- ========================================== -->
+<!-- VIEW 3: EMI CALCULATOR PAGE                -->
+<!-- ========================================== -->
 <main id="view-emi" class="page-view">
   <section style="background:var(--paper); padding-bottom: 80px;">
     <div class="wrap fade-up">
@@ -363,6 +377,7 @@
       <p class="section-sub">Adjust settings dynamically to view detailed interest trends and structural monthly payments parameters instantly.</p>
       
       <div class="calc-container">
+        <!-- Controls -->
         <div class="calc-inputs">
           <div>
             <div class="slider-header">
@@ -387,6 +402,7 @@
           </div>
         </div>
 
+        <!-- Dynamic Pie Chart Display -->
         <div class="calc-output-card">
           <div class="pie-chart-wrap">
             <div class="pie-chart" id="emiPieChart"></div>
@@ -416,6 +432,9 @@
   </section>
 </main>
 
+<!-- ========================================== -->
+<!-- VIEW 4: ABOUT & FAQ PAGE                   -->
+<!-- ========================================== -->
 <main id="view-about" class="page-view">
   <section class="wrap fade-up" style="max-width:800px; padding-top:40px;">
     <h2 class="section-title" style="text-align:left; font-size:36px; margin-bottom:24px;">About ZyncPay</h2>
@@ -426,6 +445,9 @@
   </section>
 </main>
 
+<!-- ========================================== -->
+<!-- FOOTER                                     -->
+<!-- ========================================== -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
@@ -452,6 +474,9 @@
   </div>
 </footer>
 
+<!-- ========================================== -->
+<!-- SCRIPTS                                    -->
+<!-- ========================================== -->
 <script>
 // --- INITIALIZE ICONS ---
 lucide.createIcons();
@@ -666,8 +691,9 @@ function screens(){
 }
 
 function getProcessingFee(amount){
-  const base = 299; const gst = Math.round(base * 0.18); const total = base + gst;
-  return { base, gst, total };
+  // Flat ₹299 fee requested
+  const total = 299; 
+  return { total };
 }
 
 function renderCard(){
@@ -677,6 +703,7 @@ function renderCard(){
   if (current === 4.5) {
     card.innerHTML = screens()[4.5]();
     let step = 0;
+    // Slower verification flow: 1.8 seconds per step (~5.4 seconds total)
     const interval = setInterval(() => {
       step++;
       if(step === 1) {
@@ -699,7 +726,7 @@ function renderCard(){
         lucide.createIcons();
       }
       if(step === 4) { clearInterval(interval); current = 5; render(); }
-    }, 1200);
+    }, 1800);
     return;
   }
 
@@ -756,14 +783,9 @@ function renderCard(){
         <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:600; color:var(--slate); margin-bottom:12px;">
           <span>Loan Amount Selected</span><span style="color:var(--ink);">₹${state.loanAmount.toLocaleString('en-IN')}</span>
         </div>
-        <div style="display:flex; justify-content:space-between; font-size:14px; color:var(--slate); margin-bottom:8px;">
-          <span>Processing Fee</span><span>₹${fee.base}</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:14px; color:var(--slate); margin-bottom:16px;">
-          <span>GST (18%)</span><span>₹${fee.gst}</span>
-        </div>
+        
         <div style="display:flex; justify-content:space-between; font-size:16px; font-weight:800; color:var(--blue-900); padding-top:16px; border-top:1px dashed var(--slate-light);">
-          <span>Total Payable Now</span><span>₹${fee.total}</span>
+          <span>Processing Fee</span><span>₹${fee.total}</span>
         </div>
       </div>
       <button class="btn btn-primary" id="payBtn" style="height:56px; font-size:16px;">Proceed to Payment <i data-lucide="lock" style="width:16px;"></i></button>
@@ -850,7 +872,7 @@ render();
 const faqs = [
   { q:"What is the minimum credit score required?", a:"We partner with various lenders. While a score of 700+ gets you the best rates, we have NBFC partners that cater to users with no credit history or lower scores." },
   { q:"How long does approval take?", a:"Eligibility checks are instant. Once you select an offer, final approval and disbursal usually happen within 2-24 hours depending on the bank." },
-  { q:"Is the ₹299 processing fee refundable?", a:"The ₹299 + GST fee is a one-time platform service fee for KYC verification and credit pull. It is non-refundable once the process begins." },
+  { q:"Is the ₹299 processing fee refundable?", a:"The flat ₹299 fee is a one-time platform service fee for KYC verification and credit pull. It is non-refundable once the process begins." },
   { q:"Can I foreclose my loan early?", a:"Yes, most of our lending partners allow foreclosure after a lock-in period of 3 to 6 months. Foreclosure charges may apply depending on the lender." },
   { q:"Do I need to submit physical documents?", a:"No, the entire process is 100% digital. We use CKYC and Aadhaar OTP for verification." },
   { q:"What happens if I miss an EMI?", a:"Missing an EMI will attract late payment charges from the lender and will negatively impact your CIBIL score." },
