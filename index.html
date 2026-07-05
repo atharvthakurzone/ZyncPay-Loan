@@ -37,6 +37,22 @@
   }
   .icon-pop { animation: iconPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
 
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes pulseSuccess { 
+    0% { transform:scale(1); opacity:1; } 
+    50% { transform:scale(1.05); opacity:0.8; } 
+    100% { transform:scale(1); opacity:1; } 
+  }
+  .pulse-text { animation: pulseSuccess 1s ease-in-out infinite; display: inline-block; color: var(--success); }
+
+  @keyframes fadeUpIn { 0% { opacity:0; transform:translateY(10px); } 100% { opacity:1; transform:translateY(0); } }
+  .stagger-item { opacity: 0; animation: fadeUpIn 0.5s ease forwards; font-size: 13.5px; font-weight: 600; color: var(--success); display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:8px; }
+
   /* --- Header --- */
   header{
     border-bottom:1px solid transparent; position:fixed; top:0; width:100%; z-index:100;
@@ -125,6 +141,7 @@
     width: 280px; height: 480px; background: #F8FAFC; border: 10px solid #0F172A; border-bottom: none;
     border-top-left-radius: 40px; border-top-right-radius: 40px; position: absolute; bottom: 0;
     box-shadow: 0 25px 50px -12px rgba(13,43,82,0.25); overflow: hidden; transform-origin: bottom center;
+    animation: float 5s ease-in-out infinite;
   }
   .phone-notch {
     position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #0F172A;
@@ -136,12 +153,24 @@
   .phone-ui-item { background:white; border-radius:12px; padding:12px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px rgba(0,0,0,0.02);}
   .phone-ui-icon { width:36px; height:36px; background:var(--success-bg); color:var(--success); border-radius:50%; display:flex; align-items:center; justify-content:center; }
   
-  /* --- Partner Logos --- */
-  .partner-banner { padding: 32px 0 48px; text-align:center; border-bottom: 1px solid var(--border); }
-  .partner-title { font-size: 13px; font-weight: 600; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
-  .partner-logos { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:40px; opacity:0.6; }
-  .partner-logos span { font-weight:900; font-size:22px; font-family:sans-serif; letter-spacing:-0.5px; transition:all 0.3s ease; color:var(--slate); filter: grayscale(100%); cursor:pointer;}
-  .partner-logos span:hover { filter: grayscale(0%); opacity:1; transform:scale(1.05); }
+  /* --- Continuous Scrolling Partner Logos --- */
+  .partner-banner { padding: 32px 0 48px; border-bottom: 1px solid var(--border); overflow: hidden; white-space: nowrap; }
+  .partner-title { text-align:center; font-size: 13px; font-weight: 600; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+  
+  .partner-track-wrap { overflow: hidden; position: relative; width: 100%; display: flex; }
+  /* Optional fade masks at edges */
+  .partner-track-wrap::before, .partner-track-wrap::after {
+    content: ""; position: absolute; top: 0; width: 60px; height: 100%; z-index: 2;
+  }
+  .partner-track-wrap::before { left: 0; background: linear-gradient(to right, var(--white), transparent); }
+  .partner-track-wrap::after { right: 0; background: linear-gradient(to left, var(--white), transparent); }
+
+  .partner-track { display: flex; align-items: center; width: max-content; animation: scroll 20s linear infinite; }
+  @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  
+  .partner-logos-inner { display: flex; align-items: center; gap: 80px; padding-right: 80px; opacity: 0.6; }
+  .partner-logos-inner span { font-weight:900; font-size:22px; font-family:sans-serif; letter-spacing:-0.5px; transition:all 0.3s ease; color:var(--slate); filter: grayscale(100%); cursor:pointer;}
+  .partner-logos-inner span:hover { filter: grayscale(0%); opacity:1; transform:scale(1.05); }
   .p-hdfc:hover { color: #ed1c24 !important; } .p-icici:hover { color: #f26522 !important; }
   .p-axis:hover { color: #97144d !important; } .p-bajaj:hover { color: #005eb8 !important; }
   .p-tata:hover { color: #000000 !important; }
@@ -234,15 +263,23 @@
   .breakdown-label { color: #C9D6EC; }
   .breakdown-value { font-weight: 700; color: var(--white); }
 
-  /* Footer */
+  /* --- Complete Footer Enhanced --- */
   footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60px;}
   .footer-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:40px; margin-bottom:40px;}
   .footer-logo{color:var(--white); font-weight:800; font-size:20px; margin-bottom:16px; letter-spacing:-0.5px;}
   .footer-desc{font-size:14px; line-height:1.7; max-width:340px;}
+  .social-icons { display: flex; gap: 16px; margin-top: 24px; }
+  .social-icons a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; transition: all 0.2s; color:#8992A1;}
+  .social-icons a:hover { background: var(--blue-700); color: white; transform: translateY(-2px); }
+  
   .footer-col-title{color:var(--white); font-size:15px; font-weight:700; margin-bottom:20px;}
   .footer-col a, .footer-col p{display:block; font-size:14px; margin-bottom:12px; color:#8992A1; cursor: pointer; transition:color 0.2s;}
   .footer-col a:hover { color: var(--white); }
-  .footer-disclaimer{font-size:12px; color:#5B6472; line-height:1.7; border-top:1px solid rgba(255,255,255,0.1); padding-top:24px;}
+  
+  .footer-badges { display: flex; gap: 12px; margin-top: 24px; flex-wrap:wrap;}
+  .footer-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff;}
+  
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #5B6472; line-height: 1.6; gap: 24px;}
 
   /* ========================================= */
   /* --- ULTIMATE MOBILE OPTIMIZATION TIER --- */
@@ -253,100 +290,64 @@
     p.section-sub { margin-bottom: 32px; font-size: 14px; }
     .hero { padding: 48px 0 0; }
     
-    .wrap { padding: 0 20px; } /* Clean 20px padding locked in */
+    .wrap { padding: 0 20px; }
 
     .header-cta { display: none; }
     
-    /* Hamburger Menu Button - Perfectly Aligned */
     .mobile-menu-btn { 
       display: flex; align-items: center; justify-content: center; 
       background: none; border: none; color: var(--ink); 
       cursor: pointer; z-index: 101; 
-      margin-right: 0;   /* No negative margins pulling it to the edge */
-      padding: 12px;     /* Generous touch target */
+      margin-right: 0; padding: 12px; 
     }
     
-    /* Mobile Overlay Menu */
     nav#mainNav {
-      position: absolute;
-      top: 100%; left: 0; width: 100%;
-      background: var(--white);
-      flex-direction: column;
-      gap: 0; padding: 8px 24px 24px;
-      border-top: 1px solid var(--border);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-      opacity: 0; visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      z-index: 99;
+      position: absolute; top: 100%; left: 0; width: 100%; background: var(--white);
+      flex-direction: column; gap: 0; padding: 8px 24px 24px; border-top: 1px solid var(--border);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); opacity: 0; visibility: hidden;
+      transform: translateY(-10px); transition: all 0.3s ease; z-index: 99;
     }
-    nav#mainNav.open {
-      opacity: 1; visibility: visible;
-      transform: translateY(0);
-    }
-    nav#mainNav a { 
-      font-size: 16px; padding: 16px 0; 
-      border-bottom: 1px solid var(--paper); font-weight: 600; color: var(--ink);
-    }
+    nav#mainNav.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    nav#mainNav a { font-size: 16px; padding: 16px 0; border-bottom: 1px solid var(--paper); font-weight: 600; color: var(--ink); }
     nav#mainNav a:hover, nav#mainNav a.active { color: var(--blue-700); border-bottom-color: var(--blue-50); }
     nav#mainNav a:last-of-type { border-bottom: none; }
     
-    /* Mobile CTA inside dropdown */
-    .mobile-cta { 
-      display: flex; flex-direction: column; gap: 16px; 
-      padding-top: 20px; margin-top: 8px; border-top: 1px dashed var(--border); 
-    }
+    .mobile-cta { display: flex; flex-direction: column; gap: 16px; padding-top: 20px; margin-top: 8px; border-top: 1px dashed var(--border); }
     .mobile-cta .phone-chip { justify-content: center; font-size: 15px; margin-bottom: 8px; }
 
-    /* The Fix: Perfect Grid Stacking for Mobile */
     .hero-grid { 
       grid-template-columns: 1fr 140px; 
-      grid-template-areas:
-        "eyebrow eyebrow"
-        "title   phone"
-        "desc    desc"
-        "stats   stats";
-      column-gap: 20px;
-      row-gap: 0;
-      align-items: center;
+      grid-template-areas: "eyebrow eyebrow" "title phone" "desc desc" "stats stats";
+      column-gap: 20px; row-gap: 0; align-items: center;
     }
     
     .hero-eyebrow { margin-bottom: 16px; margin-top: 0; }
     .hero-title { font-size: 32px; margin-bottom: 0; align-self: center; line-height: 1.25; }
+    .hero-illustration { width: 140px; height: 240px; align-self: center; justify-self: end; margin: 0; }
+    .phone-mockup { bottom: auto; top: 0; right: 0; position: absolute; transform: scale(0.5); transform-origin: top right; }
     
-    .hero-illustration { 
-      width: 140px; height: 240px; align-self: center; justify-self: end; margin: 0; 
-    }
-    .phone-mockup { 
-      bottom: auto; top: 0; right: 0; position: absolute;
-      transform: scale(0.5); transform-origin: top right; 
-    }
-    
-    /* 100% Full Width Stack Below Headline/Phone */
     .hero-desc { margin: 24px 0 32px; max-width: 100%; font-size: 15px; }
     .stats-row { grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; margin-top: 0; }
     .stat-num { font-size: 18px; }
 
-    /* Other Elements */
     .form-container { padding: 0 16px; }
     .form-card { padding: 24px 20px; border-radius: 20px; }
     .calc-container { grid-template-columns: 1fr; padding: 24px 20px; gap: 24px; }
     .pie-chart-wrap { flex-direction: column; text-align: center; gap: 16px; }
     .pie-legend { flex-direction: row; justify-content: center; width: 100%; }
-    .partner-logos { gap: 20px; justify-content: center; }
-    .partner-logos span { font-size: 16px; }
     .feature-grid { grid-template-columns: 1fr; }
+    
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .footer-bottom > div { text-align: center !important; }
     footer { padding: 48px 0 24px; margin-top: 40px; }
   }
 
   @media (max-width: 600px) {
-    /* Scale down slightly further for tiny screens */
     .hero-grid { grid-template-columns: 1fr 112px; column-gap: 16px; }
     .hero-title { font-size: 26px; }
     .hero-illustration { width: 112px; height: 192px; }
     .phone-mockup { transform: scale(0.4); }
-    
     .stats-row { gap: 12px; }
     .stat-num { font-size: 16px; }
     .stat-label { font-size: 11px; }
@@ -451,14 +452,26 @@
   </section>
 
   <section class="partner-banner fade-up">
-    <div class="wrap">
+    <div class="wrap" style="padding: 0;">
       <div class="partner-title">Trusted By India's Leading Partners</div>
-      <div class="partner-logos">
-        <span class="p-hdfc">HDFC BANK</span>
-        <span class="p-icici">ICICI Bank</span>
-        <span class="p-axis">AXIS BANK</span>
-        <span class="p-bajaj">BAJAJ FINANCE</span>
-        <span class="p-tata">TATA <span style="font-weight:400">CAPITAL</span></span>
+      <div class="partner-track-wrap">
+        <div class="partner-track">
+          <!-- Duplicated for seamless auto-scroll illusion -->
+          <div class="partner-logos-inner">
+            <span class="p-hdfc">HDFC BANK</span>
+            <span class="p-icici">ICICI Bank</span>
+            <span class="p-axis">AXIS BANK</span>
+            <span class="p-bajaj">BAJAJ FINANCE</span>
+            <span class="p-tata">TATA <span style="font-weight:400">CAPITAL</span></span>
+          </div>
+          <div class="partner-logos-inner">
+            <span class="p-hdfc">HDFC BANK</span>
+            <span class="p-icici">ICICI Bank</span>
+            <span class="p-axis">AXIS BANK</span>
+            <span class="p-bajaj">BAJAJ FINANCE</span>
+            <span class="p-tata">TATA <span style="font-weight:400">CAPITAL</span></span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -584,6 +597,12 @@
       <div>
         <div class="footer-logo">ZyncPay</div>
         <p class="footer-desc">ZyncPay is a lending marketplace that connects borrowers with partnered banks and NBFCs. Loan approval and sanctioning decisions are made exclusively by the respective lender.</p>
+        <div class="social-icons">
+          <a href="#"><i data-lucide="twitter" style="width:18px;"></i></a>
+          <a href="#"><i data-lucide="facebook" style="width:18px;"></i></a>
+          <a href="#"><i data-lucide="linkedin" style="width:18px;"></i></a>
+          <a href="#"><i data-lucide="instagram" style="width:18px;"></i></a>
+        </div>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
@@ -591,15 +610,25 @@
         <a href="#">Careers</a>
         <a href="#">Contact us</a>
         <a href="#">Grievance redressal</a>
+        <div class="footer-badges">
+          <div class="footer-badge"><i data-lucide="lock" style="width:14px; color:var(--success);"></i> 256-bit SSL</div>
+          <div class="footer-badge"><i data-lucide="shield-check" style="width:14px; color:var(--blue-500);"></i> RBI Compliant</div>
+        </div>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Office address</div>
         <p>Corporate office: Sector 62, Noida, Uttar Pradesh</p>
         <p>support@zyncpay.com</p>
+        <p style="margin-top:24px; font-size:13px; font-weight:600; color:#fff;">Payments powered by</p>
+        <div style="font-size:18px; font-weight:800; letter-spacing:-1px; color:#fff; display:flex; align-items:center; gap:6px;">
+          Cashfree
+        </div>
       </div>
     </div>
-    <div class="footer-disclaimer">
-      Disclaimer: ZyncPay is a marketplace platform and is not a lender. It connects users with its partnered banks and NBFCs; loan approval and terms are decided solely by the respective lending partner. Interest rates, fees, and eligibility criteria mentioned here are indicative and subject to change.
+    
+    <div class="footer-bottom">
+      <div>© 2026 ZyncPay. All rights reserved. Powered by ZyncPay Technologies.</div>
+      <div style="max-width: 600px; text-align: right;">Disclaimer: ZyncPay is a marketplace platform and is not a lender. It connects users with its partnered banks and NBFCs; loan approval and terms are decided solely by the respective lending partner.</div>
     </div>
   </div>
 </footer>
@@ -706,32 +735,60 @@ function scrollToForm() {
   document.getElementById('applySection').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// --- EMI CALCULATOR ENGINE WITH PIE CHART ---
+// --- EMI CALCULATOR ENGINE WITH SMOOTH INTERPOLATION (LERP) ---
 const emiSliderAmount = document.getElementById('emiSliderAmount');
 const emiSliderRate = document.getElementById('emiSliderRate');
 const emiSliderTenure = document.getElementById('emiSliderTenure');
+
+// Initialize with default values so there is no initial jump
+let emiTargets = { amount: 50000, rate: 10.5, tenure: 12, emi: 4408, principal: 50000, interest: 2894, total: 52894 };
+let emiCurrent = { ...emiTargets };
+
+function updateEMIDisplays() {
+   let updated = false;
+   for(let key in emiTargets) {
+       if(Math.abs(emiTargets[key] - emiCurrent[key]) > 0.1) {
+           emiCurrent[key] += (emiTargets[key] - emiCurrent[key]) * 0.25; // smoothing factor
+           if(Math.abs(emiTargets[key] - emiCurrent[key]) < 0.5) emiCurrent[key] = emiTargets[key];
+           updated = true;
+       }
+   }
+   
+   document.getElementById('emiDisplayAmount').textContent = '₹' + Math.round(emiCurrent.amount).toLocaleString('en-IN');
+   document.getElementById('emiDisplayRate').textContent = emiCurrent.rate.toFixed(1) + '%';
+   document.getElementById('emiDisplayTenure').textContent = Math.round(emiCurrent.tenure) + ' Months';
+   document.getElementById('emiResultBox').textContent = '₹' + Math.round(emiCurrent.emi).toLocaleString('en-IN');
+   document.getElementById('breakdownPrincipal').textContent = '₹' + Math.round(emiCurrent.principal).toLocaleString('en-IN');
+   document.getElementById('breakdownInterest').textContent = '₹' + Math.round(emiCurrent.interest).toLocaleString('en-IN');
+   document.getElementById('breakdownTotal').textContent = '₹' + Math.round(emiCurrent.total).toLocaleString('en-IN');
+   
+   if(updated) requestAnimationFrame(updateEMIDisplays);
+}
 
 function calculateEMI() {
   const P = Number(emiSliderAmount.value);
   const annualR = Number(emiSliderRate.value);
   const N = Number(emiSliderTenure.value);
   const R = (annualR / 12) / 100;
-
-  document.getElementById('emiDisplayAmount').textContent = '₹' + P.toLocaleString('en-IN');
-  document.getElementById('emiDisplayRate').textContent = annualR.toFixed(1) + '%';
-  document.getElementById('emiDisplayTenure').textContent = N + ' Months';
-
+  
   let emi = (R > 0) ? (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1) : P / N;
   const monthlyEMI = Math.round(emi);
   const totalPayment = monthlyEMI * N;
   const totalInterest = totalPayment - P;
 
-  document.getElementById('emiResultBox').textContent = '₹' + monthlyEMI.toLocaleString('en-IN');
-  document.getElementById('breakdownPrincipal').textContent = '₹' + P.toLocaleString('en-IN');
-  document.getElementById('breakdownInterest').textContent = '₹' + (totalInterest < 0 ? 0 : totalInterest).toLocaleString('en-IN');
-  document.getElementById('breakdownTotal').textContent = '₹' + totalPayment.toLocaleString('en-IN');
+  // Set new target destinations for the lerp function
+  emiTargets.amount = P;
+  emiTargets.rate = annualR;
+  emiTargets.tenure = N;
+  emiTargets.emi = monthlyEMI;
+  emiTargets.principal = P;
+  emiTargets.interest = totalInterest < 0 ? 0 : totalInterest;
+  emiTargets.total = totalPayment;
+
+  // Kickstart animation loop
+  requestAnimationFrame(updateEMIDisplays);
   
-  // Dynamic Pie Chart Generation
+  // Dynamic Pie Chart Generation (direct update feels responsive enough visually)
   const interestPercent = (totalInterest / totalPayment) * 100;
   const principalPercent = 100 - interestPercent;
   document.getElementById('emiPieChart').style.background = `conic-gradient(var(--blue-500) 0% ${principalPercent}%, var(--gold) ${principalPercent}% 100%)`;
@@ -739,7 +796,7 @@ function calculateEMI() {
 
 if(emiSliderAmount) {
   emiSliderAmount.oninput = calculateEMI; emiSliderRate.oninput = calculateEMI; emiSliderTenure.oninput = calculateEMI;
-  calculateEMI();
+  calculateEMI(); // First run to populate initial state
 }
 
 // --- LOAN FORM WIZARD ENGINE WITH PERSISTENCE ---
@@ -933,7 +990,7 @@ function renderCard(){
       </div>
     `;
     
-    // 400ms delay before animation starts so the user can read the text
+    // 400ms delay before animation starts so the user can register the success screen
     setTimeout(() => {
       const amountEl = document.getElementById('eligibilityAmount');
       let start = null;
@@ -961,7 +1018,7 @@ function renderCard(){
     return;
   }
   
-  // --- PREPARING OFFERS (Organic Asymmetrical Delays) ---
+  // --- PREPARING OFFERS (Organic Asymmetrical Delays & Final Pulse) ---
   if(current === 5.5) {
     card.innerHTML = `
       <div style="text-align:center; padding: 40px 0;">
@@ -973,12 +1030,12 @@ function renderCard(){
         const txt = document.getElementById('loadingText5');
         if(txt) txt.innerText = "Matching 15+ Lending Partners...";
         setTimeout(() => {
-            if(txt) txt.innerText = "✓ Personalized Offer Ready";
+            if(txt) txt.innerHTML = "<span class='pulse-text'>✓ Personalized Offer Ready</span>";
             setTimeout(() => {
                 current = 6; persistData(); render();
-            }, 800);
-        }, 1600);
-    }, 1100);
+            }, 800); // Quick transition after ready
+        }, 1600); // Long artificial matching delay
+    }, 1100); // Shorter first delay
     return;
   }
 
@@ -1036,13 +1093,18 @@ function renderCard(){
     return;
   }
 
-  // --- CHECKOUT SUMMARY PAGE ---
+  // --- CHECKOUT SUMMARY PAGE (With Staggered Approvals) ---
   if (current === 7){
     const fee = getProcessingFee(state.loanAmount);
     card.innerHTML = `
       <div style="text-align:center; margin-bottom:24px;">
         <p style="margin-bottom:6px; font-weight:700; color:var(--success); text-transform:uppercase; letter-spacing:1.5px; font-size:12px;">Loan Approved</p>
         <p style="font-size:40px; font-weight:900; color:var(--blue-900); margin:0; letter-spacing:-1px;">₹${state.loanAmount.toLocaleString('en-IN')}</p>
+        <div style="margin-top:16px;">
+          <div class="stagger-item" style="animation-delay: 0.1s;"><i data-lucide="check" style="width:14px; stroke-width:3px;"></i> 15 lenders matched</div>
+          <div class="stagger-item" style="animation-delay: 0.3s;"><i data-lucide="check" style="width:14px; stroke-width:3px;"></i> Best lender selected</div>
+          <div class="stagger-item" style="animation-delay: 0.5s;"><i data-lucide="check" style="width:14px; stroke-width:3px;"></i> Ready for agreement</div>
+        </div>
       </div>
       
       <div style="border-top:1px dashed var(--border); border-bottom:1px dashed var(--border); padding:24px 0; margin-bottom:28px;">
