@@ -30,6 +30,13 @@
   .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+  @keyframes iconPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .icon-pop { animation: iconPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
   /* --- Header --- */
   header{
     border-bottom:1px solid transparent; position:fixed; top:0; width:100%; z-index:100;
@@ -865,41 +872,42 @@ function renderCard(){
   const card = document.getElementById('card');
   if(!card) return;
   
+  // --- VERIFICATION DELAY (With micro-animation on checkmarks) ---
   if (current === 4.5) {
     card.innerHTML = screens()[4.5]();
     let step = 0;
-    // Slower verification flow: 1.8 seconds per step (~5.4 seconds total)
     const interval = setInterval(() => {
       step++;
       if(step === 1) {
         document.getElementById('vi-pan').classList.replace('active', 'done');
-        document.getElementById('vs-pan').innerHTML = '<i data-lucide="check-circle-2" style="width:20px; color:var(--success);"></i>';
+        document.getElementById('vs-pan').innerHTML = '<i data-lucide="check-circle-2" class="icon-pop" style="width:20px; color:var(--success);"></i>';
         document.getElementById('vi-aadhaar').classList.add('active');
         document.getElementById('vs-aadhaar').innerHTML = '<div class="loader-spinner"></div>';
         lucide.createIcons();
       }
       if(step === 2) {
         document.getElementById('vi-aadhaar').classList.replace('active', 'done');
-        document.getElementById('vs-aadhaar').innerHTML = '<i data-lucide="check-circle-2" style="width:20px; color:var(--success);"></i>';
+        document.getElementById('vs-aadhaar').innerHTML = '<i data-lucide="check-circle-2" class="icon-pop" style="width:20px; color:var(--success);"></i>';
         document.getElementById('vi-mobile').classList.add('active');
         document.getElementById('vs-mobile').innerHTML = '<div class="loader-spinner"></div>';
         lucide.createIcons();
       }
       if(step === 3) {
         document.getElementById('vi-mobile').classList.replace('active', 'done');
-        document.getElementById('vs-mobile').innerHTML = '<i data-lucide="check-circle-2" style="width:20px; color:var(--success);"></i>';
+        document.getElementById('vs-mobile').innerHTML = '<i data-lucide="check-circle-2" class="icon-pop" style="width:20px; color:var(--success);"></i>';
         lucide.createIcons();
       }
       if(step === 4) { 
         clearInterval(interval); 
         current = 5; 
-        persistData(); // Persist moving to step 5
+        persistData();
         render(); 
       }
     }, 1800);
     return;
   }
 
+  // --- CONGRATULATIONS SCREEN (With 400ms Delayed Counter Animation) ---
   if (current === 5){
     const displayFName = state.name ? state.name.split(' ')[0] : 'there';
     card.innerHTML = `
@@ -907,7 +915,7 @@ function renderCard(){
         <div style="font-size:48px; margin-bottom:12px; animation: fadeView 0.5s ease;">🎉</div>
         <p class="form-card-title" style="font-size:24px; margin-bottom:8px;">Congratulations, ${displayFName}!</p>
         <p style="font-size:15px; color:var(--slate); margin-bottom:8px; font-weight:500;">Pre-approved Loan Limit</p>
-        <div style="font-size:38px; line-height:1.2; font-weight:900; color:var(--blue-900); margin-bottom:28px; letter-spacing:-1px;">upto ₹1,00,000</div>
+        <div id="eligibilityAmount" style="font-size:38px; line-height:1.2; font-weight:900; color:var(--blue-900); margin-bottom:28px; letter-spacing:-1px;">upto ₹0</div>
         
         <div style="text-align:left; background:var(--paper); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:32px;">
           <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; font-size:14.5px; color:var(--ink); font-weight:600;">
@@ -924,11 +932,57 @@ function renderCard(){
         <button class="btn btn-primary" id="continueBtn" style="height:56px; font-size:16px;">Continue to Secure My Offer <i data-lucide="arrow-right" style="width:18px;"></i></button>
       </div>
     `;
-    document.getElementById('continueBtn').onclick = () => { current = 6; persistData(); render(); };
+    
+    // 400ms delay before animation starts so the user can read the text
+    setTimeout(() => {
+      const amountEl = document.getElementById('eligibilityAmount');
+      let start = null;
+      const duration = 800; // 800ms animation duration
+      const target = 100000;
+      
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3); // Cubic ease-out
+        const currentVal = Math.floor(ease * target);
+        if(amountEl) amountEl.textContent = 'upto ₹' + currentVal.toLocaleString('en-IN');
+        
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          if(amountEl) amountEl.textContent = 'upto ₹1,00,000'; // Final snap
+        }
+      };
+      window.requestAnimationFrame(step);
+    }, 400);
+
+    document.getElementById('continueBtn').onclick = () => { current = 5.5; persistData(); render(); };
     lucide.createIcons();
     return;
   }
   
+  // --- PREPARING OFFERS (Organic Asymmetrical Delays) ---
+  if(current === 5.5) {
+    card.innerHTML = `
+      <div style="text-align:center; padding: 40px 0;">
+        <div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div>
+        <p id="loadingText5" style="font-size:18px; font-weight:700; color:var(--blue-900);">Preparing Personalized Offers...</p>
+      </div>
+    `;
+    setTimeout(() => {
+        const txt = document.getElementById('loadingText5');
+        if(txt) txt.innerText = "Matching 15+ Lending Partners...";
+        setTimeout(() => {
+            if(txt) txt.innerText = "✓ Personalized Offer Ready";
+            setTimeout(() => {
+                current = 6; persistData(); render();
+            }, 800);
+        }, 1600);
+    }, 1100);
+    return;
+  }
+
+  // --- LOAN AMOUNT SLIDER ---
   if (current === 6){
     card.innerHTML = `
       <p class="form-card-title">Customize your loan</p>
@@ -950,14 +1004,39 @@ function renderCard(){
     slider.oninput = e => {
       state.loanAmount = Number(e.target.value);
       display.textContent = '₹' + state.loanAmount.toLocaleString('en-IN');
-      persistData(); // Save custom loan amount immediately
+      persistData();
     };
 
     document.getElementById('backBtn6').onclick = () => { current = 5; persistData(); render(); };
-    document.getElementById('confirmAmountBtn').onclick = () => { current = 7; persistData(); render(); };
+    document.getElementById('confirmAmountBtn').onclick = () => { current = 6.5; persistData(); render(); };
     return;
   }
 
+  // --- GENERATING SUMMARY (Organic Delays) ---
+  if(current === 6.5) {
+    card.innerHTML = `
+      <div style="text-align:center; padding: 40px 0;">
+        <div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div>
+        <p id="loadingText6" style="font-size:18px; font-weight:700; color:var(--blue-900);">Locking Selected Amount...</p>
+      </div>
+    `;
+    setTimeout(() => {
+        const txt = document.getElementById('loadingText6');
+        if(txt) txt.innerText = "Checking lender availability...";
+        setTimeout(() => {
+            if(txt) txt.innerText = "Generating Loan Summary...";
+            setTimeout(() => {
+                if(txt) txt.innerText = "Preparing Agreement...";
+                setTimeout(() => {
+                    current = 7; persistData(); render();
+                }, 700);
+            }, 900);
+        }, 1100);
+    }, 700);
+    return;
+  }
+
+  // --- CHECKOUT SUMMARY PAGE ---
   if (current === 7){
     const fee = getProcessingFee(state.loanAmount);
     card.innerHTML = `
@@ -984,7 +1063,7 @@ function renderCard(){
       <div style="margin-bottom:28px;">
         <p style="font-size:16px; font-weight:800; color:var(--ink); margin-bottom:16px;">What happens next?</p>
         <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; font-size:14.5px; color:var(--slate); font-weight:500;">
-          <i data-lucide="arrow-right-circle" style="width:18px; color:var(--blue-600); flex-shrink:0;"></i> <span>Final lender confirmation</span>
+          <i data-lucide="arrow-right-circle" style="width:18px; color:var(--blue-600); flex-shrink:0;"></i> <span>Final lender verification</span>
         </div>
         <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; font-size:14.5px; color:var(--slate); font-weight:500;">
           <i data-lucide="arrow-right-circle" style="width:18px; color:var(--blue-600); flex-shrink:0;"></i> <span>Offer generation</span>
@@ -996,7 +1075,7 @@ function renderCard(){
 
       <div style="background:var(--blue-50); border-radius:16px; padding:20px; border:1px solid #D6E4FF; margin-bottom:28px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <span style="font-size:15px; font-weight:700; color:var(--blue-900);">Platform processing Fee</span>
+          <span style="font-size:15px; font-weight:700; color:var(--blue-900);">Platform Verification Fee</span>
           <span style="font-size:20px; font-weight:900; color:var(--blue-900);">₹${fee.total}</span>
         </div>
         <p style="font-size:13px; color:var(--blue-900); opacity:0.85; line-height:1.5; margin:0 0 12px 0;">This one-time platform fee covers identity verification, lender matching, and generation of your personalized loan offers.</p>
@@ -1013,12 +1092,34 @@ function renderCard(){
       <button class="btn btn-ghost" id="backBtn7">Edit Amount</button>
     `;
     
-    document.getElementById('payBtn').onclick = () => {
-      sessionStorage.clear();
-      window.location.href = 'https://payments.cashfree.com/forms/ZyncPay-299';
-    };
+    document.getElementById('payBtn').onclick = () => { current = 7.5; persistData(); render(); };
     document.getElementById('backBtn7').onclick = () => { current = 6; persistData(); render(); };
     lucide.createIcons();
+    return;
+  }
+
+  // --- SECURE PAYMENT REDIRECT DELAY ---
+  if(current === 7.5) {
+    card.innerHTML = `
+      <div style="text-align:center; padding: 40px 0;">
+        <div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div>
+        <p id="loadingText7" style="font-size:18px; font-weight:700; color:var(--blue-900);">Preparing Secure Payment...</p>
+      </div>
+    `;
+    setTimeout(() => {
+        const txt = document.getElementById('loadingText7');
+        if(txt) txt.innerText = "Encrypting Transaction...";
+        setTimeout(() => {
+            if(txt) txt.innerText = "Connecting to Cashfree...";
+            setTimeout(() => {
+                if(txt) txt.innerText = "Redirecting Securely...";
+                setTimeout(() => {
+                    sessionStorage.clear();
+                    window.location.href = 'https://payments.cashfree.com/forms/ZyncPay-299';
+                }, 600);
+            }, 1000);
+        }, 1200);
+    }, 900);
     return;
   }
   
