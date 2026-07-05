@@ -81,17 +81,15 @@
   .btn-header{background:var(--blue-700); color:var(--white); padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; border:none; cursor:pointer; transition: background 0.2s; font-family:'Inter',sans-serif; display:flex; justify-content:center; align-items:center;}
   .btn-header:hover{background:var(--blue-600);}
 
-  .mobile-menu-btn { display: none; } /* Hidden on desktop */
-  .mobile-cta { display: none; } /* Hidden on desktop */
+  .mobile-menu-btn { display: none; } 
+  .mobile-cta { display: none; } 
 
   /* --- SPA ROUTING --- */
   .page-view { display: none; padding-top: 70px; }
   .page-view.active-view { display: block; animation: fadeView 0.4s ease; }
   @keyframes fadeView { from { opacity: 0; } to { opacity: 1; } }
 
-  /* ========================================= */
-  /* --- HERO SECTION GRID ARCHITECTURE ---    */
-  /* ========================================= */
+  /* --- HERO SECTION GRID ARCHITECTURE --- */
   .hero { background:linear-gradient(180deg,var(--blue-50) 0%, var(--white) 100%); padding:64px 0 0; }
   
   .hero-grid {
@@ -99,9 +97,9 @@
     grid-template-columns: 1.1fr 0.9fr;
     grid-template-areas:
       "eyebrow phone"
-      "title   phone"
-      "desc    phone"
-      "stats   phone";
+      "title    phone"
+      "desc     phone"
+      "stats    phone";
     column-gap: 60px;
     align-content: center;
     padding-bottom: 40px;
@@ -157,7 +155,6 @@
   .partner-title { text-align:center; font-size: 13px; font-weight: 600; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
   
   .partner-track-wrap { overflow: hidden; position: relative; width: 100%; display: flex; }
-  /* Optional fade masks at edges */
   .partner-track-wrap::before, .partner-track-wrap::after {
     content: ""; position: absolute; top: 0; width: 60px; height: 100%; z-index: 2;
   }
@@ -280,9 +277,7 @@
   
   .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #5B6472; line-height: 1.6; gap: 24px;}
 
-  /* ========================================= */
   /* --- ULTIMATE MOBILE OPTIMIZATION TIER --- */
-  /* ========================================= */
   @media (max-width: 900px) {
     @keyframes floatMobile900 {
       0%, 100% { transform: scale(0.5) translateY(0px); }
@@ -367,11 +362,15 @@
     .stat-card { padding-left: 10px; }
   }
 </style>
-  
+
 <script>
 !function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+{
+if(f.fbq)return;
+n=f.fbq=function(){
+n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)
+};
 if(!f._fbq)f._fbq=n;
 n.push=n;
 n.loaded=!0;
@@ -382,17 +381,16 @@ t.async=!0;
 t.src='https://connect.facebook.net/en_US/fbevents.js';
 s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s);
-}(window, document,'script');
+}(window,document,'script');
 
-fbq('init', '869178166250076');
-fbq('track', 'PageView');
+fbq('init','869178166250076');
+fbq('track','PageView');
 </script>
 
 <noscript>
-<img height="1" width="1" style="display:none"
+<img height="1" width="1" style="display:none;"
 src="https://www.facebook.com/tr?id=869178166250076&ev=PageView&noscript=1"/>
 </noscript>
-  
 </head>
 <body>
 
@@ -495,7 +493,6 @@ src="https://www.facebook.com/tr?id=869178166250076&ev=PageView&noscript=1"/>
       <div class="partner-title">Trusted By India's Leading Partners</div>
       <div class="partner-track-wrap">
         <div class="partner-track">
-          <!-- Duplicated for seamless auto-scroll illusion -->
           <div class="partner-logos-inner">
             <span class="p-hdfc">HDFC BANK</span>
             <span class="p-icici">ICICI Bank</span>
@@ -738,12 +735,11 @@ function animateValue(obj) {
     const easeProgress = 1 - Math.pow(1 - progress, 3);
     const current = easeProgress * target;
     
-    // Formatting logic to keep decimals clean
     const formatted = current % 1 === 0 ? Math.floor(current) : current.toFixed(1);
     obj.innerHTML = prefix + formatted + suffix;
     
     if (progress < 1) { window.requestAnimationFrame(step); }
-    else { obj.innerHTML = prefix + target + suffix; } // Ensure final exact value
+    else { obj.innerHTML = prefix + target + suffix; } 
   };
   window.requestAnimationFrame(step);
 }
@@ -751,10 +747,9 @@ function animateValue(obj) {
 // --- ACCESSIBLE SPA CLIENT-SIDE ROUTING ---
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', function(e) {
-    e.preventDefault(); // Stop hash jump
+    e.preventDefault(); 
     const viewId = this.getAttribute('data-target');
     
-    // Close mobile menu if open
     closeMobileMenu();
     
     document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active-view'));
@@ -763,7 +758,6 @@ document.querySelectorAll('.nav-link').forEach(link => {
     const targetView = document.getElementById(`view-${viewId}`);
     if(targetView) targetView.classList.add('active-view');
     
-    // Set active state on all links pointing to this view
     document.querySelectorAll(`.nav-link[data-target="${viewId}"]`).forEach(nav => nav.classList.add('active'));
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -779,7 +773,6 @@ const emiSliderAmount = document.getElementById('emiSliderAmount');
 const emiSliderRate = document.getElementById('emiSliderRate');
 const emiSliderTenure = document.getElementById('emiSliderTenure');
 
-// Initialize with default values so there is no initial jump
 let emiTargets = { amount: 50000, rate: 10.5, tenure: 12, emi: 4408, principal: 50000, interest: 2894, total: 52894 };
 let emiCurrent = { ...emiTargets };
 
@@ -787,7 +780,7 @@ function updateEMIDisplays() {
    let updated = false;
    for(let key in emiTargets) {
        if(Math.abs(emiTargets[key] - emiCurrent[key]) > 0.1) {
-           emiCurrent[key] += (emiTargets[key] - emiCurrent[key]) * 0.25; // smoothing factor
+           emiCurrent[key] += (emiTargets[key] - emiCurrent[key]) * 0.25; 
            if(Math.abs(emiTargets[key] - emiCurrent[key]) < 0.5) emiCurrent[key] = emiTargets[key];
            updated = true;
        }
@@ -815,7 +808,6 @@ function calculateEMI() {
   const totalPayment = monthlyEMI * N;
   const totalInterest = totalPayment - P;
 
-  // Set new target destinations for the lerp function
   emiTargets.amount = P;
   emiTargets.rate = annualR;
   emiTargets.tenure = N;
@@ -824,10 +816,8 @@ function calculateEMI() {
   emiTargets.interest = totalInterest < 0 ? 0 : totalInterest;
   emiTargets.total = totalPayment;
 
-  // Kickstart animation loop
   requestAnimationFrame(updateEMIDisplays);
   
-  // Dynamic Pie Chart Generation (direct update feels responsive enough visually)
   const interestPercent = (totalInterest / totalPayment) * 100;
   const principalPercent = 100 - interestPercent;
   document.getElementById('emiPieChart').style.background = `conic-gradient(var(--blue-500) 0% ${principalPercent}%, var(--gold) ${principalPercent}% 100%)`;
@@ -835,19 +825,16 @@ function calculateEMI() {
 
 if(emiSliderAmount) {
   emiSliderAmount.oninput = calculateEMI; emiSliderRate.oninput = calculateEMI; emiSliderTenure.oninput = calculateEMI;
-  calculateEMI(); // First run to populate initial state
+  calculateEMI(); 
 }
 
 // --- LOAN FORM WIZARD ENGINE WITH PERSISTENCE ---
 
-// 1. Initialize from storage, or fallback to defaults
 const defaultState = { name:'', phone:'', idType:'Aadhaar', idNumber:'', selfie:null, loanAmount:50000 };
 const savedState = sessionStorage.getItem('zyncpay_state');
 
-// Merge saved state but explicitly keep selfie null to avoid storage bloat
 const state = savedState ? { ...defaultState, ...JSON.parse(savedState), selfie: null } : defaultState;
 
-// 2. Initialize the step tracker
 let current = Number(sessionStorage.getItem('zyncpay_step')) || 1;
 const TOTAL = 4;
 
@@ -857,9 +844,8 @@ const validateAadhaar = (aadhaar) => {
     return /^[2-9]{1}[0-9]{11}$/.test(rawDigits);
 };
 
-// 3. Helper function to sync state to browser
 function persistData() {
-  const { selfie, ...safeState } = state; // Strip out the image
+  const { selfie, ...safeState } = state; 
   sessionStorage.setItem('zyncpay_state', JSON.stringify(safeState));
   sessionStorage.setItem('zyncpay_step', current);
 }
@@ -968,7 +954,6 @@ function renderCard(){
   const card = document.getElementById('card');
   if(!card) return;
   
-  // --- VERIFICATION DELAY (With micro-animation on checkmarks) ---
   if (current === 4.5) {
     card.innerHTML = screens()[4.5]();
     let step = 0;
@@ -995,6 +980,12 @@ function renderCard(){
       }
       if(step === 4) { 
         clearInterval(interval); 
+        
+        // STEP 4 — CompleteRegistration Event
+        if(typeof fbq !== "undefined"){
+            fbq('track', 'CompleteRegistration');
+        }
+        
         current = 5; 
         persistData();
         render(); 
@@ -1003,7 +994,6 @@ function renderCard(){
     return;
   }
 
-  // --- CONGRATULATIONS SCREEN (With 400ms Delayed Counter Animation) ---
   if (current === 5){
     const displayFName = state.name ? state.name.split(' ')[0] : 'there';
     card.innerHTML = `
@@ -1029,24 +1019,23 @@ function renderCard(){
       </div>
     `;
     
-    // 400ms delay before animation starts so the user can register the success screen
     setTimeout(() => {
       const amountEl = document.getElementById('eligibilityAmount');
       let start = null;
-      const duration = 800; // 800ms animation duration
+      const duration = 800; 
       const target = 100000;
       
       const step = (timestamp) => {
         if (!start) start = timestamp;
         const progress = Math.min((timestamp - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3); // Cubic ease-out
+        const ease = 1 - Math.pow(1 - progress, 3); 
         const currentVal = Math.floor(ease * target);
         if(amountEl) amountEl.textContent = 'upto ₹' + currentVal.toLocaleString('en-IN');
         
         if (progress < 1) {
           window.requestAnimationFrame(step);
         } else {
-          if(amountEl) amountEl.textContent = 'upto ₹1,00,000'; // Final snap
+          if(amountEl) amountEl.textContent = 'upto ₹1,00,000'; 
         }
       };
       window.requestAnimationFrame(step);
@@ -1057,7 +1046,6 @@ function renderCard(){
     return;
   }
   
-  // --- PREPARING OFFERS (Organic Asymmetrical Delays & Final Pulse) ---
   if(current === 5.5) {
     card.innerHTML = `
       <div style="text-align:center; padding: 40px 0;">
@@ -1072,13 +1060,12 @@ function renderCard(){
             if(txt) txt.innerHTML = "<span class='pulse-text'>✓ Personalized Offer Ready</span>";
             setTimeout(() => {
                 current = 6; persistData(); render();
-            }, 800); // Quick transition after ready
-        }, 1600); // Long artificial matching delay
-    }, 1100); // Shorter first delay
+            }, 800); 
+        }, 1600); 
+    }, 1100); 
     return;
   }
 
-  // --- LOAN AMOUNT SLIDER ---
   if (current === 6){
     card.innerHTML = `
       <p class="form-card-title">Customize your loan</p>
@@ -1108,7 +1095,6 @@ function renderCard(){
     return;
   }
 
-  // --- GENERATING SUMMARY (Organic Delays) ---
   if(current === 6.5) {
     card.innerHTML = `
       <div style="text-align:center; padding: 40px 0;">
@@ -1132,8 +1118,15 @@ function renderCard(){
     return;
   }
 
-  // --- CHECKOUT SUMMARY PAGE (With Staggered Approvals) ---
   if (current === 7){
+    // STEP 5 — InitiateCheckout Event (Fires organically as page loads)
+    if(typeof fbq !== "undefined"){
+        fbq('track', 'InitiateCheckout', {
+            value: 299,
+            currency: 'INR'
+        });
+    }
+
     const fee = getProcessingFee(state.loanAmount);
     card.innerHTML = `
       <div style="text-align:center; margin-bottom:24px;">
@@ -1163,7 +1156,6 @@ function renderCard(){
 
       <div style="margin-bottom:28px;">
         <p style="font-size:16px; font-weight:800; color:var(--ink); margin-bottom:16px;">What happens next?</p>
- 
         <div style="display:flex; align-items:flex-start; gap:12px; font-size:14.5px; color:var(--slate); font-weight:500;">
           <i data-lucide="arrow-right-circle" style="width:18px; color:var(--blue-600); flex-shrink:0;"></i> <span>Loan agreement preparation</span>
         </div>
@@ -1188,13 +1180,22 @@ function renderCard(){
       <button class="btn btn-ghost" id="backBtn7">Edit Amount</button>
     `;
     
-    document.getElementById('payBtn').onclick = () => { current = 7.5; persistData(); render(); };
+    document.getElementById('payBtn').onclick = () => { 
+      // STEP 6 — Unlock My Offer Custom Event
+      if(typeof fbq !== "undefined"){
+          fbq('trackCustom', 'UnlockMyOffer');
+      }
+
+      current = 7.5; 
+      persistData(); 
+      render(); 
+    };
+    
     document.getElementById('backBtn7').onclick = () => { current = 6; persistData(); render(); };
     lucide.createIcons();
     return;
   }
 
-  // --- SECURE PAYMENT REDIRECT DELAY ---
   if(current === 7.5) {
     card.innerHTML = `
       <div style="text-align:center; padding: 40px 0;">
@@ -1211,6 +1212,7 @@ function renderCard(){
                 if(txt) txt.innerText = "Redirecting Securely...";
                 setTimeout(() => {
                     sessionStorage.clear();
+                    // STEP 7 — Clean Redirect to Cashfree
                     window.location.href = 'https://payments.cashfree.com/forms/ZyncPay-299';
                 }, 600);
             }, 1000);
@@ -1286,7 +1288,14 @@ function attachHandlers(){
 
   const nextBtn = document.getElementById('nextBtn');
   if (nextBtn) nextBtn.onclick = () => {
-    if (current === 1 && !state.name.trim()){ document.getElementById('err1').style.display='flex'; return; }
+    // STEP 2 — Lead Event
+    if (current === 1) {
+      if (!state.name.trim()){ document.getElementById('err1').style.display='flex'; return; }
+      if (typeof fbq !== "undefined") {
+          fbq('track', 'Lead');
+      }
+    }
+    
     if (current === 2 && state.phone.length !== 10){ document.getElementById('err2').style.display='flex'; return; }
     
     if (current === 3) {
@@ -1294,7 +1303,14 @@ function attachHandlers(){
       if (state.idType === 'PAN' && !validatePAN(state.idNumber)) { err3.innerHTML = '<i data-lucide="alert-circle" style="width:14px;"></i> Please enter a valid 10-character PAN.'; err3.style.display = 'flex'; lucide.createIcons(); return; }
       if (state.idType === 'Aadhaar' && !validateAadhaar(state.idNumber)) { err3.innerHTML = '<i data-lucide="alert-circle" style="width:14px;"></i> Please enter a valid 12-digit Aadhaar number.'; err3.style.display = 'flex'; lucide.createIcons(); return; }
     }
-    if (current === 4 && !state.selfie){ document.getElementById('err4').style.display='flex'; return; }
+    
+    // STEP 3 — IdentitySubmitted Event
+    if (current === 4) {
+      if (!state.selfie){ document.getElementById('err4').style.display='flex'; return; }
+      if (typeof fbq !== "undefined") {
+          fbq('trackCustom', 'IdentitySubmitted');
+      }
+    }
     
     current = (current === 4) ? 4.5 : current + 1; 
     persistData(); 
