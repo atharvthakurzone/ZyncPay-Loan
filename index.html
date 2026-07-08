@@ -1,1445 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZyncPay — Personal & Business Loans</title>
-
-<meta name="description" content="Compare personal and business loan offers from 15+ trusted banks and NBFCs. 100% paperless digital lending marketplace.">
-<meta property="og:title" content="ZyncPay — Instant Personal & Business Loans">
-<meta property="og:description" content="Check your eligibility in under a minute and get funds disbursed directly to your account. Secure, RBI-compliant platform.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://zyncpay.com">
-<meta property="og:image" content="https://zyncpay.com/og-image.jpg">
-<meta name="twitter:card" content="summary_large_image">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="description" content="Compare personal and business loan offers from 15+ trusted banks and NBFCs. 100% paperless digital credit marketplace.">
+<meta property="og:title" content="ZyncPay — Instant Personal & Business Loans"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
-  :root {
-    --blue-900:#0D2B52; --blue-700:#1656C9; --blue-600:#2563EB; --blue-500:#3B82F6; --blue-50:#EAF2FF;
-    --ink:#131B2C; --slate:#5B6472; --slate-light:#8992A1; --border:#E4E8F0;
-    --paper:#F7F9FC; --white:#FFFFFF; --success:#1E9E5A; --success-bg:#E7F7EE;
-    --gold:#F5A623; --error:#D64545;
-  }
-  
-  html { scroll-behavior: smooth; }
-  *{box-sizing:border-box;}
-  body{margin:0; background:var(--white); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
-  body.menu-open { overflow: hidden; } /* Mobile Scroll Trap Fix */
-  a{text-decoration:none; color:inherit;}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
-  
-  /* Desktop Padding */
-  section{padding:72px 0;}
-  h2.section-title{font-size:28px; font-weight:800; text-align:center; margin:0 0 8px;}
-  p.section-sub{font-size:15px; color:var(--slate); text-align:center; max-width:560px; margin:0 auto 48px; line-height:1.6;}
-
-  /* --- Utility CSS Classes (Replaced Inline Styles) --- */
-  .text-center { text-align: center; }
-  .text-left { text-align: left; }
-  .text-right { text-align: right; }
-  .flex { display: flex; }
-  .flex-col { display: flex; flex-direction: column; }
-  .items-center { align-items: center; }
-  .justify-between { justify-content: space-between; }
-  .justify-center { justify-content: center; }
-  .gap-4 { gap: 4px; }
-  .gap-6 { gap: 6px; }
-  .gap-12 { gap: 12px; }
-  .gap-16 { gap: 16px; }
-  .w-full { width: 100%; }
-  .m-0 { margin: 0; }
-  .mb-8 { margin-bottom: 8px; }
-  .mb-12 { margin-bottom: 12px; }
-  .mb-16 { margin-bottom: 16px; }
-  .mb-24 { margin-bottom: 24px; }
-  .mb-28 { margin-bottom: 28px; }
-  .mb-32 { margin-bottom: 32px; }
-  .mt-16 { margin-top: 16px; }
-  .mt-24 { margin-top: 24px; }
-  .h-52 { height: 52px; }
-  .h-56 { height: 56px; }
-  .icon-small { width: 16px; height: 16px; }
-  .icon-med { width: 18px; height: 18px; }
-  .icon-large { width: 20px; height: 20px; }
-  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
-  
-  /* Focus Visible Outline for A11y Nav */
+  :root { --blue-900:#0D2B52; --blue-700:#1656C9; --blue-600:#2563EB; --blue-500:#3B82F6; --blue-50:#EAF2FF; --ink:#131B2C; --slate:#5B6472; --slate-light:#8992A1; --border:#E4E8F0; --paper:#F7F9FC; --white:#FFFFFF; --success:#1E9E5A; --success-bg:#E7F7EE; --gold:#F5A623; --error:#D64545; }
+  html { scroll-behavior: smooth; } *{box-sizing:border-box;} body{margin:0; background:var(--white); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  body.menu-open { overflow: hidden; } a{text-decoration:none; color:inherit;} .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  section{padding:72px 0;} h2.section-title{font-size:28px; font-weight:800; text-align:center; margin:0 0 8px;} p.section-sub{font-size:15px; color:var(--slate); text-align:center; max-width:560px; margin:0 auto 48px; line-height:1.6;}
+  .text-center { text-align: center; } .text-left { text-align: left; } .flex { display: flex; } .flex-col { display: flex; flex-direction: column; } .items-center { align-items: center; } .justify-between { justify-content: space-between; } .justify-center { justify-content: center; }
+  .gap-4 { gap: 4px; } .gap-6 { gap: 6px; } .gap-12 { gap: 12px; } .gap-16 { gap: 16px; } .w-full { width: 100%; } .m-0 { margin: 0; } .mb-8 { margin-bottom: 8px; } .mb-12 { margin-bottom: 12px; } .mb-16 { margin-bottom: 16px; } .mb-24 { margin-bottom: 24px; } .mb-28 { margin-bottom: 28px; } .mb-32 { margin-bottom: 32px; } .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; } .h-52 { height: 52px; } .h-56 { height: 56px; } .icon-small { width: 16px; height: 16px; } .icon-med { width: 18px; height: 18px; } .icon-large { width: 20px; height: 20px; } .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
   *:focus-visible { outline: 3px solid var(--blue-500); outline-offset: 2px; }
-
-  /* --- Scroll Animations --- */
-  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-  @keyframes iconPop {
-    0% { transform: scale(0.5); opacity: 0; }
-    50% { transform: scale(1.2); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  .icon-pop { animation: iconPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-
-  @keyframes floatDesktop {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-  }
-
-  @keyframes pulseSuccess { 
-    0% { transform:scale(1); opacity:1; } 
-    50% { transform:scale(1.05); opacity:0.8; } 
-    100% { transform:scale(1); opacity:1; } 
-  }
-  .pulse-text { animation: pulseSuccess 1s ease-in-out infinite; display: inline-block; color: var(--success); }
-
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; } .fade-up.visible { opacity: 1; transform: translateY(0); }
+  @keyframes iconPop { 0% { transform: scale(0.5); opacity: 0; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); opacity: 1; } } .icon-pop { animation: iconPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+  @keyframes floatDesktop { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+  @keyframes pulseSuccess { 0%, 100% { transform:scale(1); opacity:1; } 50% { transform:scale(1.05); opacity:0.8; } } .pulse-text { animation: pulseSuccess 1s ease-in-out infinite; display: inline-block; color: var(--success); }
   @keyframes fadeUpIn { 0% { opacity:0; transform:translateY(10px); } 100% { opacity:1; transform:translateY(0); } }
   .stagger-item { opacity: 0; animation: fadeUpIn 0.5s ease forwards; font-size: 13.5px; font-weight: 600; color: var(--success); display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:8px; }
-
-  /* --- Header --- */
-  header{
-    border-bottom:1px solid transparent; position:fixed; top:0; width:100%; z-index:100;
-    background:var(--white); transition: all 0.3s ease;
-  }
-  header.scrolled {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-  .header-row{display:flex; align-items:center; justify-content:space-between; padding:16px 0; transition: padding 0.3s ease;}
-  header.scrolled .header-row { padding: 10px 0; }
-  
-  .logo{display:flex; align-items:center; gap:9px; cursor:pointer;}
-  .logo-mark{width:28px; height:28px; border-radius:8px; background:var(--blue-700); position:relative; flex-shrink:0;}
-  .logo-mark::after{content:""; position:absolute; top:8px; left:8px; width:12px; height:12px; border-radius:3px; background:var(--gold);}
-  .logo-word{font-weight:800; font-size:19px; letter-spacing:-0.5px;}
-  .logo-word span{color:var(--blue-700);}
-  
-  nav{display:flex; gap:28px; font-size:14.5px; font-weight:500; color:var(--slate);}
-  nav a{cursor:pointer; transition: color 0.2s;}
-  nav a:hover, nav a.active{color:var(--blue-700); font-weight:600;}
-  
-  .header-cta{display:flex; align-items:center; gap:18px;}
-  .phone-chip{font-size:14px; font-weight:600; color:var(--blue-700); display:flex; align-items:center; gap:6px;}
-  .btn-header{background:var(--blue-700); color:var(--white); padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; border:none; cursor:pointer; transition: background 0.2s; font-family:'Inter',sans-serif; display:flex; justify-content:center; align-items:center;}
-  .btn-header:hover{background:var(--blue-600);}
-
-  .mobile-menu-btn { display: none; } 
-  .mobile-cta { display: none; } 
-
-  /* --- SPA ROUTING --- */
-  .page-view { display: none; padding-top: 70px; }
-  .page-view.active-view { display: block; animation: fadeView 0.4s ease; }
-  @keyframes fadeView { from { opacity: 0; } to { opacity: 1; } }
-
-  /* --- HERO SECTION GRID ARCHITECTURE --- */
+  header{ border-bottom:1px solid transparent; position:fixed; top:0; width:100%; z-index:100; background:var(--white); transition: all 0.3s ease; }
+  header.scrolled { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  .header-row{display:flex; align-items:center; justify-content:space-between; padding:16px 0; transition: padding 0.3s ease;} header.scrolled .header-row { padding: 10px 0; }
+  .logo{display:flex; align-items:center; gap:9px; cursor:pointer;} .logo-mark{width:28px; height:28px; border-radius:8px; background:var(--blue-700); position:relative; flex-shrink:0;}
+  .logo-mark::after{content:""; position:absolute; top:8px; left:8px; width:12px; height:12px; border-radius:3px; background:var(--gold);} .logo-word{font-weight:800; font-size:19px; letter-spacing:-0.5px;} .logo-word span{color:var(--blue-700);}
+  nav{display:flex; gap:28px; font-size:14.5px; font-weight:500; color:var(--slate);} nav a{cursor:pointer; transition: color 0.2s;} nav a:hover, nav a.active{color:var(--blue-700); font-weight:600;}
+  .header-cta{display:flex; align-items:center; gap:18px;} .phone-chip{font-size:14px; font-weight:600; color:var(--blue-700); display:flex; align-items:center; gap:6px;}
+  .btn-header{background:var(--blue-700); color:var(--white); padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; border:none; cursor:pointer; transition: background 0.2s; font-family:'Inter',sans-serif; display:flex; justify-content:center; align-items:center;} .btn-header:hover{background:var(--blue-600);}
+  .page-view { display: none; padding-top: 70px; } .page-view.active-view { display: block; animation: fadeView 0.4s ease; } @keyframes fadeView { from { opacity: 0; } to { opacity: 1; } }
   .hero { background:linear-gradient(180deg,var(--blue-50) 0%, var(--white) 100%); padding:64px 0 0; }
-  
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    grid-template-areas:
-      "eyebrow phone"
-      "title    phone"
-      "desc     phone"
-      "stats    phone";
-    column-gap: 60px;
-    align-content: center;
-    padding-bottom: 40px;
-  }
-  
-  .hero-eyebrow { 
-    grid-area: eyebrow; display:inline-flex; align-items:center; gap:6px; background:var(--white); 
-    border:1px solid var(--border); color:var(--blue-700); font-size:13px; font-weight:600; 
-    padding:6px 16px; border-radius:999px; margin-bottom:24px; justify-self: start; align-self: end; 
-  }
-  
-  .hero-title { 
-    grid-area: title; font-size:46px; font-weight:800; line-height:1.15; margin:0 0 20px; 
-    color:var(--blue-900); letter-spacing:-1px; align-self: end; 
-  }
-  .hero-title .accent{color:var(--blue-700);}
-  
-  .hero-desc { 
-    grid-area: desc; font-size:16px; color:var(--slate); line-height:1.7; max-width:480px; 
-    margin:0 0 36px; align-self: start; 
-  }
-  
-  .stats-row { 
-    grid-area: stats; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-self: start; 
-  }
-  .stat-card { border-left: 2px solid var(--blue-700); padding-left: 16px; }
-  .stat-num { font-size:22px; font-weight:800; color:var(--blue-900); margin-bottom:4px; }
-  .stat-label { font-size:13px; color:var(--slate-light); font-weight:500; }
-  
-  /* Desktop Phone Mockup Base */
-  .hero-illustration { 
-    grid-area: phone; position: relative; width: 100%; height: 480px; 
-    display:flex; justify-content:center; align-items:flex-end;
-  }
-  .phone-mockup {
-    width: 280px; height: 480px; background: #F8FAFC; border: 10px solid #0F172A; border-bottom: none;
-    border-top-left-radius: 40px; border-top-right-radius: 40px; position: absolute; bottom: 0;
-    box-shadow: 0 25px 50px -12px rgba(13,43,82,0.25); overflow: hidden; transform-origin: bottom center;
-    animation: floatDesktop 5s ease-in-out infinite;
-  }
-  .phone-notch {
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #0F172A;
-    border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; z-index: 10;
-  }
-  .phone-ui-header { background:var(--blue-700); height:140px; padding: 40px 20px 20px; color:white; }
-  .phone-ui-card { background:white; margin:-40px 20px 0; border-radius:16px; padding:20px; box-shadow:0 10px 20px rgba(0,0,0,0.05); text-align:center;}
-  .phone-ui-list { padding: 20px; display:flex; flex-direction:column; gap:12px; }
-  .phone-ui-item { background:white; border-radius:12px; padding:12px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px rgba(0,0,0,0.02);}
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; grid-template-areas: "eyebrow phone" "title phone" "desc phone" "stats phone"; column-gap: 60px; align-content: center; padding-bottom: 40px; }
+  .hero-eyebrow { grid-area: eyebrow; display:inline-flex; align-items:center; gap:6px; background:var(--white); border:1px solid var(--border); color:var(--blue-700); font-size:13px; font-weight:600; padding:6px 16px; border-radius:999px; margin-bottom:24px; justify-self: start; align-self: end; }
+  .hero-title { grid-area: title; font-size:46px; font-weight:800; line-height:1.15; margin:0 0 20px; color:var(--blue-900); letter-spacing:-1px; align-self: end; } .hero-title .accent{color:var(--blue-700);}
+  .hero-desc { grid-area: desc; font-size:16px; color:var(--slate); line-height:1.7; max-width:480px; margin:0 0 36px; align-self: start; }
+  .stats-row { grid-area: stats; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-self: start; }
+  .stat-card { border-left: 2px solid var(--blue-700); padding-left: 16px; } .stat-num { font-size:22px; font-weight:800; color:var(--blue-900); margin-bottom:4px; } .stat-label { font-size:13px; color:var(--slate-light); font-weight:500; }
+  .hero-illustration { grid-area: phone; position: relative; width: 100%; height: 480px; display:flex; justify-content:center; align-items:flex-end; }
+  .phone-mockup { width: 280px; height: 480px; background: #F8FAFC; border: 10px solid #0F172A; border-bottom: none; border-top-left-radius: 40px; border-top-right-radius: 40px; position: absolute; bottom: 0; box-shadow: 0 25px 50px -12px rgba(13,43,82,0.25); overflow: hidden; transform-origin: bottom center; animation: floatDesktop 5s ease-in-out infinite; }
+  .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #0F172A; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; z-index: 10; }
+  .phone-ui-header { background:var(--blue-700); height:140px; padding: 40px 20px 20px; color:white; } .phone-ui-card { background:white; margin:-40px 20px 0; border-radius:16px; padding:20px; box-shadow:0 10px 20px rgba(0,0,0,0.05); text-align:center;}
+  .phone-ui-list { padding: 20px; display:flex; flex-direction:column; gap:12px; } .phone-ui-item { background:white; border-radius:12px; padding:12px; display:flex; align-items:center; gap:12px; box-shadow:0 2px 8px rgba(0,0,0,0.02);}
   .phone-ui-icon { width:36px; height:36px; background:var(--success-bg); color:var(--success); border-radius:50%; display:flex; align-items:center; justify-content:center; }
-  
-  /* --- Continuous Scrolling Partner Logos --- */
-  .partner-banner { padding: 32px 0 48px; border-bottom: 1px solid var(--border); overflow: hidden; white-space: nowrap; }
-  .partner-title { text-align:center; font-size: 13px; font-weight: 600; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
-  
-  .partner-track-wrap { overflow: hidden; position: relative; width: 100%; display: flex; }
-  .partner-track-wrap::before, .partner-track-wrap::after {
-    content: ""; position: absolute; top: 0; width: 60px; height: 100%; z-index: 2;
-  }
-  .partner-track-wrap::before { left: 0; background: linear-gradient(to right, var(--white), transparent); }
-  .partner-track-wrap::after { right: 0; background: linear-gradient(to left, var(--white), transparent); }
-
-  .partner-track { display: flex; align-items: center; width: max-content; animation: scroll 20s linear infinite; }
-  @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  
-  .partner-logos-inner { display: flex; align-items: center; gap: 80px; padding-right: 80px; opacity: 0.6; }
-  .partner-logos-inner span { font-weight:900; font-size:22px; font-family:sans-serif; letter-spacing:-0.5px; transition:all 0.3s ease; color:var(--slate); filter: grayscale(100%); cursor:pointer;}
-  .partner-logos-inner span:hover { filter: grayscale(0%); opacity:1; transform:scale(1.05); }
-  .p-hdfc:hover { color: #ed1c24 !important; } .p-icici:hover { color: #f26522 !important; }
-  .p-axis:hover { color: #97144d !important; } .p-bajaj:hover { color: #005eb8 !important; }
-  .p-tata:hover { color: #000000 !important; }
-
-  /* --- Form & Layouts --- */
-  .form-section { background: var(--paper); border-top: 1px solid var(--border); }
-  .form-container { max-width: 600px; margin: 0 auto; }
-  .form-card{background:var(--white); border:1px solid var(--border); border-radius:24px; padding:36px; box-shadow:0 12px 32px -16px rgba(13,43,82,0.08);}
-  
-  .form-card-title{font-size:20px; font-weight:700; margin:0 0 6px;}
-  .form-card-sub{font-size:14px; color:var(--slate-light); margin:0 0 24px;}
-  .progress{display:flex; gap:8px; margin-bottom:28px;}
-  .dot{height:4px; flex:1; border-radius:99px; background:var(--border); transition: background 0.3s ease;}
-  .dot.done{background:var(--blue-700);}
-  
-  .field{display:flex; flex-direction:column; gap:8px; margin-bottom:20px;}
-  .field label{font-size:13.5px; font-weight:600;}
-  
-  /* Shared Inputs & Smart Field Box Architecture */
-  input[type=text], input[type=tel], input[type=number]{
-    height:52px; border-radius:12px; border:1px solid var(--border); padding:0 16px;
-    font-size:15px; font-family:'Inter',sans-serif; color:var(--ink); background:var(--white); width:100%; transition: all 0.2s;
-  }
+  .partner-banner { padding: 32px 0 48px; border-bottom: 1px solid var(--border); overflow: hidden; white-space: nowrap; } .partner-title { text-align:center; font-size: 13px; font-weight: 600; color: var(--slate-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+  .partner-track-wrap { overflow: hidden; position: relative; width: 100%; display: flex; } .partner-track-wrap::before, .partner-track-wrap::after { content: ""; position: absolute; top: 0; width: 60px; height: 100%; z-index: 2; }
+  .partner-track-wrap::before { left: 0; background: linear-gradient(to right, var(--white), transparent); } .partner-track-wrap::after { right: 0; background: linear-gradient(to left, var(--white), transparent); }
+  .partner-track { display: flex; align-items: center; width: max-content; animation: scroll 20s linear infinite; } @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .partner-logos-inner { display: flex; align-items: center; gap: 80px; padding-right: 80px; opacity: 0.6; } .partner-logos-inner span { font-weight:900; font-size:22px; font-family:sans-serif; letter-spacing:-0.5px; transition:all 0.3s ease; color:var(--slate); filter: grayscale(100%); cursor:pointer;}
+  .partner-logos-inner span:hover { filter: grayscale(0%); opacity:1; transform:scale(1.05); } .p-hdfc:hover { color: #ed1c24 !important; } .p-icici:hover { color: #f26522 !important; } .p-axis:hover { color: #97144d !important; } .p-bajaj:hover { color: #005eb8 !important; } .p-tata:hover { color: #000000 !important; }
+  .form-section { background: var(--paper); border-top: 1px solid var(--border); } .form-container { max-width: 600px; margin: 0 auto; } .form-card{background:var(--white); border:1px solid var(--border); border-radius:24px; padding:36px; box-shadow:0 12px 32px -16px rgba(13,43,82,0.08);}
+  .form-card-title{font-size:20px; font-weight:700; margin:0 0 6px;} .form-card-sub{font-size:14px; color:var(--slate-light); margin:0 0 24px;}
+  .progress{display:flex; gap:8px; margin-bottom:28px;} .dot{height:4px; flex:1; border-radius:99px; background:var(--border); transition: background 0.3s ease;} .dot.done{background:var(--blue-700);}
+  .field{display:flex; flex-direction:column; gap:8px; margin-bottom:20px;} .field label{font-size:13.5px; font-weight:600;}
+  input[type=text], input[type=tel], input[type=number]{ height:52px; border-radius:12px; border:1px solid var(--border); padding:0 16px; font-size:15px; font-family:'Inter',sans-serif; color:var(--ink); background:var(--white); width:100%; transition: all 0.2s; }
   input:focus{outline:none; border-color:var(--blue-600); box-shadow:0 0 0 4px rgba(37,99,235,0.1); background:var(--white);}
-  
-  /* Dynamic Text Input Box Sync for Sliders */
-  .input-sync-box {
-    width: 140px; height: 40px; border-radius: 8px; border: 1px solid var(--border);
-    padding: 0 10px; text-align: right; font-weight: 700; color: var(--blue-700);
-    background: var(--blue-50); font-size: 16px; transition: all 0.2s;
-  }
+  .input-sync-box { width: 140px; height: 40px; border-radius: 8px; border: 1px solid var(--border); padding: 0 10px; text-align: right; font-weight: 700; color: var(--blue-700); background: var(--blue-50); font-size: 16px; transition: all 0.2s; }
   .input-sync-box:focus { border-color: var(--blue-600); background: var(--white); }
-
   .error-note{font-size:13px; color:var(--error); margin:-12px 0 16px; font-weight: 500; display:flex; align-items:center; gap:6px;}
-  
-  /* Accessibility Hidden Input Tier for Radio Groups */
-  .pill-group{display:flex; gap:12px; margin-bottom:20px;}
-  .pill-label { flex: 1; position: relative; }
-  .pill-radio { position: absolute; opacity: 0; width: 0; height: 0; }
+  .pill-group{display:flex; gap:12px; margin-bottom:20px;} .pill-label { flex: 1; position: relative; } .pill-radio { position: absolute; opacity: 0; width: 0; height: 0; }
   .pill{display:block; text-align:center; padding:14px 0; border-radius:12px; border:1px solid var(--border); font-size:14px; font-weight:600; cursor:pointer; background:var(--white); color:var(--slate); transition: all 0.2s ease;}
-  .pill-radio:checked + .pill { background:var(--blue-50); border-color:var(--blue-700); color:var(--blue-700); }
-  .pill-radio:focus-visible + .pill { outline: 3px solid var(--blue-500); }
-
+  .pill-radio:checked + .pill { background:var(--blue-50); border-color:var(--blue-700); color:var(--blue-700); } .pill-radio:focus-visible + .pill { outline: 3px solid var(--blue-500); }
   .selfie-box{border:2px dashed var(--border); border-radius:16px; padding:32px 16px; text-align:center; cursor:pointer; background:var(--white); margin-bottom:8px; transition: all 0.2s; display: block;}
-  .selfie-box:hover { border-color:var(--blue-500); background:var(--blue-50); }
-  .selfie-box.filled{border-style:solid; border-color:var(--success); background:var(--success-bg); padding:16px;}
+  .selfie-box:hover { border-color:var(--blue-500); background:var(--blue-50); } .selfie-box.filled{border-style:solid; border-color:var(--success); background:var(--success-bg); padding:16px;}
   .selfie-icon{width:56px; height:56px; border-radius:50%; background:var(--white); border:1px solid var(--border); margin:0 auto 12px; display:flex; align-items:center; justify-content:center; color:var(--slate-light);}
   .selfie-preview{width:100%; max-height:240px; border-radius:12px; display:block; margin:0 auto 12px; object-fit:cover;}
-  .selfie-title{font-size:15px; font-weight:600; color:var(--ink);}
-  .selfie-sub{font-size:13px; color:var(--slate-light); margin-top:4px;}
-  #selfieInput{display:none;}
-
+  .selfie-title{font-size:15px; font-weight:600; color:var(--ink);} .selfie-sub{font-size:13px; color:var(--slate-light); margin-top:4px;} #selfieInput{display:none;}
   .btn{width:100%; height:52px; border-radius:12px; font-size:15px; font-weight:600; cursor:pointer; border:none; margin-top:8px; display:flex; align-items:center; justify-content:center; gap:8px; transition:all 0.2s; font-family:'Inter',sans-serif;}
-  .btn-primary{background:var(--blue-700); color:var(--white);}
-  .btn-primary:hover{background:var(--blue-600); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.2);}
-  .btn-ghost{background:transparent; color:var(--slate); font-size:14px; margin-top:16px; height:auto;}
-  .btn-ghost:hover{color:var(--ink);}
-  .consent-fine">By continuing, you agree to ZyncPay's <a href="#">Credit Report Terms</a>, <a href="#">Terms & Conditions</a>.</p>
-  .consent-fine a{color:var(--blue-700); text-decoration:underline;}
-
-  /* --- Verification Loading States --- */
-  .verify-wrap { display:flex; flex-direction:column; gap:16px; padding: 20px 0; }
-  .verify-item { display:flex; align-items:center; justify-content:space-between; font-size:15px; font-weight:600; color:var(--slate); padding:16px; background:var(--paper); border-radius:12px; border:1px solid var(--border); }
-  .verify-item.active { color:var(--ink); border-color:var(--blue-600); background:var(--blue-50); }
-  .verify-item.done { color:var(--success); border-color:var(--success); background:var(--success-bg); }
-  .verify-status { display:flex; align-items:center; justify-content:center; width:24px; height:24px; }
-  .loader-spinner { width: 18px; height: 18px; border: 2px solid var(--blue-700); border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
-  @keyframes spin{to{transform:rotate(360deg);}}
-
-  /* --- Features --- */
-  .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-  .feature-card{border:1px solid var(--border); border-radius:20px; padding:32px 24px; background:var(--white); transition:transform 0.3s, box-shadow 0.3s;}
-  .feature-card:hover{transform:translateY(-4px); box-shadow:0 12px 24px rgba(0,0,0,0.04);}
-  .feature-icon{width:56px; height:56px; border-radius:16px; background:var(--blue-50); color:var(--blue-700); display:flex; align-items:center; justify-content:center; margin-bottom:20px; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s;}
-  .feature-card:hover .feature-icon { transform: scale(1.15) rotate(4deg); box-shadow: 0 0 20px rgba(37,99,235,0.25); background: var(--blue-700); color: var(--white); }
-  .feature-title{font-size:17px; font-weight:700; line-height:1.4; margin-bottom:8px;}
-  .feature-desc{font-size:14px; color:var(--slate); line-height:1.6;}
-
-  /* --- FAQs --- */
-  .faq-wrap { max-width: 800px; margin: 0 auto; }
-  .faq-item{border-bottom:1px solid var(--border); padding:20px 0;}
-  .faq-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:16px; font-weight:600; color:var(--ink);}
-  .faq-a{font-size:14.5px; color:var(--slate); line-height:1.7; margin-top:12px; display:none; padding-right:40px;}
-  .faq-item.open .faq-a{display:block;}
-  .faq-toggle{color:var(--blue-700); flex-shrink:0; transition:transform 0.2s;}
-  .faq-item.open .faq-toggle { transform:rotate(45deg); }
-
-  /* --- EMI Calc with Pie Chart --- */
+  .btn-primary{background:var(--blue-700); color:var(--white);} .btn-primary:hover{background:var(--blue-600); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.2);}
+  .btn-ghost{background:transparent; color:var(--slate); font-size:14px; margin-top:16px; height:auto;} .btn-ghost:hover{color:var(--ink);}
+  .consent-fine { font-size:12px; color:var(--slate-light); line-height:1.6; margin-top:20px; text-align:center; } .consent-fine a{color:var(--blue-700); text-decoration:underline;}
+  .verify-wrap { display:flex; flex-direction:column; gap:16px; padding: 20px 0; } .verify-item { display:flex; align-items:center; justify-content:space-between; font-size:15px; font-weight:600; color:var(--slate); padding:16px; background:var(--paper); border-radius:12px; border:1px solid var(--border); }
+  .verify-item.active { color:var(--ink); border-color:var(--blue-600); background:var(--blue-50); } .verify-item.done { color:var(--success); border-color:var(--success); background:var(--success-bg); }
+  .verify-status { display:flex; align-items:center; justify-content:center; width:24px; height:24px; } .loader-spinner { width: 18px; height: 18px; border: 2px solid var(--blue-700); border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; } @keyframes spin{to{transform:rotate(360deg);}}
+  .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;} .feature-card{border:1px solid var(--border); border-radius:20px; padding:32px 24px; background:var(--white); transition:transform 0.3s, box-shadow 0.3s;}
+  .feature-card:hover{transform:translateY(-4px); box-shadow:0 12px 24px rgba(0,0,0,0.04);} .feature-icon{width:56px; height:56px; border-radius:16px; background:var(--blue-50); color:var(--blue-700); display:flex; align-items:center; justify-content:center; margin-bottom:20px; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s;}
+  .feature-card:hover .feature-icon { transform: scale(1.15) rotate(4deg); box-shadow: 0 0 20px rgba(37,99,235,0.25); background: var(--blue-700); color: var(--white); } .feature-title{font-size:17px; font-weight:700; line-height:1.4; margin-bottom:8px;} .feature-desc{font-size:14px; color:var(--slate); line-height:1.6;}
+  .faq-wrap { max-width: 800px; margin: 0 auto; } .faq-item{border-bottom:1px solid var(--border); padding:20px 0;} .faq-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:16px; font-weight:600; color:var(--ink);}
+  .faq-a{font-size:14.5px; color:var(--slate); line-height:1.7; margin-top:12px; display:none; padding-right:40px;} .faq-item.open .faq-a{display:block;} .faq-toggle{color:var(--blue-700); flex-shrink:0; transition:transform 0.2s;} .faq-item.open .faq-toggle { transform:rotate(45deg); }
   .calc-container { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
-  .calc-inputs { display: flex; flex-direction: column; gap: 32px; }
-  .slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .slider-label { font-size: 15px; font-weight: 600; color: var(--ink); }
-  .calc-slider { width: 100%; height: 6px; background: var(--border); border-radius: 5px; outline: none; accent-color: var(--blue-700); cursor: pointer; }
-  .calc-output-card { background: var(--blue-900); color: var(--white); border-radius: 20px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; }
-  .pie-chart-wrap { display: flex; align-items: center; gap: 24px; margin-bottom: 32px; }
-  .pie-chart { width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(var(--blue-500) 0% 70%, var(--gold) 70% 100%); transition: background 0.3s; flex-shrink:0;}
-  .pie-legend { display: flex; flex-direction: column; gap: 12px; flex:1;}
-  .legend-item { display: flex; flex-direction: column; gap: 4px; }
-  .legend-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #8FA0C2; font-weight: 600; text-transform: uppercase; }
-  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .legend-val { font-size: 20px; font-weight: 800; color: var(--white); }
-  .breakdown-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 15px; }
-  .breakdown-row:last-child { border-bottom: none; }
-  .breakdown-label { color: #C9D6EC; }
-  .breakdown-value { font-weight: 700; color: var(--white); }
-
-  /* --- Complete Footer Enhanced --- */
-  footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60px;}
-  .footer-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:40px; margin-bottom:40px;}
-  .footer-logo{color:var(--white); font-weight:800; font-size:20px; margin-bottom:16px; letter-spacing:-0.5px;}
-  .footer-desc{font-size:14px; line-height:1.7; max-width:340px;}
-  .social-icons { display: flex; gap: 16px; margin-top: 24px; }
-  .social-icons a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; transition: all 0.2s; color:#8992A1;}
-  .social-icons a:hover { background: var(--blue-700); color: white; transform: translateY(-2px); }
-  
-  .footer-col-title{color:var(--white); font-size:15px; font-weight:700; margin-bottom:20px;}
-  .footer-col a, .footer-col p{display:block; font-size:14px; margin-bottom:12px; color:#8992A1; cursor: pointer; transition:color 0.2s;}
-  .footer-col a:hover { color: var(--white); }
-  
-  .footer-badges { display: flex; gap: 12px; margin-top: 24px; flex-wrap:wrap;}
-  .footer-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff;}
-  
+  .calc-inputs { display: flex; flex-direction: column; gap: 32px; } .slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; } .slider-label { font-size: 15px; font-weight: 600; color: var(--ink); } .calc-slider { width: 100%; height: 6px; background: var(--border); border-radius: 5px; outline: none; accent-color: var(--blue-700); cursor: pointer; }
+  .calc-output-card { background: var(--blue-900); color: var(--white); border-radius: 20px; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; } .pie-chart-wrap { display: flex; align-items: center; gap: 24px; margin-bottom: 32px; }
+  .pie-chart { width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(var(--blue-500) 0% 70%, var(--gold) 70% 100%); transition: background 0.3s; flex-shrink:0;} .pie-legend { display: flex; flex-direction: column; gap: 12px; flex:1;}
+  .legend-item { display: flex; flex-direction: column; gap: 4px; } .legend-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #8FA0C2; font-weight: 600; text-transform: uppercase; } .legend-dot { width: 10px; height: 10px; border-radius: 50%; } .legend-val { font-size: 20px; font-weight: 800; color: var(--white); }
+  .breakdown-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 15px; } .breakdown-row:last-child { border-bottom: none; } .breakdown-label { color: #C9D6EC; } .breakdown-value { font-weight: 700; color: var(--white); }
+  footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60px;} .footer-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:40px; margin-bottom:40px;} .footer-logo{color:var(--white); font-weight:800; font-size:20px; margin-bottom:16px; letter-spacing:-0.5px;} .footer-desc{font-size:14px; line-height:1.7; max-width:340px;}
+  .social-icons { display: flex; gap: 16px; margin-top: 24px; } .social-icons a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; transition: all 0.2s; color:#8992A1;} .social-icons a:hover { background: var(--blue-700); color: white; transform: translateY(-2px); }
+  .footer-col-title{color:var(--white); font-size:15px; font-weight:700; margin-bottom:20px;} .footer-col a, .footer-col p{display:block; font-size:14px; margin-bottom:12px; color:#8992A1; cursor: pointer; transition:color 0.2s;} .footer-col a:hover { color: var(--white); }
+  .footer-badges { display: flex; gap: 12px; margin-top: 24px; flex-wrap:wrap;} .footer-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff;}
   .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #5B6472; line-height: 1.6; gap: 24px;}
-
-  /* --- ULTIMATE MOBILE OPTIMIZATION TIER --- */
+  .mobile-menu-btn, .mobile-cta { display: none; }
   @media (max-width: 900px) {
-    @keyframes floatMobile900 {
-      0%, 100% { transform: scale(0.5) translateY(0px); }
-      50% { transform: scale(0.5) translateY(-24px); }
-    }
-
-    section { padding: 48px 0; }
-    h2.section-title { font-size: 24px; }
-    p.section-sub { margin-bottom: 32px; font-size: 14px; }
-    .hero { padding: 48px 0 0; }
-    
-    .wrap { padding: 0 20px; }
-
-    .header-cta { display: none; }
-    
-    .mobile-menu-btn { 
-      display: flex; align-items: center; justify-content: center; 
-      background: none; border: none; color: var(--ink); 
-      cursor: pointer; z-index: 101; 
-      margin-right: 0; padding: 12px; 
-    }
-    
-    nav#mainNav {
-      position: absolute; top: 100%; left: 0; width: 100%; background: var(--white);
-      flex-direction: column; gap: 0; padding: 8px 24px 24px; border-top: 1px solid var(--border);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); opacity: 0; visibility: hidden;
-      transform: translateY(-10px); transition: all 0.3s ease; z-index: 99;
-    }
-    nav#mainNav.open { opacity: 1; visibility: visible; transform: translateY(0); }
-    nav#mainNav a { font-size: 16px; padding: 16px 0; border-bottom: 1px solid var(--paper); font-weight: 600; color: var(--ink); }
-    nav#mainNav a:hover, nav#mainNav a.active { color: var(--blue-700); border-bottom-color: var(--blue-50); }
-    nav#mainNav a:last-of-type { border-bottom: none; }
-    
-    .mobile-cta { display: flex; flex-direction: column; gap: 16px; padding-top: 20px; margin-top: 8px; border-top: 1px dashed var(--border); }
-    .mobile-cta .phone-chip { justify-content: center; font-size: 15px; margin-bottom: 8px; }
-
-    .hero-grid { 
-      grid-template-columns: 1fr 140px; 
-      grid-template-areas: "eyebrow eyebrow" "title phone" "desc desc" "stats stats";
-      column-gap: 20px; row-gap: 0; align-items: center;
-    }
-    
-    .hero-eyebrow { margin-bottom: 16px; margin-top: 0; }
-    .hero-title { font-size: 32px; margin-bottom: 0; align-self: center; line-height: 1.25; }
-    .hero-illustration { width: 140px; height: 240px; align-self: center; justify-self: end; margin: 0; }
-    
-    .phone-mockup { 
-      bottom: auto; top: 0; right: 0; position: absolute; 
-      transform: scale(0.5); transform-origin: top right; 
-      animation: floatMobile900 5s ease-in-out infinite; 
-    }
-    
-    .hero-desc { margin: 24px 0 32px; max-width: 100%; font-size: 15px; }
-    .stats-row { grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; margin-top: 0; }
-    .stat-num { font-size: 18px; }
-
-    .form-container { padding: 0 16px; }
-    .form-card { padding: 24px 20px; border-radius: 20px; }
-    .calc-container { grid-template-columns: 1fr; padding: 24px 20px; gap: 24px; }
-    .pie-chart-wrap { flex-direction: column; text-align: center; gap: 16px; }
-    .pie-legend { flex-direction: row; justify-content: center; width: 100%; }
-    .feature-grid { grid-template-columns: 1fr; }
-    
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-    .footer-bottom > div { text-align: center !important; }
-    footer { padding: 48px 0 24px; margin-top: 40px; }
+    @keyframes floatMobile900 { 0%, 100% { transform: scale(0.5) translateY(0px); } 50% { transform: scale(0.5) translateY(-24px); } }
+    section { padding: 48px 0; } h2.section-title { font-size: 24px; } p.section-sub { margin-bottom: 32px; font-size: 14px; } .hero { padding: 48px 0 0; } .wrap { padding: 0 20px; } .header-cta { display: none; }
+    .mobile-menu-btn { display: flex; align-items: center; justify-content: center; background: none; border: none; color: var(--ink); cursor: pointer; z-index: 101; padding: 12px; }
+    nav#mainNav { position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); flex-direction: column; gap: 0; padding: 8px 24px 24px; border-top: 1px solid var(--border); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 99; }
+    nav#mainNav.open { opacity: 1; visibility: visible; transform: translateY(0); } nav#mainNav a { font-size: 16px; padding: 16px 0; border-bottom: 1px solid var(--paper); font-weight: 600; color: var(--ink); } nav#mainNav a:hover, nav#mainNav a.active { color: var(--blue-700); border-bottom-color: var(--blue-50); } nav#mainNav a:last-of-type { border-bottom: none; }
+    .mobile-cta { display: flex; flex-direction: column; gap: 16px; padding-top: 20px; margin-top: 8px; border-top: 1px dashed var(--border); } .mobile-cta .phone-chip { justify-content: center; font-size: 15px; margin-bottom: 8px; }
+    .hero-grid { grid-template-columns: 1fr 140px; grid-template-areas: "eyebrow eyebrow" "title phone" "desc desc" "stats stats"; column-gap: 20px; row-gap: 0; align-items: center; }
+    .hero-eyebrow { margin-bottom: 16px; margin-top: 0; } .hero-title { font-size: 32px; margin-bottom: 0; align-self: center; line-height: 1.25; } .hero-illustration { width: 140px; height: 240px; align-self: center; justify-self: end; margin: 0; }
+    .phone-mockup { bottom: auto; top: 0; right: 0; position: absolute; transform: scale(0.5); transform-origin: top right; animation: floatMobile900 5s ease-in-out infinite; }
+    .hero-desc { margin: 24px 0 32px; max-width: 100%; font-size: 15px; } .stats-row { grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; margin-top: 0; } .stat-num { font-size: 18px; }
+    .form-container { padding: 0 16px; } .form-card { padding: 24px 20px; border-radius: 20px; } .calc-container { grid-template-columns: 1fr; padding: 24px 20px; gap: 24px; } .pie-chart-wrap { flex-direction: column; text-align: center; gap: 16px; } .pie-legend { flex-direction: row; justify-content: center; width: 100%; } .feature-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 32px; } .footer-bottom { flex-direction: column; text-align: center; } .footer-bottom > div { text-align: center !important; } footer { padding: 48px 0 24px; margin-top: 40px; }
   }
-
   @media (max-width: 600px) {
-    @keyframes floatMobile600 {
-      0%, 100% { transform: scale(0.4) translateY(0px); }
-      50% { transform: scale(0.4) translateY(-24px); }
-    }
-    .hero-grid { grid-template-columns: 1fr 112px; column-gap: 16px; }
-    .hero-title { font-size: 26px; }
-    .hero-illustration { width: 112px; height: 192px; }
-    .phone-mockup { transform: scale(0.4); animation: floatMobile600 5s ease-in-out infinite; }
-    .stats-row { gap: 12px; }
-    .stat-num { font-size: 16px; }
-    .stat-label { font-size: 11px; }
-    .stat-card { padding-left: 10px; }
+    @keyframes floatMobile600 { 0%, 100% { transform: scale(0.4) translateY(0px); } 50% { transform: scale(0.4) translateY(-24px); } }
+    .hero-grid { grid-template-columns: 1fr 112px; column-gap: 16px; } .hero-title { font-size: 26px; } .hero-illustration { width: 112px; height: 192px; } .phone-mockup { transform: scale(0.4); animation: floatMobile600 5s ease-in-out infinite; } .stats-row { gap: 12px; } .stat-num { font-size: 16px; } .stat-label { font-size: 11px; } .stat-card { padding-left: 10px; }
   }
 </style>
-
 <script>
-// Facebook Pixel Architecture
-!function(f,b,e,v,n,t,s)
-{
-if(f.fbq)return;
-n=f.fbq=function(){
-n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)
-};
-if(!f._fbq)f._fbq=n;
-n.push=n;
-n.loaded=!0;
-n.version='2.0';
-n.queue=[];
-t=b.createElement(e);
-t.async=!0;
-t.src='https://connect.facebook.net/en_US/fbevents.js';
-s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s);
-}(window,document,'script');
-
-fbq('init','869178166250076');
-fbq('track','PageView');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','869178166250076');fbq('track','PageView');
 </script>
-
-<noscript>
-<img height="1" width="1" class="sr-only" src="https://www.facebook.com/tr?id=869178166250076&ev=PageView&noscript=1"/>
-</noscript>
+<noscript><img height="1" width="1" class="sr-only" src="https://www.facebook.com/tr?id=869178166250076&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
-
 <header id="mainHeader">
   <div class="wrap header-row">
-    <a href="#personal" class="logo nav-link" data-target="personal">
-      <div class="logo-mark"></div>
-      <div class="logo-word">Zync<span>Pay</span></div>
-    </a>
-    
-    <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Navigation">
-      <i data-lucide="menu" id="menuIcon"></i>
-    </button>
-
+    <a href="#personal" class="logo nav-link" data-target="personal"><div class="logo-mark"></div><div class="logo-word">Zync<span>Pay</span></div></a>
+    <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Navigation"><i data-lucide="menu" id="menuIcon"></i></button>
     <nav id="mainNav">
-      <a href="#personal" data-target="personal" class="nav-link active">Personal loan</a>
-      <a href="#business" data-target="business" class="nav-link">Business loan</a>
-      <a href="#emi" data-target="emi" class="nav-link">EMI calculator</a>
-      <a href="#about" data-target="about" class="nav-link">About us</a>
-      
-      <div class="mobile-cta">
-         <span class="phone-chip"><i data-lucide="phone" class="icon-small"></i> 1800-981-111</span>
-         <button id="mobileApplyNow" class="btn-header w-full h-52">Apply now</button>
-      </div>
+      <a href="#personal" data-target="personal" class="nav-link active">Personal loan</a><a href="#business" data-target="business" class="nav-link">Business loan</a><a href="#emi" data-target="emi" class="nav-link">EMI calculator</a><a href="#about" data-target="about" class="nav-link">About us</a>
+      <div class="mobile-cta"><span class="phone-chip"><i data-lucide="phone" class="icon-small"></i> 1800-981-111</span><button id="mobileApplyNow" class="btn-header w-full h-52">Apply now</button></div>
     </nav>
-    
-    <div class="header-cta">
-      <span class="phone-chip"><i data-lucide="phone" class="icon-small"></i> 1800-981-111</span>
-      <button id="desktopApplyNow" class="btn-header">Apply now</button>
-    </div>
+    <div class="header-cta"><span class="phone-chip"><i data-lucide="phone" class="icon-small"></i> 1800-981-111</span><button id="desktopApplyNow" class="btn-header">Apply now</button></div>
   </div>
 </header>
-
 <main id="view-personal" class="page-view active-view">
   <section class="hero">
     <div class="wrap hero-grid">
-      
-      <div class="hero-eyebrow fade-up" style="transition-delay: 0s;">
-        <i data-lucide="shield-check" class="icon-small"></i> RBI-aligned digital lending
+      <div class="hero-eyebrow fade-up"><i data-lucide="shield-check" class="icon-small"></i> RBI-aligned digital lending</div>
+      <h1 class="hero-title fade-up">Get a personal loan up to <span class="accent">₹1,00,000</span> instantly.</h1>
+      <p class="hero-desc fade-up">Compare offers from 15+ trusted banks and NBFCs, check your eligibility in under a minute, and get funds disbursed directly to your account.</p>
+      <div class="stats-row fade-up">
+        <div class="stat-card"><div class="stat-num counter" data-target="5" data-suffix=" Lakh+">0</div><div class="stat-label">Customers Served</div></div>
+        <div class="stat-card"><div class="stat-num">4.6/5</div><div class="stat-label">Google Rating</div></div>
+        <div class="stat-card"><div class="stat-num counter" data-target="1200" data-prefix="₹" data-suffix=" Cr+">0</div><div class="stat-label">Loans Disbursed</div></div>
       </div>
-      
-      <h1 class="hero-title fade-up" style="transition-delay: 0.1s;">
-        Get a personal loan up to <span class="accent">₹1,00,000</span> instantly.
-      </h1>
-      
-      <p class="hero-desc fade-up" style="transition-delay: 0.2s;">
-        Compare offers from 15+ trusted banks and NBFCs, check your eligibility in under a minute, and get funds disbursed directly to your account.
-      </p>
-
-      <div class="stats-row fade-up" style="transition-delay: 0.3s;">
-        <div class="stat-card">
-          <div class="stat-num counter" data-target="5" data-suffix=" Lakh+">0</div>
-          <div class="stat-label">Customers Served</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">4.6/5</div>
-          <div class="stat-label">Google Rating</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num counter" data-target="1200" data-prefix="₹" data-suffix=" Cr+">0</div>
-          <div class="stat-label">Loans Disbursed</div>
-        </div>
-      </div>
-
-      <div class="hero-illustration fade-up" style="transition-delay: 0.1s;">
-        <div class="phone-mockup">
-          <div class="phone-notch"></div>
-          <div class="phone-ui-header">
-            <div class="text-center mb-8" style="font-size:12px; opacity:0.8;">Available Balance</div>
-            <div class="text-center" style="font-size:32px; font-weight:800;">₹ 85,000</div>
-          </div>
-          <div class="phone-ui-card">
-            <div class="mb-8" style="font-size:12px; font-weight:700; color:var(--success); background:var(--success-bg); padding:4px 8px; border-radius:99px; display:inline-block;">Approved</div>
-            <div style="font-size:14px; font-weight:600; color:var(--ink);">Funds Ready to Withdraw</div>
-          </div>
-          <div class="phone-ui-list">
-            <div class="phone-ui-item">
-              <div class="phone-ui-icon"><i data-lucide="check"></i></div>
-              <div>
-                <div style="font-size:13px; font-weight:700;">KYC Verified</div>
-                <div style="font-size:11px; color:var(--slate-light);">Aadhaar & PAN Matched</div>
-              </div>
-            </div>
-            <div class="phone-ui-item">
-              <div class="phone-ui-icon" style="background:var(--blue-50); color:var(--blue-600);"><i data-lucide="zap"></i></div>
-              <div>
-                <div style="font-size:13px; font-weight:700;">Instant Transfer</div>
-                <div style="font-size:11px; color:var(--slate-light);">Processing 24/7</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+      <div class="hero-illustration fade-up"><div class="phone-mockup"><div class="phone-notch"></div><div class="phone-ui-header"><div class="text-center mb-8" style="font-size:12px; opacity:0.8;">Available Balance</div><div class="text-center" style="font-size:32px; font-weight:800;">₹ 85,000</div></div><div class="phone-ui-card"><div class="mb-8" style="font-size:12px; font-weight:700; color:var(--success); background:var(--success-bg); padding:4px 8px; border-radius:99px; display:inline-block;">Approved</div><div style="font-size:14px; font-weight:600; color:var(--ink);">Funds Ready to Withdraw</div></div><div class="phone-ui-list"><div class="phone-ui-item"><div class="phone-ui-icon"><i data-lucide="check"></i></div><div><div style="font-size:13px; font-weight:700;">KYC Verified</div><div style="font-size:11px; color:var(--slate-light);">Aadhaar & PAN Matched</div></div></div><div class="phone-ui-item"><div class="phone-ui-icon" style="background:var(--blue-50); color:var(--blue-600);"><i data-lucide="zap"></i></div><div><div style="font-size:13px; font-weight:700;">Instant Transfer</div><div style="font-size:11px; color:var(--slate-light);">Processing 24/7</div></div></div></div></div></div>
     </div>
   </section>
-
-  <section class="partner-banner fade-up">
-    <div class="wrap" style="padding: 0;">
-      <div class="partner-title">Trusted By India's Leading Partners</div>
-      <div class="partner-track-wrap">
-        <div class="partner-track">
-          <div class="partner-logos-inner">
-            <span class="p-hdfc">HDFC BANK</span>
-            <span class="p-icici">ICICI Bank</span>
-            <span class="p-axis">AXIS BANK</span>
-            <span class="p-bajaj">BAJAJ FINANCE</span>
-            <span class="p-tata">TATA <span style="font-weight:400">CAPITAL</span></span>
-          </div>
-          <div class="partner-logos-inner">
-            <span class="p-hdfc">HDFC BANK</span>
-            <span class="p-icici">ICICI Bank</span>
-            <span class="p-axis">AXIS BANK</span>
-            <span class="p-bajaj">BAJAJ FINANCE</span>
-            <span class="p-tata">TATA <span style="font-weight:400">CAPITAL</span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="form-section" id="applySection">
-    <div class="wrap form-container fade-up">
-      <div class="form-card">
-        <div class="progress" id="progress"></div>
-        <div id="card"></div>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:var(--white);">
-    <div class="wrap fade-up">
-      <h2 class="section-title">Why choose ZyncPay Personal Loans</h2>
-      <p class="section-sub">Unsecured instant credit tailored for personal emergencies, medical needs, or purchases.</p>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon"><i data-lucide="smartphone"></i></div>
-          <div class="feature-title">100% Paperless</div>
-          <div class="feature-desc">Complete your entire application on your phone. No physical documents or branch visits required.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i data-lucide="trending-down"></i></div>
-          <div class="feature-title">Lowest Interest Rates</div>
-          <div class="feature-desc">Our smart engine compares offers from top lenders to get you rates starting as low as 8.7% p.a.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i data-lucide="clock"></i></div>
-          <div class="feature-title">24-Hour Disbursal</div>
-          <div class="feature-desc">Once verified and approved, funds are transferred directly into your linked bank account instantly.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <section class="partner-banner fade-up"><div class="wrap" style="padding: 0;"><div class="partner-title">Trusted By India's Leading Partners</div><div class="partner-track-wrap"><div class="partner-track"><div class="partner-logos-inner"><span class="p-hdfc">HDFC BANK</span><span class="p-icici">ICICI Bank</span><span class="p-axis">AXIS BANK</span><span class="p-bajaj">BAJAJ FINANCE</span><span class="p-tata">TATA <span style="font-weight:400">CAPITAL</span></span></div><div class="partner-logos-inner"><span class="p-hdfc">HDFC BANK</span><span class="p-icici">ICICI Bank</span><span class="p-axis">AXIS BANK</span><span class="p-bajaj">BAJAJ FINANCE</span><span class="p-tata">TATA <span style="font-weight:400">CAPITAL</span></span></div></div></div></div></section>
+  <section class="form-section" id="applySection"><div class="wrap form-container fade-up"><div class="form-card"><div class="progress" id="progress"></div><div id="card"></div></div></div></section>
+  <section style="background:var(--white);"><div class="wrap fade-up"><h2 class="section-title">Why choose ZyncPay Personal Loans</h2><p class="section-sub">Unsecured instant credit tailored for personal emergencies, medical needs, or purchases.</p><div class="feature-grid"><div class="feature-card"><div class="feature-icon"><i data-lucide="smartphone"></i></div><div class="feature-title">100% Paperless</div><div class="feature-desc">Complete your entire application on your phone. No physical documents or branch visits required.</div></div><div class="feature-card"><div class="feature-icon"><i data-lucide="trending-down"></i></div><div class="feature-title">Lowest Interest Rates</div><div class="feature-desc">Our smart engine compares offers from top lenders to get you rates starting as low as 8.7% p.a.</div></div><div class="feature-card"><div class="feature-icon"><i data-lucide="clock"></i></div><div class="feature-title">24-Hour Disbursal</div><div class="feature-desc">Once verified and approved, funds are transferred directly into your linked bank account instantly.</div></div></div></div></section>
 </main>
-
 <main id="view-business" class="page-view">
-  <section class="hero" style="background: linear-gradient(180deg, #f0f4fc 0%, var(--white) 100%);">
-    <div class="wrap fade-up text-center" style="max-width:800px; padding-top:40px;">
-      <span class="hero-eyebrow" style="color:var(--blue-700); background:var(--white);"><i data-lucide="briefcase" style="width:16px;"></i> Expand Operations</span>
-      <h1 class="hero-title" style="font-size:46px;">Collateral-Free Business Loans up to <span class="accent">₹20 Lakhs</span></h1>
-      <p class="hero-desc" style="max-width:100%; margin: 0 auto 30px; font-size:16px;">Fuel your business growth, manage inventory cycles, or scale workspace infrastructure with specialized lines of credit verified completely online.</p>
-      <button class="btn btn-primary m-0 auto h-52" id="businessEligibilityBtn" style="max-width:240px;">Check Eligibility <i data-lucide="arrow-right" class="icon-med"></i></button>
-    </div>
-  </section>
+  <section class="hero" style="background: linear-gradient(180deg, #f0f4fc 0%, var(--white) 100%);"><div class="wrap fade-up text-center" style="max-width:800px; padding-top:40px;"><span class="hero-eyebrow" style="color:var(--blue-700); background:var(--white);"><i data-lucide="briefcase" style="width:16px;"></i> Expand Operations</span><h1 class="hero-title" style="font-size:46px;">Collateral-Free Business Loans up to <span class="accent">₹20 Lakhs</span></h1><p class="hero-desc" style="max-width:100%; margin: 0 auto 30px; font-size:16px;">Fuel your business growth, manage inventory cycles, or scale workspace infrastructure with specialized lines of credit verified completely online.</p><button class="btn btn-primary m-0 auto h-52" id="businessEligibilityBtn" style="max-width:240px;">Check Eligibility <i data-lucide="arrow-right" class="icon-med"></i></button></div></section>
 </main>
-
 <main id="view-emi" class="page-view">
-  <section style="background:var(--paper); padding-bottom: 80px;">
-    <div class="wrap fade-up">
-      <h2 class="section-title">Smart EMI Calculator</h2>
-      <p class="section-sub">Adjust settings dynamically to view detailed interest trends and structural monthly payments parameters instantly.</p>
-      
-      <div class="calc-container">
-        <div class="calc-inputs">
-          <div>
-            <div class="slider-header">
-              <span class="slider-label">Loan Amount</span>
-              <input type="number" id="emiInputAmount" class="input-sync-box" min="5000" max="500000" step="5000" value="50000" aria-label="Loan Amount Value Box Input">
-            </div>
-            <input type="range" id="emiSliderAmount" min="5000" max="500000" step="5000" value="50000" class="calc-slider" aria-label="Loan Amount Slider Input">
-          </div>
-          <div>
-            <div class="slider-header">
-              <span class="slider-label">Interest Rate (p.a. %)</span>
-              <input type="number" id="emiInputRate" class="input-sync-box" min="8.5" max="24" step="0.1" value="10.5" aria-label="Interest Rate Value Box Input">
-            </div>
-            <input type="range" id="emiSliderRate" min="8.5" max="24" step="0.1" value="10.5" class="calc-slider" aria-label="Interest Rate Slider Input">
-          </div>
-          <div>
-            <div class="slider-header">
-              <span class="slider-label">Tenure (Months)</span>
-              <input type="number" id="emiInputTenure" class="input-sync-box" min="3" max="60" step="3" value="12" aria-label="Tenure Months Value Box Input">
-            </div>
-            <input type="range" id="emiSliderTenure" min="3" max="60" step="3" value="12" class="calc-slider" aria-label="Tenure Months Slider Input">
-          </div>
-        </div>
-
-        <div class="calc-output-card">
-          <div class="pie-chart-wrap">
-            <div class="pie-chart" id="emiPieChart"></div>
-            <div class="pie-legend">
-              <div class="legend-item">
-                <div class="legend-label"><div class="legend-dot" style="background:var(--blue-500);"></div> Principal</div>
-                <div class="legend-val" id="breakdownPrincipal">₹0</div>
-              </div>
-              <div class="legend-item">
-                <div class="legend-label"><div class="legend-dot" style="background:var(--gold);"></div> Interest</div>
-                <div class="legend-val" id="breakdownInterest">₹0</div>
-              </div>
-            </div>
-          </div>
-          
-          <div style="margin-top:auto;">
-            <div class="summary-title" style="color:var(--white);">Monthly EMI</div>
-            <div class="summary-val" id="emiResultBox" style="margin-bottom:16px; font-size: 32px; font-weight: 800;">₹0</div>
-            <div class="breakdown-row" style="border-top:2px solid rgba(255,255,255,0.2); padding-top:16px;">
-              <span class="breakdown-label" style="color:var(--white); font-weight:700;">Total Cost of Loan</span>
-              <span class="breakdown-value" style="font-size:18px;" id="breakdownTotal">₹0</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <section style="background:var(--paper); padding-bottom: 80px;"><div class="wrap fade-up"><h2 class="section-title">Smart EMI Calculator</h2><p class="section-sub">Adjust settings dynamically to view payments parameters instantly.</p><div class="calc-container"><div class="calc-inputs"><div><div class="slider-header"><span class="slider-label">Loan Amount</span><input type="number" id="emiInputAmount" class="input-sync-box" min="5000" max="500000" step="5000" value="50000"></div><input type="range" id="emiSliderAmount" min="5000" max="500000" step="5000" value="50000" class="calc-slider"></div><div><div class="slider-header"><span class="slider-label">Interest Rate (p.a. %)</span><input type="number" id="emiInputRate" class="input-sync-box" min="8.5" max="24" step="0.1" value="10.5"></div><input type="range" id="emiSliderRate" min="8.5" max="24" step="0.1" value="10.5" class="calc-slider"></div><div><div class="slider-header"><span class="slider-label">Tenure (Months)</span><input type="number" id="emiInputTenure" class="input-sync-box" min="3" max="60" step="3" value="12"></div><input type="range" id="emiSliderTenure" min="3" max="60" step="3" value="12" class="calc-slider"></div></div><div class="calc-output-card"><div class="pie-chart-wrap"><div class="pie-chart" id="emiPieChart"></div><div class="pie-legend"><div class="legend-item"><div class="legend-label"><div class="legend-dot" style="background:var(--blue-500);"></div> Principal</div><div class="legend-val" id="breakdownPrincipal">₹0</div></div><div class="legend-item"><div class="legend-label"><div class="legend-dot" style="background:var(--gold);"></div> Interest</div><div class="legend-val" id="breakdownInterest">₹0</div></div></div></div><div style="margin-top:auto;"><div class="summary-title" style="color:var(--white);">Monthly EMI</div><div class="summary-val" id="emiResultBox" style="margin-bottom:16px; font-size: 32px; font-weight: 800;">₹0</div><div class="breakdown-row" style="border-top:2px solid rgba(255,255,255,0.2); padding-top:16px;"><span class="breakdown-label" style="color:var(--white); font-weight:700;">Total Cost of Loan</span><span class="breakdown-value" style="font-size:18px;" id="breakdownTotal">₹0</span></div></div></div></div></div></section>
 </main>
-
-<main id="view-about" class="page-view">
-  <section class="wrap fade-up" style="max-width:800px; padding-top:40px;">
-    <h2 class="section-title text-left" style="font-size:36px; margin-bottom:24px;">About ZyncPay</h2>
-    <p style="font-size:16px; color:var(--slate); line-height:1.8; margin-bottom:32px;">ZyncPay acts as a premier next-generation financial technology marketplace connecting corporate borrowers, retail consumers, and young professionals with major RBI-registered banking networks and leading Non-Banking Financial Companies (NBFCs) across India.</p>
-    
-    <h3 style="font-size:24px; font-weight:800; margin:64px 0 24px;">Frequently asked questions</h3>
-    <div id="faqList" class="faq-wrap"></div>
-  </section>
-</main>
-
+<main id="view-about" class="page-view"><section class="wrap fade-up" style="max-width:800px; padding-top:40px;"><h2 class="section-title text-left" style="font-size:36px; margin-bottom:24px;">About ZyncPay</h2><p style="font-size:16px; color:var(--slate); line-height:1.8; margin-bottom:32px;">ZyncPay acts as a premier next-generation financial technology marketplace connecting corporate borrowers, retail consumers, and professionals with major banking networks across India.</p><h3 style="font-size:24px; font-weight:800; margin:64px 0 24px;">Frequently asked questions</h3><div id="faqList" class="faq-wrap"></div></section></main>
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div>
-        <div class="footer-logo">ZyncPay</div>
-        <p class="footer-desc">ZyncPay is a lending marketplace that connects borrowers with partnered banks and NBFCs. Loan approval and sanctioning decisions are made exclusively by the respective lender.</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Twitter handle Link"><i data-lucide="twitter" style="width:18px;"></i></a>
-          <a href="#" aria-label="Facebook Page Link"><i data-lucide="facebook" style="width:18px;"></i></a>
-          <a href="#" aria-label="LinkedIn profile Link"><i data-lucide="linkedin" style="width:18px;"></i></a>
-          <a href="#" aria-label="Instagram handle Link"><i data-lucide="instagram" style="width:18px;"></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Company</div>
-        <a href="#about" data-target="about" class="nav-link">About us</a>
-        <a href="#">Careers</a>
-        <a href="#">Contact us</a>
-        <a href="#">Grievance redressal</a>
-        <div class="footer-badges">
-          <div class="footer-badge"><i data-lucide="lock" style="width:14px; color:var(--success);"></i> 256-bit SSL</div>
-          <div class="footer-badge"><i data-lucide="shield-check" class="icon-small" style="color:var(--blue-500);"></i> RBI Compliant</div>
-        </div>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Office address</div>
-        <p>Corporate office: Sector 62, Noida, Uttar Pradesh</p>
-        <p>support@zyncpay.com</p>
-        <p class="mt-24" style="font-size:13px; font-weight:600; color:#fff;">Payments powered by</p>
-        <div style="font-size:18px; font-weight:800; letter-spacing:-1px; color:#fff; display:flex; align-items:center; gap:6px;">
-          Cashfree
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <div>© 2026 ZyncPay. All rights reserved. Powered by ZyncPay Technologies.</div>
-      <div style="max-width: 600px; text-align: right;">Disclaimer: ZyncPay is a marketplace platform and is not a lender. It connects users with its partnered banks and NBFCs; loan approval and terms are decided solely by the respective lending partner.</div>
-    </div>
+      <div><div class="footer-logo">ZyncPay</div><p class="footer-desc">ZyncPay is a lending marketplace that connects borrowers with partnered lenders. Loan approval decisions are made exclusively by the respective lender.</p><div class="social-icons"><a href="#"><i data-lucide="twitter" style="width:18px;"></i></a><a href="#"><i data-lucide="facebook" style="width:18px;"></i></a><a href="#"><i data-lucide="linkedin" style="width:18px;"></i></a><a href="#"><i data-lucide="instagram" style="width:18px;"></i></a></div></div>
+      <div class="footer-col"><div class="footer-col-title">Company</div><a href="#about" data-target="about" class="nav-link">About us</a><a href="#">Careers</a><a href="#">Contact us</a><a href="#">Grievance redressal</a><div class="footer-badges"><div class="footer-badge"><i data-lucide="lock" style="width:14px; color:var(--success);"></i> 256-bit SSL</div><div class="footer-badge"><i data-lucide="shield-check" class="icon-small" style="color:var(--blue-500);"></i> RBI Compliant</div></div></div>
+      <div class="footer-col"><div class="footer-col-title">Office address</div><p>Corporate office: Sector 62, Noida, Uttar Pradesh</p><p>support@zyncpay.com</p><p class="mt-24" style="font-size:13px; font-weight:600; color:#fff;">Payments powered by</p><div style="font-size:18px; font-weight:800; letter-spacing:-1px; color:#fff;">Cashfree</div></div>
+    </div><div class="footer-bottom"><div>© 2026 ZyncPay. All rights reserved.</div><div style="max-width: 600px; text-align: right;">Disclaimer: ZyncPay is a marketplace platform and is not a lender.</div></div>
   </div>
 </footer>
-
 <script>
-// Encapsulating Architecture in IIFE Block to preserve global scope safety
 (function() {
-  // --- INITIALIZE ICONS ---
-  lucide.createIcons();
-
-  // --- SCROLL HEADER EFFECT ---
-  const header = document.getElementById('mainHeader');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) { header.classList.add('scrolled'); } 
-    else { header.classList.remove('scrolled'); }
-  });
-
-  // --- MOBILE MENU TOGGLE LOGIC (WITH BODY SCROLL TRAP FIX) ---
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mainNav = document.getElementById('mainNav');
-  const menuIcon = document.getElementById('menuIcon');
-
-  function toggleMobileMenu() {
-      mainNav.classList.toggle('open');
-      if (mainNav.classList.contains('open')) {
-          menuIcon.setAttribute('data-lucide', 'x');
-          document.body.classList.add('menu-open');
-      } else {
-          menuIcon.setAttribute('data-lucide', 'menu');
-          document.body.classList.remove('menu-open');
-      }
-      lucide.createIcons();
-  }
-
-  function closeMobileMenu() {
-      mainNav.classList.remove('open');
-      menuIcon.setAttribute('data-lucide', 'menu');
-      document.body.classList.remove('menu-open');
-      lucide.createIcons();
-  }
-
-  if(mobileMenuBtn) {
-      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-  }
-
-  // --- INTERSECTION OBSERVER ---
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        if(entry.target.querySelectorAll('.counter').length > 0) {
-          entry.target.querySelectorAll('.counter').forEach(el => animateValue(el));
-        }
-      }
-    });
-  }, { threshold: 0.1 });
-
+  lucide.createIcons(); const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 20); });
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn'), mainNav = document.getElementById('mainNav'), menuIcon = document.getElementById('menuIcon');
+  function toggleMobileMenu() { mainNav.classList.toggle('open'); const isOpen = mainNav.classList.contains('open'); menuIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu'); document.body.classList.toggle('menu-open', isOpen); lucide.createIcons(); }
+  function closeMobileMenu() { mainNav.classList.remove('open'); menuIcon.setAttribute('data-lucide', 'menu'); document.body.classList.remove('menu-open'); lucide.createIcons(); }
+  if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); if(entry.target.querySelectorAll('.counter').length > 0) entry.target.querySelectorAll('.counter').forEach(animateValue); } }); }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  function animateValue(obj) {
-    if(obj.dataset.animated) return; 
-    obj.dataset.animated = "true";
-    
-    const target = parseFloat(obj.getAttribute('data-target'));
-    const prefix = obj.getAttribute('data-prefix') || '';
-    const suffix = obj.getAttribute('data-suffix') || '';
-    const duration = 2000;
-    let startTimestamp = null;
-    
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      const easeProgress = 1 - Math.pow(1 - progress, 3);
-      const current = easeProgress * target;
-      
-      const formatted = current % 1 === 0 ? Math.floor(current) : current.toFixed(1);
-      obj.innerHTML = prefix + formatted + suffix;
-      
-      if (progress < 1) { window.requestAnimationFrame(step); }
-      else { obj.innerHTML = prefix + target + suffix; } 
-    };
-    window.requestAnimationFrame(step);
-  }
-
-  // --- ACCESSIBLE SPA CLIENT-SIDE ROUTING ---
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault(); 
-      const viewId = this.getAttribute('data-target');
-      
-      closeMobileMenu();
-      
-      document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active-view'));
-      document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
-      
-      const targetView = document.getElementById(`view-${viewId}`);
-      if(targetView) targetView.classList.add('active-view');
-      
-      document.querySelectorAll(`.nav-link[data-target="${viewId}"]`).forEach(nav => nav.classList.add('active'));
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
-
-  function scrollToForm() {
-    const section = document.getElementById('applySection');
-    if(section) section.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-  
-  const dCta = document.getElementById('desktopApplyNow');
-  const mCta = document.getElementById('mobileApplyNow');
-  if(dCta) dCta.onclick = scrollToForm;
-  if(mCta) mCta.onclick = () => { scrollToForm(); closeMobileMenu(); };
-
-  const bElgBtn = document.getElementById('businessEligibilityBtn');
-  if(bElgBtn) { bElgBtn.onclick = () => alert('Business Loan engine currently in maintenance. Contact support@zyncpay.com'); }
-
-  // --- EMI CALCULATOR WITH TWO-WAY SLIDER & BOX SYNC ---
-  const emiSliderAmount = document.getElementById('emiSliderAmount');
-  const emiSliderRate = document.getElementById('emiSliderRate');
-  const emiSliderTenure = document.getElementById('emiSliderTenure');
-  
-  const emiInputAmount = document.getElementById('emiInputAmount');
-  const emiInputRate = document.getElementById('emiInputRate');
-  const emiInputTenure = document.getElementById('emiInputTenure');
-
-  let emiTargets = { amount: 50000, rate: 10.5, tenure: 12, emi: 4408, principal: 50000, interest: 2894, total: 52894 };
-  let emiCurrent = { ...emiTargets };
-
-  function updateEMIDisplays() {
-     let updated = false;
-     for(let key in emiTargets) {
-         if(Math.abs(emiTargets[key] - emiCurrent[key]) > 0.1) {
-             emiCurrent[key] += (emiTargets[key] - emiCurrent[key]) * 0.25; 
-             if(Math.abs(emiTargets[key] - emiCurrent[key]) < 0.5) emiCurrent[key] = emiTargets[key];
-             updated = true;
-         }
-     }
-     
-     document.getElementById('emiResultBox').textContent = '₹' + Math.round(emiCurrent.emi).toLocaleString('en-IN');
-     document.getElementById('breakdownPrincipal').textContent = '₹' + Math.round(emiCurrent.principal).toLocaleString('en-IN');
-     document.getElementById('breakdownInterest').textContent = '₹' + Math.round(emiCurrent.interest).toLocaleString('en-IN');
-     document.getElementById('breakdownTotal').textContent = '₹' + Math.round(emiCurrent.total).toLocaleString('en-IN');
-     
-     if(updated) requestAnimationFrame(updateEMIDisplays);
-  }
-
-  function calculateEMI() {
-    const P = Number(emiSliderAmount.value);
-    const annualR = Number(emiSliderRate.value);
-    const N = Number(emiSliderTenure.value);
-    const R = (annualR / 12) / 100;
-    
-    let emi = (R > 0) ? (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1) : P / N;
-    const monthlyEMI = Math.round(emi);
-    const totalPayment = monthlyEMI * N;
-    const totalInterest = totalPayment - P;
-
-    emiTargets.amount = P;
-    emiTargets.rate = annualR;
-    emiTargets.tenure = N;
-    emiTargets.emi = monthlyEMI;
-    emiTargets.principal = P;
-    emiTargets.interest = totalInterest < 0 ? 0 : totalInterest;
-    emiTargets.total = totalPayment;
-
-    requestAnimationFrame(updateEMIDisplays);
-    
-    const interestPercent = (totalInterest / totalPayment) * 100;
-    const principalPercent = 100 - interestPercent;
-    document.getElementById('emiPieChart').style.background = `conic-gradient(var(--blue-500) 0% ${principalPercent}%, var(--gold) ${principalPercent}% 100%)`;
-  }
-
-  // Dual-Binding Event Orchestration Logic
-  function syncSlidersFromInputs() {
-    emiSliderAmount.value = emiInputAmount.value;
-    emiSliderRate.value = emiInputRate.value;
-    emiSliderTenure.value = emiInputTenure.value;
-    calculateEMI();
-  }
-
-  function syncInputsFromSliders() {
-    emiInputAmount.value = emiSliderAmount.value;
-    emiInputRate.value = emiSliderRate.value;
-    emiInputTenure.value = emiSliderTenure.value;
-    calculateEMI();
-  }
-
-  if(emiSliderAmount) {
-    emiSliderAmount.oninput = syncInputsFromSliders;
-    emiSliderRate.oninput = syncInputsFromSliders;
-    emiSliderTenure.oninput = syncInputsFromSliders;
-    
-    emiInputAmount.oninput = syncSlidersFromInputs;
-    emiInputRate.oninput = syncSlidersFromInputs;
-    emiInputTenure.oninput = syncSlidersFromInputs;
-    
-    calculateEMI(); 
-  }
-
-  // --- LOAN FORM WIZARD ENGINE WITH METADATA PERSISTENCE ---
-  const defaultState = { name:'', phone:'', idType:'Aadhaar', idNumber:'', selfie:null, loanAmount:50000 };
-  const savedState = sessionStorage.getItem('zyncpay_state');
-
-  const state = savedState ? { ...defaultState, ...JSON.parse(savedState), selfie: null } : defaultState;
-
-  let current = Number(sessionStorage.getItem('zyncpay_step')) || 1;
-  const TOTAL = 4;
-
-  const validatePAN = (pan) => /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan.toUpperCase().trim());
-  const validateAadhaar = (aadhaar) => {
-      const rawDigits = aadhaar.replace(/\D/g, '');
-      return /^[2-9]{1}[0-9]{11}$/.test(rawDigits);
-  };
-
-  function persistData() {
-    const { selfie, ...safeState } = state; 
-    sessionStorage.setItem('zyncpay_state', JSON.stringify(safeState));
-    sessionStorage.setItem('zyncpay_step', current);
-  }
-
-  function compressImage(file, callback) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = event => {
-      const img = new Image();
-      img.src = event.target.result;
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const MAX_WIDTH = 800;
-        let width = img.width; let height = img.height;
-        if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
-        canvas.width = width; canvas.height = height;
-        ctx.drawImage(img, 0, 0, width, height);
-        callback(canvas.toDataURL('image/jpeg', 0.7)); 
-      }
-    }
-  }
-
-  function renderProgress(){
-    const el = document.getElementById('progress');
-    if (!el) return;
-    if (current > TOTAL) { el.style.display = 'none'; return; }
-    el.style.display = 'flex';
-    let html = '';
-    for (let i=1; i<=TOTAL; i++){ html += `<div class="dot ${i <= current ? 'done':''}"></div>`; }
-    el.innerHTML = html;
-  }
-
+  function animateValue(obj) { if(obj.dataset.animated) return; obj.dataset.animated = "true"; const target = parseFloat(obj.getAttribute('data-target')), prefix = obj.getAttribute('data-prefix') || '', suffix = obj.getAttribute('data-suffix') || '', duration = 2000; let start = null; const step = (ts) => { if (!start) start = ts; const progress = Math.min((ts - start) / duration, 1), ease = 1 - Math.pow(1 - progress, 3), current = ease * target, formatted = current % 1 === 0 ? Math.floor(current) : current.toFixed(1); obj.innerHTML = prefix + formatted + suffix; if (progress < 1) window.requestAnimationFrame(step); else obj.innerHTML = prefix + target + suffix; }; window.requestAnimationFrame(step); }
+  document.querySelectorAll('.nav-link').forEach(link => { link.addEventListener('click', function(e) { e.preventDefault(); const viewId = this.getAttribute('data-target'); closeMobileMenu(); document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active-view')); document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active')); const tv = document.getElementById(`view-${viewId}`); if(tv) tv.classList.add('active-view'); document.querySelectorAll(`.nav-link[data-target="${viewId}"]`).forEach(n => n.classList.add('active')); window.scrollTo({ top: 0, behavior: 'smooth' }); }); });
+  function scrollToForm() { const s = document.getElementById('applySection'); if(s) s.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  if(document.getElementById('desktopApplyNow')) document.getElementById('desktopApplyNow').onclick = scrollToForm;
+  if(document.getElementById('mobileApplyNow')) document.getElementById('mobileApplyNow').onclick = () => { scrollToForm(); closeMobileMenu(); };
+  if(document.getElementById('businessEligibilityBtn')) document.getElementById('businessEligibilityBtn').onclick = () => alert('Business Loan engine currently in maintenance. Contact support@zyncpay.com');
+  const emiSA = document.getElementById('emiSliderAmount'), emiSR = document.getElementById('emiSliderRate'), emiST = document.getElementById('emiSliderTenure'), emiIA = document.getElementById('emiInputAmount'), emiIR = document.getElementById('emiInputRate'), emiIT = document.getElementById('emiInputTenure');
+  let emiT = { amount: 50000, rate: 10.5, tenure: 12, emi: 4408, principal: 50000, interest: 2894, total: 52894 }, emiC = { ...emiT };
+  function updateEMIDisplays() { let updated = false; for(let k in emiT) { if(Math.abs(emiT[k] - emiC[k]) > 0.1) { emiC[k] += (emiT[k] - emiC[k]) * 0.25; if(Math.abs(emiT[k] - emiC[k]) < 0.5) emiC[k] = emiT[k]; updated = true; } } document.getElementById('emiResultBox').textContent = '₹' + Math.round(emiC.emi).toLocaleString('en-IN'); document.getElementById('breakdownPrincipal').textContent = '₹' + Math.round(emiC.principal).toLocaleString('en-IN'); document.getElementById('breakdownInterest').textContent = '₹' + Math.round(emiC.interest).toLocaleString('en-IN'); document.getElementById('breakdownTotal').textContent = '₹' + Math.round(emiC.total).toLocaleString('en-IN'); if(updated) requestAnimationFrame(updateEMIDisplays); }
+  function calculateEMI() { const P = Number(emiSA.value), annualR = Number(emiSR.value), N = Number(emiST.value), R = (annualR / 12) / 100; let emi = (R > 0) ? (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1) : P / N; const mEMI = Math.round(emi), tPay = mEMI * N, tInt = tPay - P; emiT = { amount: P, rate: annualR, tenure: N, emi: mEMI, principal: P, interest: tInt < 0 ? 0 : tInt, total: tPay }; requestAnimationFrame(updateEMIDisplays); const iP = (emiT.interest / tPay) * 100; document.getElementById('emiPieChart').style.background = `conic-gradient(var(--blue-500) 0% ${100 - iP}%, var(--gold) ${100 - iP}% 100%)`; }
+  function sFromI() { emiSA.value = emiIA.value; emiSR.value = emiIR.value; emiST.value = emiIT.value; calculateEMI(); } function iFromS() { emiIA.value = emiSA.value; emiIR.value = emiSR.value; emiIT.value = emiST.value; calculateEMI(); }
+  if(emiSA) { emiSA.oninput = iFromS; emiSR.oninput = iFromS; emiST.oninput = iFromS; emiIA.oninput = sFromI; emiIR.oninput = sFromI; emiIT.oninput = sFromI; calculateEMI(); }
+  const defaultState = { name:'', phone:'', idType:'Aadhaar', idNumber:'', selfie:null, loanAmount:50000 }, savedState = sessionStorage.getItem('zyncpay_state'), state = savedState ? { ...defaultState, ...JSON.parse(savedState), selfie: null } : defaultState;
+  let current = Number(sessionStorage.getItem('zyncpay_step')) || 1; const TOTAL = 4, validatePAN = (pan) => /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan.toUpperCase().trim()), validateAadhaar = (aadhaar) => /^[2-9]{1}[0-9]{11}$/.test(aadhaar.replace(/\D/g, ''));
+  function persistData() { const { selfie, ...safeState } = state; sessionStorage.setItem('zyncpay_state', JSON.stringify(safeState)); sessionStorage.setItem('zyncpay_step', current); }
+  function compressImage(file, cb) { const r = new FileReader(); r.readAsDataURL(file); r.onload = ev => { const img = new Image(); img.src = ev.target.result; img.onload = () => { const canvas = document.createElement('canvas'), ctx = canvas.getContext('2d'), MAX = 800; let w = img.width, h = img.height; if (w > MAX) { h *= MAX / w; w = MAX; } canvas.width = w; canvas.height = h; ctx.drawImage(img, 0, 0, w, h); cb(canvas.toDataURL('image/jpeg', 0.7)); } } }
+  function renderProgress(){ const el = document.getElementById('progress'); if (!el) return; if (current > TOTAL) { el.style.display = 'none'; return; } el.style.display = 'flex'; let h = ''; for (let i=1; i<=TOTAL; i++) h += `<div class="dot ${i <= current ? 'done':''}"></div>`; el.innerHTML = h; }
   function screens(){
     return {
-      1: () => `
-        <p class="form-card-title">Check your eligibility</p>
-        <p class="form-card-sub">Takes under a minute. No impact on your credit score.</p>
-        <div class="field"><label for="nameInput">Full name</label><input type="text" id="nameInput" placeholder="As per your ID" value="${state.name}"></div>
-        <div class="error-note" id="err1" style="display:none;"><i data-lucide="alert-circle" class="icon-small"></i> Enter your full name to continue.</div>
-        <button class="btn btn-primary" id="nextBtn">Continue <i data-lucide="arrow-right" class="icon-med"></i></button>
-        <p class="consent-fine">By continuing, you agree to ZyncPay's <a href="#">Credit Report Terms</a>, <a href="#">Terms &amp; Conditions</a>.</p>
-      `,
-      2: () => `
-        <p class="form-card-title">What's your mobile number?</p>
-        <p class="form-card-sub">Required to establish digital lending identity parameters.</p>
-        <div class="field"><label for="phoneInput">Mobile number</label><input type="tel" id="phoneInput" placeholder="98765 43210" value="${state.phone}" maxlength="10"></div>
-        <div class="error-note" id="err2" style="display:none;"><i data-lucide="alert-circle" class="icon-small"></i> Enter a valid 10-digit mobile number.</div>
-        <button class="btn btn-primary" id="nextBtn">Continue <i data-lucide="arrow-right" class="icon-med"></i></button>
-        <button class="btn btn-ghost" id="backBtn">Back</button>
-      `,
-      3: () => `
-        <p class="form-card-title">Verify your identity</p>
-        <p class="form-card-sub">Choose an ID and enter the number exactly as printed.</p>
-        
-        <div class="pill-group" role="radiogroup" aria-label="Identity Document Type Selector">
-          <label class="pill-label">
-            <input type="radio" name="idDocType" value="Aadhaar" class="pill-radio" ${state.idType==='Aadhaar'?'checked':''}>
-            <span class="pill">Aadhaar card</span>
-          </label>
-          <label class="pill-label">
-            <input type="radio" name="idDocType" value="PAN" class="pill-radio" ${state.idType==='PAN'?'checked':''}>
-            <span class="pill">PAN card</span>
-          </label>
-        </div>
-        
-        <div class="field"><label for="idInput">${state.idType} number</label><input type="text" id="idInput" placeholder="${state.idType==='Aadhaar' ? 'XXXX XXXX XXXX' : 'ABCDE1234F'}" value="${state.idNumber}"></div>
-        <div class="error-note" id="err3" style="display:none;"></div>
-        <button class="btn btn-primary" id="nextBtn">Continue <i data-lucide="arrow-right" class="icon-med"></i></button>
-        <button class="btn btn-ghost" id="backBtn">Back</button>
-      `,
-      4: () => `
-        <p class="form-card-title">Take a quick selfie</p>
-        <p class="form-card-sub">Confirms it's really you — required for digital lending.</p>
-        <label for="selfieInput">
-          <div class="selfie-box ${state.selfie ? 'filled':''}" tabindex="0" role="button" aria-label="Camera Upload Window Box">
-            ${state.selfie
-              ? `<img class="selfie-preview" src="${state.selfie}" alt="Selfie preview upload image"><div class="selfie-title">Looking good</div><div class="selfie-sub">Tap to retake</div>`
-              : `<div class="selfie-icon"><i data-lucide="camera"></i></div><div class="selfie-title">Tap to open camera</div><div class="selfie-sub">Make sure your face is clearly visible</div>`}
-          </div>
-        </label>
-        <input type="file" id="selfieInput" accept="image/*" capture="user">
-        <div class="error-note" id="err4" style="display:none;"><i data-lucide="alert-circle" class="icon-small"></i> Take a selfie to see your eligibility.</div>
-        <button class="btn btn-primary" id="nextBtn">See my eligibility <i data-lucide="sparkles" class="icon-med"></i></button>
-        <button class="btn btn-ghost" id="backBtn">Back</button>
-      `,
-      4.5: () => `
-        <div class="verify-wrap">
-          <p class="form-card-title text-center">Verifying Profile</p>
-          <p class="form-card-sub text-center mb-8">Running secure KYC match with lending partners.</p>
-          <div class="verify-item active" id="vi-pan">
-            <span>Checking Identity Records</span>
-            <div class="verify-status" id="vs-pan"><div class="loader-spinner"></div></div>
-          </div>
-          <div class="verify-item" id="vi-aadhaar">
-            <span>Verifying CIBIL Score</span>
-            <div class="verify-status" id="vs-aadhaar"></div>
-          </div>
-          <div class="verify-item" id="vi-mobile">
-            <span>Fetching Pre-Approved Offers</span>
-            <div class="verify-status" id="vs-mobile"></div>
-          </div>
-        </div>
-      `
+      1: () => `<p class="form-card-title">Check your eligibility</p><p class="form-card-sub">Takes under a minute. No impact on your credit score.</p><div class="field"><label for="nameInput">Full name</label><input type="text" id="nameInput" placeholder="As per your ID" value="${state.name}"></div><div class="error-note" id="err1" style="display:none;"><i data-lucide="alert-circle" class="icon-small"></i> Enter your full name to continue.</div><button class="btn btn-primary" id="nextBtn">Continue <i data-lucide="arrow-right" class="icon-med"></i></button><p class="consent-fine">By continuing, you agree to ZyncPay's <a href="#">Credit Report Terms</a>.</p>`,
+      2: () => `<p class="form-card-title">What's your mobile number?</p><p class="form-card-sub">Required to establish digital lending identity parameters.</p><div class="field"><label for="phoneInput">Mobile number</label><input type="tel" id="phoneInput" placeholder="98765 43210" value="${state.phone}" maxlength="10"></div><div class="error-note" id="err2" style="display:none;"><i data-lucide="alert-circle" class="icon-small"></i> Enter a valid 10-digit mobile number.</div><button class="btn btn-primary" id="nextBtn">Continue <i data-lucide="arrow-right" class="icon-med"></i></button><button class="btn btn-ghost" id="backBtn">Back</button>`,
+      3: () => `<p class="form-card-title">Verify your identity</p><p class="form-card-sub">Choose an ID and enter the number exactly as printed.</p><div class="pill-group" role="radiogroup" aria-label="Identity Document Type Selector"><label class="pill-label"><input type="radio" name="idDocType" value="Aadhaar" class="pill-radio" ${state.idType==='Aadhaar'?'checked':''}><span class="pill">Aadhaar card</span></label><label class="pill-label"><input type="radio" name="idDocType" value="PAN" class="pill-radio" ${state.idType==='PAN'?'checked':''}><span class="pill">PAN card</span></label></div><div class="field"><label for="idInput">${state.idType} number</label><input type="text" id="idInput" placeholder="${state.idType==='Aadhaar'?'XXXX XXXX XXXX':'ABCDE1234F'}" value="${state.idNumber}"></div><div class="error-note" id="err3" style="display:none;"></div><button class="btn btn-primary" id="nextBtn">Continue <i data-lucide="arrow-right" class="icon-med"></i></button><button class="btn btn-ghost" id="backBtn">Back</button>`,
+      4: () => `<p class="form-card-title">Take a quick selfie</p><p class="form-card-sub">Confirms it's really you.</p><label for="selfieInput"><div class="selfie-box ${state.selfie ? 'filled':''}" tabindex="0" role="button"><if condition="${state.selfie}">${`<img class="selfie-preview" src="${state.selfie}"><div class="selfie-title">Looking good</div><div class="selfie-sub">Tap to retake</div>`}:${`<div class="selfie-icon"><i data-lucide="camera"></i></div><div class="selfie-title">Tap to open camera</div>`}</if></div></label><input type="file" id="selfieInput" accept="image/*" capture="user"><div class="error-note" id="err4" style="display:none;"><i data-lucide="alert-circle" class="icon-small"></i> Take a selfie.</div><button class="btn btn-primary" id="nextBtn">See my eligibility <i data-lucide="sparkles" class="icon-med"></i></button><button class="btn btn-ghost" id="backBtn">Back</button>`,
+      4.5: () => `<div class="verify-wrap"><p class="form-card-title text-center">Verifying Profile</p><div class="verify-item active" id="vi-pan"><span>Checking Identity Records</span><div class="verify-status" id="vs-pan"><div class="loader-spinner"></div></div></div><div class="verify-item" id="vi-aadhaar"><span>Verifying CIBIL Score</span><div class="verify-status" id="vs-aadhaar"></div></div><div class="verify-item" id="vi-mobile"><span>Fetching Pre-Approved Offers</span><div class="verify-status" id="vs-mobile"></div></div></div>`
     };
   }
-
   function renderCard(){
-    const card = document.getElementById('card');
-    if(!card) return;
-    
+    const card = document.getElementById('card'); if(!card) return;
     if (current === 4.5) {
-      card.innerHTML = screens()[4.5]();
-      let step = 0;
+      card.innerHTML = screens()[4.5](); let step = 0;
       const interval = setInterval(() => {
         step++;
-        if(step === 1) {
-          document.getElementById('vi-pan').classList.replace('active', 'done');
-          document.getElementById('vs-pan').innerHTML = '<i data-lucide="check-circle-2" class="icon-pop icon-large" style="color:var(--success);"></i>';
-          document.getElementById('vi-aadhaar').classList.add('active');
-          document.getElementById('vs-aadhaar').innerHTML = '<div class="loader-spinner"></div>';
-          lucide.createIcons();
-        }
-        if(step === 2) {
-          document.getElementById('vi-aadhaar').classList.replace('active', 'done');
-          document.getElementById('vs-aadhaar').innerHTML = '<i data-lucide="check-circle-2" class="icon-pop icon-large" style="color:var(--success);"></i>';
-          document.getElementById('vi-mobile').classList.add('active');
-          document.getElementById('vs-mobile').innerHTML = '<div class="loader-spinner"></div>';
-          lucide.createIcons();
-        }
-        if(step === 3) {
-          document.getElementById('vi-mobile').classList.replace('active', 'done');
-          document.getElementById('vs-mobile').innerHTML = '<i data-lucide="check-circle-2" class="icon-pop icon-large" style="color:var(--success);"></i>';
-          lucide.createIcons();
-        }
-        if(step === 4) { 
-          clearInterval(interval); 
-          if(typeof fbq !== "undefined"){ fbq('track', 'CompleteRegistration'); }
-          current = 5; 
-          persistData();
-          render(); 
-        }
-      }, 1800);
-      return;
+        if(step === 1) { document.getElementById('vi-pan').classList.replace('active', 'done'); document.getElementById('vs-pan').innerHTML = '<i data-lucide="check-circle-2" class="icon-pop icon-large" style="color:var(--success);"></i>'; document.getElementById('vi-aadhaar').classList.add('active'); document.getElementById('vs-aadhaar').innerHTML = '<div class="loader-spinner"></div>'; lucide.createIcons(); }
+        if(step === 2) { document.getElementById('vi-aadhaar').classList.replace('active', 'done'); document.getElementById('vs-aadhaar').innerHTML = '<i data-lucide="check-circle-2" class="icon-pop icon-large" style="color:var(--success);"></i>'; document.getElementById('vi-mobile').classList.add('active'); document.getElementById('vs-mobile').innerHTML = '<div class="loader-spinner"></div>'; lucide.createIcons(); }
+        if(step === 3) { document.getElementById('vi-mobile').classList.replace('active', 'done'); document.getElementById('vs-mobile').innerHTML = '<i data-lucide="check-circle-2" class="icon-pop icon-large" style="color:var(--success);"></i>'; lucide.createIcons(); }
+        if(step === 4) { clearInterval(interval); if(typeof fbq !== "undefined") fbq('track', 'CompleteRegistration'); current = 5; persistData(); render(); }
+      }, 1800); return;
     }
-
     if (current === 5){
-      const displayFName = state.name ? state.name.split(' ')[0] : 'there';
-      card.innerHTML = `
-        <div class="text-center">
-          <div class="mb-12" style="font-size:48px; animation: fadeView 0.5s ease;">🎉</div>
-          <p class="form-card-title" style="font-size:24px; margin-bottom:8px;">Congratulations, ${displayFName}!</p>
-          <p class="mb-8" style="font-size:15px; color:var(--slate); font-weight:500;">Pre-approved Loan Limit</p>
-          <div id="eligibilityAmount" class="mb-28" style="font-size:38px; line-height:1.2; font-weight:900; color:var(--blue-900); letter-spacing:-1px;">upto ₹0</div>
-          
-          <div class="text-left mb-32" style="background:var(--paper); border:1px solid var(--border); border-radius:16px; padding:20px;">
-            <div class="mb-16 flex items-center gap-12" style="font-size:14.5px; color:var(--ink); font-weight:600;">
-              <i data-lucide="check-circle-2" class="icon-large" style="color:var(--success);"></i> Instant verification completed
-            </div>
-            <div class="mb-16 flex items-center gap-12" style="font-size:14.5px; color:var(--ink); font-weight:600;">
-              <i data-lucide="check-circle-2" class="icon-large" style="color:var(--success);"></i> Your profile matches our lending partners
-            </div>
-            <div class="flex items-center gap-12" style="font-size:14.5px; color:var(--ink); font-weight:600;">
-              <i data-lucide="check-circle-2" class="icon-large" style="color:var(--success);"></i> Unlock your personalized offers below
-            </div>
-          </div>
-
-          <button class="btn btn-primary h-56" id="continueBtn" style="font-size:16px;">Continue to Secure My Offer <i data-lucide="arrow-right" class="icon-med"></i></button>
-        </div>
-      `;
-      
+      card.innerHTML = `<div class="text-center"><div class="mb-12" style="font-size:48px; animation: fadeView 0.5s ease;">🎉</div><p class="form-card-title" style="font-size:24px; margin-bottom:8px;">Congratulations!</p><div id="eligibilityAmount" class="mb-28" style="font-size:38px; font-weight:900; color:var(--blue-900);">upto ₹0</div><button class="btn btn-primary h-56" id="continueBtn">Continue to Secure My Offer <i data-lucide="arrow-right" class="icon-med"></i></button></div>`;
       setTimeout(() => {
-        const amountEl = document.getElementById('eligibilityAmount');
-        let start = null; const duration = 800; const target = 100000;
-        
-        const step = (timestamp) => {
-          if (!start) start = timestamp;
-          const progress = Math.min((timestamp - start) / duration, 1);
-          const ease = 1 - Math.pow(1 - progress, 3); 
-          const currentVal = Math.floor(ease * target);
-          if(amountEl) amountEl.textContent = 'upto ₹' + currentVal.toLocaleString('en-IN');
-          if (progress < 1) { window.requestAnimationFrame(step); } 
-          else { if(amountEl) amountEl.textContent = 'upto ₹1,00,000'; }
-        };
+        const amEl = document.getElementById('eligibilityAmount'); let start = null;
+        const step = (ts) => { if (!start) start = ts; const progress = Math.min((ts - start) / 800, 1), ease = 1 - Math.pow(1 - progress, 3), cV = Math.floor(ease * 100000); if(amEl) amEl.textContent = 'upto ₹' + cV.toLocaleString('en-IN'); if (progress < 1) window.requestAnimationFrame(step); else if(amEl) amEl.textContent = 'upto ₹1,00,000'; };
         window.requestAnimationFrame(step);
-      }, 400);
-
-      document.getElementById('continueBtn').onclick = () => { current = 5.5; persistData(); render(); };
-      lucide.createIcons();
-      return;
+      }, 400); document.getElementById('continueBtn').onclick = () => { current = 5.5; persistData(); render(); }; lucide.createIcons(); return;
     }
-    
     if(current === 5.5) {
-      card.innerHTML = `
-        <div class="text-center" style="padding: 40px 0;">
-          <div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div>
-          <p id="loadingText5" style="font-size:18px; font-weight:700; color:var(--blue-900);">Preparing Personalized Offers...</p>
-        </div>
-      `;
-      setTimeout(() => {
-          const txt = document.getElementById('loadingText5');
-          if(txt) txt.innerText = "Matching 15+ Lending Partners...";
-          setTimeout(() => {
-              if(txt) txt.innerHTML = "<span class='pulse-text'>✓ Personalized Offer Ready</span>";
-              setTimeout(() => { current = 6; persistData(); render(); }, 800); 
-          }, 1600); 
-      }, 1100); 
-      return;
+      card.innerHTML = `<div class="text-center" style="padding: 40px 0;"><div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div><p id="loadingText5" style="font-size:18px; font-weight:700; color:var(--blue-900);">Preparing Personalized Offers...</p></div>`;
+      setTimeout(() => { document.getElementById('loadingText5').innerText = "Matching Lenders..."; setTimeout(() => { document.getElementById('loadingText5').innerHTML = "<span class='pulse-text'>✓ Offer Ready</span>"; setTimeout(() => { current = 6; persistData(); render(); }, 800); }, 1600); }, 1100); return;
     }
-
     if (current === 6){
-      card.innerHTML = `
-        <p class="form-card-title">Customize your loan</p>
-        <p class="form-card-sub">Slide or type exactly how much you need.</p>
-        <div class="flex justify-center items-center gap-12 mb-24">
-          <input type="number" id="wizardInputAmount" class="input-sync-box text-center" min="5000" max="100000" step="500" value="${state.loanAmount}" style="width: 180px; font-size: 24px; height: 48px;" aria-label="Target Wizard Amount Input Value Box">
-        </div>
-        <input type="range" id="amountSliderWizard" min="5000" max="100000" step="500" value="${state.loanAmount}" class="w-full mb-8" style="height:8px; accent-color:var(--blue-700); cursor:pointer;" aria-label="Target Wizard Amount Slider Control">
-        <div class="flex justify-between mb-24" style="font-size:12px; font-weight:600; color:var(--slate-light);">
-          <span>₹5,000</span><span>₹1,00,000</span>
-        </div>
-        <button class="btn btn-primary" id="confirmAmountBtn">Confirm & View Summary</button>
-        <button class="btn btn-ghost" id="backBtn6">Back</button>
-      `;
-      
-      const slider = document.getElementById('amountSliderWizard');
-      const box = document.getElementById('wizardInputAmount');
-
-      slider.oninput = e => {
-        state.loanAmount = Number(e.target.value);
-        box.value = state.loanAmount;
-        persistData();
-      };
-      box.oninput = e => {
-        let val = Number(e.target.value);
-        if(val > 100000) val = 100000;
-        slider.value = val;
-        state.loanAmount = val;
-        persistData();
-      };
-
-      document.getElementById('backBtn6').onclick = () => { current = 5; persistData(); render(); };
-      document.getElementById('confirmAmountBtn').onclick = () => { current = 6.5; persistData(); render(); };
-      return;
+      card.innerHTML = `<p class="form-card-title">Customize your loan</p><div class="flex justify-center items-center gap-12 mb-24"><input type="number" id="wizardInputAmount" class="input-sync-box text-center" min="5000" max="100000" step="500" value="${state.loanAmount}" style="width:180px; font-size:24px; height:48px;"></div><input type="range" id="amountSliderWizard" min="5000" max="100000" step="500" value="${state.loanAmount}" class="w-full mb-8" style="accent-color:var(--blue-700); cursor:pointer;"><button class="btn btn-primary" id="confirmAmountBtn">Confirm Offer</button><button class="btn btn-ghost" id="backBtn6">Back</button>`;
+      const sl = document.getElementById('amountSliderWizard'), bx = document.getElementById('wizardInputAmount');
+      sl.oninput = e => { state.loanAmount = Number(e.target.value); bx.value = state.loanAmount; persistData(); };
+      bx.oninput = e => { let v = Number(e.target.value); if(v > 100000) v = 100000; sl.value = v; state.loanAmount = v; persistData(); };
+      document.getElementById('backBtn6').onclick = () => { current = 5; persistData(); render(); }; document.getElementById('confirmAmountBtn').onclick = () => { current = 6.5; persistData(); render(); }; return;
     }
-
     if(current === 6.5) {
-      card.innerHTML = `
-        <div class="text-center" style="padding: 40px 0;">
-          <div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div>
-          <p id="loadingText6" style="font-size:18px; font-weight:700; color:var(--blue-900);">Locking Selected Amount...</p>
-        </div>
-      `;
-      setTimeout(() => {
-          const txt = document.getElementById('loadingText6');
-          if(txt) txt.innerText = "Checking lender availability...";
-          setTimeout(() => {
-              if(txt) txt.innerText = "Generating Loan Summary...";
-              setTimeout(() => {
-                  if(txt) txt.innerText = "Preparing Agreement...";
-                  setTimeout(() => { current = 7; persistData(); render(); }, 700);
-              }, 900);
-          }, 1100);
-      }, 700);
-      return;
+      card.innerHTML = `<div class="text-center" style="padding: 40px 0;"><div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div><p id="loadingText6" style="font-size:18px; font-weight:700; color:var(--blue-900);">Locking Selected Amount...</p></div>`;
+      setTimeout(() => { current = 7; persistData(); render(); }, 1500); return;
     }
-
     if (current === 7){
-      if(typeof fbq !== "undefined"){ fbq('track', 'InitiateCheckout', { value: 299, currency: 'INR' }); }
-
-      const fee = getProcessingFee(state.loanAmount);
-      card.innerHTML = `
-        <div class="text-center mb-24">
-          <p style="margin-bottom:6px; font-weight:700; color:var(--success); text-transform:uppercase; letter-spacing:1.5px; font-size:12px;">Loan Approved</p>
-          <p class="m-0" style="font-size:40px; font-weight:900; color:var(--blue-900); letter-spacing:-1px;">₹${state.loanAmount.toLocaleString('en-IN')}</p>
-          <div class="mt-16">
-            <div class="stagger-item" style="animation-delay: 0.1s;"><i data-lucide="check" style="width:14px; stroke-width:3px;"></i> 15 lenders matched</div>
-            <div class="stagger-item" style="animation-delay: 0.3s;"><i data-lucide="check" style="width:14px; stroke-width:3px;"></i> Best lender selected</div>
-            <div class="stagger-item" style="animation-delay: 0.5s;"><i data-lucide="check" style="width:14px; stroke-width:3px;"></i> Ready for agreement</div>
-          </div>
-        </div>
-        
-        <div class="mb-28" style="border-top:1px dashed var(--border); border-bottom:1px dashed var(--border); padding:24px 0;">
-          <div class="flex justify-between items-center mb-16" style="font-size:14.5px; font-weight:600; color:var(--slate);">
-            <span>Verification Completed</span> <i data-lucide="check" class="icon-med" style="color:var(--success); stroke-width:3px;"></i>
-          </div>
-          <div class="flex justify-between items-center mb-16" style="font-size:14.5px; font-weight:600; color:var(--slate);">
-            <span>Identity Matched</span> <i data-lucide="check" class="icon-med" style="color:var(--success); stroke-width:3px;"></i>
-          </div>
-          <div class="flex justify-between items-center mb-16" style="font-size:14.5px; font-weight:600; color:var(--slate);">
-            <span>Mobile Verified</span> <i data-lucide="check" class="icon-med" style="color:var(--success); stroke-width:3px;"></i>
-          </div>
-          <div class="flex justify-between items-center" style="font-size:14.5px; font-weight:600; color:var(--slate);">
-            <span>Partner Offers Ready</span> <i data-lucide="check" class="icon-med" style="color:var(--success); stroke-width:3px;"></i>
-          </div>
-        </div>
-
-        <div class="mb-28">
-          <p class="mb-16" style="font-size:16px; font-weight:800; color:var(--ink);">What happens next?</p>
-          <div class="flex items-start gap-12" style="font-size:14.5px; color:var(--slate); font-weight:500;">
-            <i data-lucide="arrow-right-circle" class="icon-med" style="color:var(--blue-600); flex-shrink:0;"></i> <span>Loan agreement preparation</span>
-          </div>
-        </div>
-
-        <div class="mb-28" style="background:var(--blue-50); border-radius:16px; padding:20px; border:1px solid #D6E4FF;">
-          <div class="flex justify-between items-center mb-8">
-            <span style="font-size:15px; font-weight:700; color:var(--blue-900);">Platform Processing Fee</span>
-            <span style="font-size:20px; font-weight:900; color:var(--blue-900);">₹${fee.total}</span>
-          </div>
-          <p class="m-0" style="font-size:13px; color:var(--blue-900); opacity:0.85; line-height:1.5;">This one-time platform fee covers identity verification, lender matching, and generation of your personalized loan offers.</p>
-          <div class="flex gap-16 mt-12" style="font-size:12.5px; font-weight:600; color:var(--blue-700);">
-            <span class="flex items-center gap-4"><i data-lucide="check" class="icon-small"></i> GST Included</span>
-            <span class="flex items-center gap-4"><i data-lucide="check" class="icon-small"></i> One Time Fee</span>
-          </div>
-        </div>
-        
-        <button class="btn btn-primary h-56" id="payBtn" style="font-size:16px;">Unlock My Offer <i data-lucide="lock" class="icon-med"></i></button>
-        <p class="text-center m-0" style="font-size:12px; color:var(--slate-light); font-weight:500; margin-top:16px; display:flex; justify-content:center; align-items:center; gap:6px;">
-          <i data-lucide="shield-check" class="icon-small"></i> Secure payment via Cashfree Gateways
-        </p>
-        <button class="btn btn-ghost" id="backBtn7">Edit Amount</button>
-      `;
-      
-      document.getElementById('payBtn').onclick = () => { 
-        if(typeof fbq !== "undefined"){ fbq('trackCustom', 'UnlockMyOffer'); }
-        current = 7.5; persistData(); render(); 
-      };
-      
-      document.getElementById('backBtn7').onclick = () => { current = 6; persistData(); render(); };
-      lucide.createIcons();
-      return;
+      if(typeof fbq !== "undefined") fbq('track', 'InitiateCheckout', { value: 299, currency: 'INR' });
+      card.innerHTML = `<div class="text-center mb-24"><p style="color:var(--success); font-weight:700; font-size:12px;">LOAN APPROVED</p><p class="m-0" style="font-size:40px; font-weight:900; color:var(--blue-900);">₹${state.loanAmount.toLocaleString('en-IN')}</p></div><div class="mb-28" style="background:var(--blue-50); border-radius:16px; padding:20px; border:1px solid #D6E4FF;"><div class="flex justify-between items-center mb-8"><span style="font-size:15px; font-weight:700; color:var(--blue-900);">Processing Fee</span><span style="font-size:20px; font-weight:900; color:var(--blue-900);">₹299</span></div><p class="m-0" style="font-size:13px; opacity:0.85; line-height:1.5;">Covers digital KYC match verification pull fees instantly.</p></div><button class="btn btn-primary h-56" id="payBtn">Unlock My Offer <i data-lucide="lock" class="icon-med"></i></button><button class="btn btn-ghost" id="backBtn7">Edit Amount</button>`;
+      document.getElementById('payBtn').onclick = () => { if(typeof fbq !== "undefined") fbq('trackCustom', 'UnlockMyOffer'); current = 7.5; persistData(); render(); };
+      document.getElementById('backBtn7').onclick = () => { current = 6; persistData(); render(); }; lucide.createIcons(); return;
     }
-
     if(current === 7.5) {
-      card.innerHTML = `
-        <div class="text-center" style="padding: 40px 0;">
-          <div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div>
-          <p id="loadingText7" style="font-size:18px; font-weight:700; color:var(--blue-900);">Preparing Secure Payment...</p>
-        </div>
-      `;
-      setTimeout(() => {
-          const txt = document.getElementById('loadingText7');
-          if(txt) txt.innerText = "Encrypting Transaction...";
-          setTimeout(() => {
-              if(txt) txt.innerText = "Connecting to Cashfree...";
-              setTimeout(() => {
-                  if(txt) txt.innerText = "Redirecting Securely...";
-                  setTimeout(() => {
-                      sessionStorage.clear();
-                      window.location.href = 'https://payments.cashfree.com/forms/ZyncPay-299';
-                  }, 600);
-              }, 1000);
-          }, 1200);
-      }, 900);
-      return;
+      card.innerHTML = `<div class="text-center" style="padding: 40px 0;"><div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div><p id="loadingText7" style="font-size:18px; font-weight:700; color:var(--blue-900);">Connecting to Cashfree...</p></div>`;
+      setTimeout(() => { sessionStorage.clear(); window.location.href = 'https://payments.cashfree.com/forms/ZyncPay-299'; }, 1500); return;
     }
-    
-    card.innerHTML = screens()[current]();
-    attachHandlers();
-    lucide.createIcons();
+    card.innerHTML = screens()[current](); attachHandlers(); lucide.createIcons();
   }
-
   function attachHandlers(){
-    const nameInput = document.getElementById('nameInput'); 
-    if (nameInput) nameInput.oninput = e => { 
-      document.getElementById('err1').style.display = 'none'; 
-      state.name = e.target.value; 
-      persistData(); 
-    };
-    
-    const phoneInput = document.getElementById('phoneInput'); 
-    if (phoneInput) phoneInput.oninput = e => { 
-      document.getElementById('err2').style.display = 'none'; 
-      state.phone = e.target.value.replace(/\D/g,'').slice(0,10); 
-      persistData(); 
-    };
-
-    // Native Hidden Radio Group Dynamic Selection Engine
-    document.querySelectorAll('.pill-radio').forEach(el => { 
-      el.onchange = () => { 
-        state.idType = el.value; 
-        state.idNumber = ''; 
-        persistData();
-        renderCard(); 
-      }; 
-    });
-
-    const idInput = document.getElementById('idInput'); 
-    if (idInput) {
-      idInput.oninput = e => {
-        document.getElementById('err3').style.display = 'none';
-        let value = e.target.value;
-        if (state.idType === 'Aadhaar') {
-          let digits = value.replace(/\D/g, '').slice(0, 12);
-          let chunks = digits.match(/.{1,4}/g);
-          state.idNumber = chunks ? chunks.join(' ') : digits;
-          e.target.value = state.idNumber;
-        } else {
-          state.idNumber = value.replace(/[^A-Za-z0-9]/g, '').slice(0, 10).toUpperCase();
-          e.target.value = state.idNumber;
-        }
-        persistData();
-      };
-    }
-
-    const selfieInput = document.getElementById('selfieInput');
-    if (selfieInput) selfieInput.onchange = e => {
-      const file = e.target.files[0];
-      if (file){ 
-        compressImage(file, (compressedDataUrl) => {
-          state.selfie = compressedDataUrl; 
-          renderCard();
-        });
-      }
-    };
-
-    // Keyboard Space & Enter Key Support Activation for Selfie Box Element
-    const sBox = document.querySelector('.selfie-box');
-    if(sBox) {
-      sBox.onkeydown = e => {
-        if(e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault();
-          selfieInput.click();
-        }
-      };
-    }
-
-    const backBtn = document.getElementById('backBtn'); 
-    if (backBtn) backBtn.onclick = () => { 
-      current--; 
-      persistData(); 
-      render(); 
-    };
-
-    const nextBtn = document.getElementById('nextBtn');
-    if (nextBtn) nextBtn.onclick = () => {
-      if (current === 1) {
-        if (!state.name.trim()){ document.getElementById('err1').style.display='flex'; return; }
-        if (typeof fbq !== "undefined") { fbq('track', 'Lead'); }
-      }
-      
+    if (document.getElementById('nameInput')) document.getElementById('nameInput').oninput = e => { document.getElementById('err1').style.display = 'none'; state.name = e.target.value; persistData(); };
+    if (document.getElementById('phoneInput')) document.getElementById('phoneInput').oninput = e => { document.getElementById('err2').style.display = 'none'; state.phone = e.target.value.replace(/\D/g,'').slice(0,10); persistData(); };
+    document.querySelectorAll('.pill-radio').forEach(el => { el.onchange = () => { state.idType = el.value; state.idNumber = ''; persistData(); renderCard(); }; });
+    const idIn = document.getElementById('idInput');
+    if (idIn) { idIn.oninput = e => { document.getElementById('err3').style.display = 'none'; let v = e.target.value; if (state.idType === 'Aadhaar') { let d = v.replace(/\D/g, '').slice(0, 12), c = d.match(/.{1,4}/g); state.idNumber = c ? c.join(' ') : d; e.target.value = state.idNumber; } else { state.idNumber = v.replace(/[^A-Za-z0-9]/g, '').slice(0, 10).toUpperCase(); e.target.value = state.idNumber; } persistData(); }; }
+    if (document.getElementById('selfieInput')) document.getElementById('selfieInput').onchange = e => { const file = e.target.files[0]; if (file) compressImage(file, (cData) => { state.selfie = cData; renderCard(); }); };
+    if (document.querySelector('.selfie-box')) document.querySelector('.selfie-box').onkeydown = e => { if(e.key === ' ' || e.key === 'Enter') { e.preventDefault(); document.getElementById('selfieInput').click(); } };
+    if (document.getElementById('backBtn')) document.getElementById('backBtn').onclick = () => { current--; persistData(); render(); };
+    if (document.getElementById('nextBtn')) document.getElementById('nextBtn').onclick = () => {
+      if (current === 1 && !state.name.trim()){ document.getElementById('err1').style.display='flex'; return; }
       if (current === 2 && state.phone.length !== 10){ document.getElementById('err2').style.display='flex'; return; }
-      
-      if (current === 3) {
-        const err3 = document.getElementById('err3');
-        if (state.idType === 'PAN' && !validatePAN(state.idNumber)) { err3.innerHTML = '<i data-lucide="alert-circle" class="icon-small"></i> Please enter a valid 10-character PAN.'; err3.style.display = 'flex'; lucide.createIcons(); return; }
-        if (state.idType === 'Aadhaar' && !validateAadhaar(state.idNumber)) { err3.innerHTML = '<i data-lucide="alert-circle" class="icon-small"></i> Please enter a valid 12-digit Aadhaar number.'; err3.style.display = 'flex'; lucide.createIcons(); return; }
-      }
-      
-      if (current === 4) {
-        if (!state.selfie){ document.getElementById('err4').style.display='flex'; return; }
-        if (typeof fbq !== "undefined") { fbq('trackCustom', 'IdentitySubmitted'); }
-      }
-      
-      current = (current === 4) ? 4.5 : current + 1; 
-      persistData(); 
-      render();
+      if (current === 3) { const e3 = document.getElementById('err3'); if (state.idType === 'PAN' && !validatePAN(state.idNumber)) { e3.innerHTML = '<i data-lucide="alert-circle" class="icon-small"></i> Invalid PAN.'; e3.style.display = 'flex'; lucide.createIcons(); return; } if (state.idType === 'Aadhaar' && !validateAadhaar(state.idNumber)) { e3.innerHTML = '<i data-lucide="alert-circle" class="icon-small"></i> Invalid Aadhaar.'; e3.style.display = 'flex'; lucide.createIcons(); return; } }
+      if (current === 4 && !state.selfie){ document.getElementById('err4').style.display='flex'; return; }
+      current = (current === 4) ? 4.5 : current + 1; persistData(); render();
     };
   }
-
-  function getProcessingFee(amount){ return { total: 299 }; }
-  function render(){ renderProgress(); renderCard(); }
-  render();
-
-  // --- FAQ AGGREGATOR MODULE ---
-  const faqs = [
-    { q:"What is the minimum credit score required?", a:"We partner with various lenders. While a score of 700+ gets you the best rates, we have NBFC partners that cater to users with no credit history or lower scores." },
-    { q:"How long does approval take?", a:"Eligibility checks are instant. Once you select an offer, final approval and disbursal usually happen within 2-24 hours depending on the bank." },
-    { q:"Is the ₹299 processing fee refundable?", a:"The flat ₹299 fee is a one-time platform service fee for KYC verification and credit pull. It is non-refundable once the process begins." },
-    { q:"Can I foreclose my loan early?", a:"Yes, most of our lending partners allow foreclosure after a lock-in period of 3 to 6 months. Foreclosure charges may apply depending on the lender." },
-    { q:"Do I need to submit physical documents?", a:"No, the entire process is 100% digital. We use CKYC and Aadhaar OTP for verification." },
-    { q:"What happens if I miss an EMI?", a:"Missing an EMI will attract late payment charges from the lender and will negatively impact your CIBIL score." },
-    { q:"Can I get a loan if I am self-employed?", a:"Yes! We have specialized personal loan products for self-employed professionals based on your banking transactions." },
-    { q:"How is my data protected?", a:"We use 256-bit bank-grade encryption. We are RBI-compliant and do not share your data with unauthorized third parties." },
-    { q:"Are there any hidden charges?", a:"No. You will see all processing fees, interest rates, and EMI amounts clearly on your screen before you sign the digital loan agreement." },
-    { q:"Can I use this loan for business purposes?", a:"Yes, personal loans are unsecured and can be used for any legitimate purpose including business, medical, or travel." }
-  ];
-
-  const faqEl = document.getElementById('faqList');
-  if(faqEl) {
-    faqEl.innerHTML = faqs.map((f,i) => `
-      <div class="faq-item" data-i="${i}">
-        <div class="faq-q">${f.q}<i data-lucide="plus" class="faq-toggle" style="width:20px;"></i></div>
-        <div class="faq-a">${f.a}</div>
-      </div>
-    `).join('');
-    document.querySelectorAll('.faq-item').forEach(el => {
-      el.querySelector('.faq-q').onclick = () => {
-        const isOpen = el.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(x => { 
-          x.classList.remove('open'); 
-          x.querySelector('.faq-toggle').setAttribute('data-lucide', 'plus');
-        });
-        if (!isOpen){ 
-          el.classList.add('open'); 
-          el.querySelector('.faq-toggle').setAttribute('data-lucide', 'x');
-        }
-        lucide.createIcons();
-      };
-    });
-  }
+  function getProcessingFee(amount){ return { total: 299 }; } function render(){ renderProgress(); renderCard(); } render();
+  const faqs = [{ q:"What score is required?", a:"We partner with various lenders. Options are available for 700+ as well as fresh profiles." }, { q:"How long does approval take?", a:"Eligibility checking is instant. Disbursal usually takes 2-24 hours." }, { q:"Is the fee refundable?", a:"The ₹299 fee is a one-time platform service entry credit check cost and is non-refundable." }];
+  const faqEl = document.getElementById('faqList'); if(faqEl) { faqEl.innerHTML = faqs.map((f,i) => `<div class="faq-item" data-i="${i}"><div class="faq-q">${f.q}<i data-lucide="plus" class="faq-toggle" style="width:20px;"></i></div><div class="faq-a">${f.a}</div></div>`).join(''); document.querySelectorAll('.faq-item').forEach(el => { el.querySelector('.faq-q').onclick = () => { const isOpen = el.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(x => { x.classList.remove('open'); x.querySelector('.faq-toggle').setAttribute('data-lucide', 'plus'); }); if (!isOpen){ el.classList.add('open'); el.querySelector('.faq-toggle').setAttribute('data-lucide', 'x'); } lucide.createIcons(); }; }); }
 })();
 </script>
 </body>
