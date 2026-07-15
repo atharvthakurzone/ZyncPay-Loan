@@ -92,12 +92,18 @@ header.scrolled .header-row { padding: 10px 0; }
 
 .logo{display:flex; align-items:center; gap:9px; cursor:pointer;}
 
-/* NEW: Layout styles for the unified graphical full logo image */
 .header-logo-brand {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
-  display: block;
+  height: 42px;            /* Increased slightly so the cropped logo reads bold and clear */
+  width: auto;             /* Perfectly preserves the natural proportions of your logo[cite: 4] */
+  object-fit: contain;     /* Prevents any blurring or stretching distortion[cite: 4] */
+  display: block;          /* Keeps inline block rendering sharp[cite: 4] */
+}
+
+/* Mobile fine-tuning */
+@media (max-width: 900px) {
+  .header-logo-brand {
+    height: 34px;          /* Perfectly balanced height for mobile navigation strips[cite: 4] */
+  }
 }
 
 nav{display:flex; gap:28px; font-size:14.5px; font-weight:500; color:var(--slate);}
