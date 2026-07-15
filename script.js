@@ -407,7 +407,7 @@
           const currentVal = Math.floor(ease * target);
           if(amountEl) amountEl.textContent = 'upto ₹' + currentVal.toLocaleString('en-IN');
           if (progress < 1) { window.requestAnimationFrame(step); } 
-          else { if(amountEl) amountEl.textContent = 'upto ₹1,0,000'; }
+          else { if(amountEl) amountEl.textContent = 'upto ₹1,00,000'; }
         };
         window.requestAnimationFrame(step);
       }, 400);
