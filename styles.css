@@ -91,10 +91,14 @@ header.scrolled {
 header.scrolled .header-row { padding: 10px 0; }
 
 .logo{display:flex; align-items:center; gap:9px; cursor:pointer;}
-.logo-mark{width:28px; height:28px; border-radius:8px; background:var(--blue-700); position:relative; flex-shrink:0;}
-.logo-mark::after{content:""; position:absolute; top:8px; left:8px; width:12px; height:12px; border-radius:3px; background:var(--gold);}
-.logo-word{font-weight:800; font-size:19px; letter-spacing:-0.5px;}
-.logo-word span{color:var(--blue-700);}
+
+/* NEW: Layout styles for the unified graphical full logo image */
+.header-logo-brand {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 
 nav{display:flex; gap:28px; font-size:14.5px; font-weight:500; color:var(--slate);}
 nav a{cursor:pointer; transition: color 0.2s;}
@@ -361,6 +365,11 @@ footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60
   .hero-eyebrow { margin-bottom: 16px; margin-top: 0; }
   .hero-title { font-size: 32px; margin-bottom: 0; align-self: center; line-height: 1.25; }
   .hero-illustration { width: 140px; height: 240px; align-self: center; justify-self: end; margin: 0; }
+
+  /* Dynamic scale toggle override to adjust graphical header logo area for compact folds */
+  .header-logo-brand {
+    height: 28px;
+  }
   
   .phone-mockup { 
     bottom: auto; top: 0; right: 0; position: absolute; 
@@ -379,7 +388,7 @@ footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60
   .pie-legend { flex-direction: row; justify-content: center; width: 100%; }
   .feature-grid { grid-template-columns: 1fr; }
   
-  /* UPDATED: Forces structural layout split on mobile viewports */
+  /* Forces split column layout structure on small screens */
   .footer-grid { 
     grid-template-columns: 1fr 1fr; 
     gap: 32px; 
@@ -389,7 +398,7 @@ footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60
     margin-bottom: 12px; 
   }
 
-  /* UPDATED: Badges scale smoothly in an even side-by-side row split */
+  /* Locks the trust items cleanly inside a row layout */
   .footer-badges {
     display: flex !important;
     flex-direction: row !important;
