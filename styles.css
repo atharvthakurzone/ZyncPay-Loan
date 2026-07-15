@@ -92,18 +92,12 @@ header.scrolled .header-row { padding: 10px 0; }
 
 .logo{display:flex; align-items:center; gap:9px; cursor:pointer;}
 
+/* Main graphical logo styles for desktop layout viewports */
 .header-logo-brand {
-  height: 42px;            /* Increased slightly so the cropped logo reads bold and clear */
-  width: auto;             /* Perfectly preserves the natural proportions of your logo[cite: 4] */
-  object-fit: contain;     /* Prevents any blurring or stretching distortion[cite: 4] */
-  display: block;          /* Keeps inline block rendering sharp[cite: 4] */
-}
-
-/* Mobile fine-tuning */
-@media (max-width: 900px) {
-  .header-logo-brand {
-    height: 34px;          /* Perfectly balanced height for mobile navigation strips[cite: 4] */
-  }
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 nav{display:flex; gap:28px; font-size:14.5px; font-weight:500; color:var(--slate);}
@@ -337,19 +331,58 @@ footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60
   p.section-sub { margin-bottom: 32px; font-size: 14px; }
   .hero { padding: 48px 0 0; }
   
-  .wrap { padding: 0 20px; }
+  /* FIXED: Set exact, structural side indentation limits for the base wrapper layout container */
+  .wrap { padding: 0 32px !important; }
 
   .header-cta { display: none; }
   
+  /* 
+     FIXED PREMIUM HEADER:
+     Locks header box height to exactly 64px and stops the layout script from shifting 
+     padding metrics up and down dynamically on scroll event triggers.
+  */
+  header {
+    height: 64px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  header.scrolled {
+    background: rgba(255, 255, 255, 0.95) !important;
+  }
+  
+  /* Standardizes tracking lane architecture to strict absolute grid limits */
+  .header-row {
+    padding: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  
+  /* FIXED HAMBURGER: Centered vertically and pinned softly inside the matching layout grid row */
   .mobile-menu-btn { 
-    display: flex; align-items: center; justify-content: center; 
-    background: none; border: none; color: var(--ink); 
-    cursor: pointer; z-index: 101; 
-    margin-right: 0; padding: 12px; 
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    background: none !important; 
+    border: none !important; 
+    color: #8FA0C2 !important;           
+    cursor: pointer !important; 
+    z-index: 101 !important; 
+    margin: 0 !important; 
+    padding: 6px !important; 
+    align-self: center !important;
+  }
+  .mobile-menu-btn i {
+    width: 24px !important; 
+    height: 24px !important; 
+    stroke-width: 1.75px !important; 
+    display: block !important;
   }
   
   nav#mainNav {
-    position: absolute; top: 100%; left: 0; width: 100%; background: var(--white);
+    position: absolute; top: 64px; left: 0; width: 100%; background: var(--white);
     flex-direction: column; gap: 0; padding: 8px 24px 24px; border-top: 1px solid var(--border);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); opacity: 0; visibility: hidden;
     transform: translateY(-10px); transition: all 0.3s ease; z-index: 99;
@@ -372,9 +405,15 @@ footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60
   .hero-title { font-size: 32px; margin-bottom: 0; align-self: center; line-height: 1.25; }
   .hero-illustration { width: 140px; height: 240px; align-self: center; justify-self: end; margin: 0; }
 
-  /* Dynamic scale toggle override to adjust graphical header logo area for compact folds */
+  /* FIXED LOGO MARK: Aligned securely inside the exact vertical middle lane bounds */
   .header-logo-brand {
-    height: 28px;
+    height: 28px !important;
+    width: 114px !important;
+    object-fit: cover !important;
+    object-position: top left !important;
+    display: block !important;
+    margin: 0 !important;
+    align-self: center !important;
   }
   
   .phone-mockup { 
@@ -394,7 +433,6 @@ footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60
   .pie-legend { flex-direction: row; justify-content: center; width: 100%; }
   .feature-grid { grid-template-columns: 1fr; }
   
-  /* Forces split column layout structure on small screens */
   .footer-grid { 
     grid-template-columns: 1fr 1fr; 
     gap: 32px; 
@@ -404,7 +442,6 @@ footer{background:var(--ink); color:#8992A1; padding:64px 0 32px; margin-top: 60
     margin-bottom: 12px; 
   }
 
-  /* Locks the trust items cleanly inside a row layout */
   .footer-badges {
     display: flex !important;
     flex-direction: row !important;
