@@ -1,16 +1,12 @@
-// Encapsulating Architecture in IIFE Block to preserve global scope safety
 (function() {
-  // --- INITIALIZE ICONS ---
   lucide.createIcons();
 
-  // --- SCROLL HEADER EFFECT ---
   const header = document.getElementById('mainHeader');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) { header.classList.add('scrolled'); } 
     else { header.classList.remove('scrolled'); }
   });
 
-  // --- MOBILE MENU TOGGLE LOGIC (WITH BODY SCROLL TRAP FIX) ---
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mainNav = document.getElementById('mainNav');
   const menuIcon = document.getElementById('menuIcon');
@@ -38,7 +34,6 @@
       mobileMenuBtn.addEventListener('click', toggleMobileMenu);
   }
 
-  // --- INTERSECTION OBSERVER ---
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -77,7 +72,6 @@
     window.requestAnimationFrame(step);
   }
 
-  // --- ACCESSIBLE SPA CLIENT-SIDE ROUTING ---
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault(); 
@@ -110,7 +104,6 @@
   const bElgBtn = document.getElementById('businessEligibilityBtn');
   if(bElgBtn) { bElgBtn.onclick = () => alert('Business Loan engine currently in maintenance. Contact support@zyncpay.com'); }
 
-  // --- EMI CALCULATOR WITH TWO-WAY SLIDER & BOX SYNC ---
   const emiSliderAmount = document.getElementById('emiSliderAmount');
   const emiSliderRate = document.getElementById('emiSliderRate');
   const emiSliderTenure = document.getElementById('emiSliderTenure');
@@ -166,7 +159,6 @@
     document.getElementById('emiPieChart').style.background = `conic-gradient(var(--blue-500) 0% ${principalPercent}%, var(--gold) ${principalPercent}% 100%)`;
   }
 
-  // Dual-Binding Event Orchestration Logic
   function syncSlidersFromInputs() {
     emiSliderAmount.value = emiInputAmount.value;
     emiSliderRate.value = emiInputRate.value;
@@ -193,7 +185,7 @@
     calculateEMI(); 
   }
 
-  // --- LOAN FORM WIZARD ENGINE WITH METADATA PERSISTENCE ---
+  // --- LOAN FORM WIZARD ENGINE ---
   const defaultState = { name:'', phone:'', idType:'Aadhaar', idNumber:'', selfie:null, loanAmount:50000 };
   const savedState = sessionStorage.getItem('zyncpay_state');
 
@@ -243,22 +235,39 @@
     el.innerHTML = html;
   }
 
+  // Improvement 3 Update: Specialized high-context descriptions that reassure users regarding information usage
   function screens(){
     return {
       1: () => `
         <p class="form-card-title">Check your eligibility</p>
         <p class="form-card-sub">Takes under a minute. No impact on your credit score.</p>
-        <div class="field"><label for="nameInput">Full name</label><input type="text" id="nameInput" placeholder="As per your ID" value="${state.name}"></div>
+        
+        <div class="form-trust-box">
+          <div class="trust-box-item"><i data-lucide="lock" class="icon-small text-success"></i> <span>Your data is encrypted during transmission.</span></div>
+          <div class="trust-box-item"><i data-lucide="building-2" class="icon-small text-success"></i> <span>Shared only with participating lending partners as needed for your application.</span></div>
+          <div class="trust-box-item"><i data-lucide="clock" class="icon-small text-success"></i> <span>Eligibility check takes about 2 minutes.</span></div>
+        </div>
+
+        <div class="field"><label for="nameInput">Full name</label><input type="text" id="nameInput" placeholder="As per your ID card" value="${state.name}"></div>
         <div class="error-note" id="err1" style="display:none;"><i data-lucide="alert-circle" class="icon-small"></i> Enter your full name to continue.</div>
-        <button class="btn btn-primary" id="nextBtn">Continue <i data-lucide="arrow-right" class="icon-med"></i></button>
+        
+        <button class="btn btn-primary" id="nextBtn">Check Eligibility <i data-lucide="arrow-right" class="icon-med"></i></button>
         <p class="consent-fine">By continuing, you agree to ZyncPay's <a href="#">Credit Report Terms</a>, <a href="#">Terms &amp; Conditions</a>.</p>
       `,
       2: () => `
         <p class="form-card-title">What's your mobile number?</p>
         <p class="form-card-sub">Required to establish digital lending identity parameters.</p>
+        
+        <div class="form-trust-box">
+          <div class="trust-box-item"><i data-lucide="lock" class="icon-small text-success"></i> <span>Your data is encrypted during transmission.</span></div>
+          <div class="trust-box-item"><i data-lucide="building-2" class="icon-small text-success"></i> <span>Shared only with participating lending partners as needed for your application.</span></div>
+          <div class="trust-box-item"><i data-lucide="clock" class="icon-small text-success"></i> <span>Eligibility check takes about 2 minutes.</span></div>
+        </div>
+
         <div class="field"><label for="phoneInput">Mobile number</label><input type="tel" id="phoneInput" placeholder="98765 43210" value="${state.phone}" maxlength="10"></div>
         <div class="error-note" id="err2" style="display:none;"><i data-lucide="alert-circle" class="icon-small"></i> Enter a valid 10-digit mobile number.</div>
-        <button class="btn btn-primary" id="nextBtn">Continue <i data-lucide="arrow-right" class="icon-med"></i></button>
+        
+        <button class="btn btn-primary" id="nextBtn">Check My Eligibility <i data-lucide="arrow-right" class="icon-med"></i></button>
         <button class="btn btn-ghost" id="backBtn">Back</button>
       `,
       3: () => `
@@ -276,9 +285,12 @@
           </label>
         </div>
         
-        <div class="field"><label for="idInput">${state.idType} number</label><input type="text" id="idInput" placeholder="${state.idType==='Aadhaar' ? 'XXXX XXXX XXXX' : 'ABCDE1234F'}" value="${state.idNumber}"></div>
+        <div class="field" style="margin-bottom: 6px;"><label for="idInput">${state.idType} number</label><input type="text" id="idInput" placeholder="${state.idType==='Aadhaar' ? 'XXXX XXXX XXXX' : 'ABCDE1234F'}" value="${state.idNumber}"></div>
+        
+        <p class="micro-trust-copy"><i data-lucide="lock" style="width:11px; height:11px;"></i> We use your details only for lender verification.</p>
         <div class="error-note" id="err3" style="display:none;"></div>
-        <button class="btn btn-primary" id="nextBtn">Continue <i data-lucide="arrow-right" class="icon-med"></i></button>
+        
+        <button class="btn btn-primary" id="nextBtn" style="margin-top: 14px;">See Available Offers <i data-lucide="arrow-right" class="icon-med"></i></button>
         <button class="btn btn-ghost" id="backBtn">Back</button>
       `,
       4: () => `
@@ -292,8 +304,11 @@
           </div>
         </label>
         <input type="file" id="selfieInput" accept="image/*" capture="user">
+        
+        <p class="micro-trust-copy text-center"><i data-lucide="lock" style="width:11px; height:11px;"></i> Encrypted data node matching endpoint transmission safely.</p>
         <div class="error-note" id="err4" style="display:none;"><i data-lucide="alert-circle" class="icon-small"></i> Take a selfie to see your eligibility.</div>
-        <button class="btn btn-primary" id="nextBtn">See my eligibility <i data-lucide="sparkles" class="icon-med"></i></button>
+        
+        <button class="btn btn-primary" id="nextBtn" style="margin-top: 14px;">See My Available Offers <i data-lucide="sparkles" class="icon-med"></i></button>
         <button class="btn btn-ghost" id="backBtn">Back</button>
       `,
       4.5: () => `
@@ -301,15 +316,15 @@
           <p class="form-card-title text-center">Verifying Profile</p>
           <p class="form-card-sub text-center mb-8">Running secure KYC match with lending partners.</p>
           <div class="verify-item active" id="vi-pan">
-            <span>Checking Identity Records</span>
+            <span>✔ Securely verifying identity</span>
             <div class="verify-status" id="vs-pan"><div class="loader-spinner"></div></div>
           </div>
           <div class="verify-item" id="vi-aadhaar">
-            <span>Verifying CIBIL Score</span>
+            <span>✔ Matching lender eligibility</span>
             <div class="verify-status" id="vs-aadhaar"></div>
           </div>
           <div class="verify-item" id="vi-mobile">
-            <span>Fetching Pre-Approved Offers</span>
+            <span>✔ Checking available offers</span>
             <div class="verify-status" id="vs-mobile"></div>
           </div>
         </div>
@@ -377,7 +392,7 @@
             </div>
           </div>
 
-          <button class="btn btn-primary h-56" id="continueBtn" style="font-size:16px;">Continue to Secure My Offer <i data-lucide="arrow-right" class="icon-med"></i></button>
+          <button class="btn btn-primary h-56" id="continueBtn" style="font-size:16px;">See Available Offers <i data-lucide="arrow-right" class="icon-med"></i></button>
         </div>
       `;
       
@@ -392,7 +407,7 @@
           const currentVal = Math.floor(ease * target);
           if(amountEl) amountEl.textContent = 'upto ₹' + currentVal.toLocaleString('en-IN');
           if (progress < 1) { window.requestAnimationFrame(step); } 
-          else { if(amountEl) amountEl.textContent = 'upto ₹1,00,000'; }
+          else { if(amountEl) amountEl.textContent = 'upto ₹1,0,000'; }
         };
         window.requestAnimationFrame(step);
       }, 400);
@@ -406,14 +421,14 @@
       card.innerHTML = `
         <div class="text-center" style="padding: 40px 0;">
           <div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div>
-          <p id="loadingText5" style="font-size:18px; font-weight:700; color:var(--blue-900);">Preparing Personalized Offers...</p>
+          <p id="loadingText5" style="font-size:18px; font-weight:700; color:var(--blue-900);">✔ Securely verifying identity...</p>
         </div>
       `;
       setTimeout(() => {
           const txt = document.getElementById('loadingText5');
-          if(txt) txt.innerText = "Matching 15+ Lending Partners...";
+          if(txt) txt.innerText = "✔ Matching lender eligibility...";
           setTimeout(() => {
-              if(txt) txt.innerHTML = "<span class='pulse-text'>✓ Personalized Offer Ready</span>";
+              if(txt) txt.innerHTML = "<span class='pulse-text'>✔ Checking available offers</span>";
               setTimeout(() => { current = 6; persistData(); render(); }, 800); 
           }, 1600); 
       }, 1100); 
@@ -460,14 +475,14 @@
       card.innerHTML = `
         <div class="text-center" style="padding: 40px 0;">
           <div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div>
-          <p id="loadingText6" style="font-size:18px; font-weight:700; color:var(--blue-900);">Locking Selected Amount...</p>
+          <p id="loadingText6" style="font-size:18px; font-weight:700; color:var(--blue-900);">✔ Securely verifying identity...</p>
         </div>
       `;
       setTimeout(() => {
           const txt = document.getElementById('loadingText6');
-          if(txt) txt.innerText = "Checking lender availability...";
+          if(txt) txt.innerText = "✔ Matching lender eligibility...";
           setTimeout(() => {
-              if(txt) txt.innerText = "Generating Loan Summary...";
+              if(txt) txt.innerText = "✔ Checking available offers...";
               setTimeout(() => {
                   if(txt) txt.innerText = "Preparing Agreement...";
                   setTimeout(() => { current = 7; persistData(); render(); }, 700);
@@ -526,7 +541,7 @@
           </div>
         </div>
         
-        <button class="btn btn-primary h-56" id="payBtn" style="font-size:16px;">Unlock My Offer <i data-lucide="lock" class="icon-med"></i></button>
+        <button class="btn btn-primary h-56" id="payBtn" style="font-size:16px;">See Available Offers <i data-lucide="lock" class="icon-med"></i></button>
         <p class="text-center m-0" style="font-size:12px; color:var(--slate-light); font-weight:500; margin-top:16px; display:flex; justify-content:center; align-items:center; gap:6px;">
           <i data-lucide="shield-check" class="icon-small"></i> Secure payment via Cashfree Gateways
         </p>
@@ -547,14 +562,14 @@
       card.innerHTML = `
         <div class="text-center" style="padding: 40px 0;">
           <div class="loader-spinner" style="width:40px; height:40px; border-width:4px; margin: 0 auto 24px;"></div>
-          <p id="loadingText7" style="font-size:18px; font-weight:700; color:var(--blue-900);">Preparing Secure Payment...</p>
+          <p id="loadingText7" style="font-size:18px; font-weight:700; color:var(--blue-900);">✔ Securely verifying identity...</p>
         </div>
       `;
       setTimeout(() => {
           const txt = document.getElementById('loadingText7');
-          if(txt) txt.innerText = "Encrypting Transaction...";
+          if(txt) txt.innerText = "✔ Matching lender eligibility...";
           setTimeout(() => {
-              if(txt) txt.innerText = "Connecting to Cashfree...";
+              if(txt) txt.innerText = "✔ Checking available offers...";
               setTimeout(() => {
                   if(txt) txt.innerText = "Redirecting Securely...";
                   setTimeout(() => {
@@ -587,7 +602,6 @@
       persistData(); 
     };
 
-    // Native Hidden Radio Group Dynamic Selection Engine
     document.querySelectorAll('.pill-radio').forEach(el => { 
       el.onchange = () => { 
         state.idType = el.value; 
@@ -626,7 +640,6 @@
       }
     };
 
-    // Keyboard Space & Enter Key Support Activation for Selfie Box Element
     const sBox = document.querySelector('.selfie-box');
     if(sBox) {
       sBox.onkeydown = e => {
@@ -674,7 +687,6 @@
   function render(){ renderProgress(); renderCard(); }
   render();
 
-  // --- FAQ AGGREGATOR MODULE ---
   const faqs = [
     { q:"What is the minimum credit score required?", a:"We partner with various lenders. While a score of 700+ gets you the best rates, we have NBFC partners that cater to users with no credit history or lower scores." },
     { q:"How long does approval take?", a:"Eligibility checks are instant. Once you select an offer, final approval and disbursal usually happen within 2-24 hours depending on the bank." },
